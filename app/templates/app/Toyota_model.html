@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Models</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #4e4e4e;
+            margin: 0;
+            padding-top: 70px; 
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #dcdcdc; 
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .car-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #212529;
+            margin-bottom: 10px;
+        }
+
+        .car-price {
+            font-size: 20px;
+            color: #000080;
+            margin-bottom: 10px;
+        }
+
+        .car-details {
+            font-size: 16px;
+            color: #708090;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .action-button {
+            display: inline-block;
+            background-color: #000080;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .action-button:hover {
+            background-color: #0000cd;
+            transform: translateY(-3px);
+        }
+
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%; 
+            margin-right: 8px;
+        }
+
+        .navbar-brand span {
+            font-weight: bold;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{% static 'app/Image/car_icon.jpg' %}" alt="Car Icon">
+                <span>CarInfoSystem</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/Home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Login">Register / Login</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="typeDropdown" role="button" data-bs-toggle="dropdown">
+                                Sort by Type
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
+                                <li><a class="dropdown-item" href="#">Sedan</a></li>
+                                <li><a class="dropdown-item" href="#">SUV</a></li>
+                                <li><a class="dropdown-item" href="#">Hatchback</a></li>
+                                <li><a class="dropdown-item" href="#">Coupe</a></li>
+                                <li><a class="dropdown-item" href="#">Luxury</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Contact">Contact Us</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3">
+                        <input class="form-control me-2" type="search" placeholder="Search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Card Section -->
+    <div class="container">
+        <!-- Model 1 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_camry.jpg' %}" alt="Toyota Camry">
+            <div class="card-content">
+                <div class="car-title">Toyota Camry</div>
+                <div class="car-price">₹48 Lakh*</div>
+                <div class="car-details">
+                    Petrol • 25.49 kmpl • Automatic<br>
+                    2487 cc • 227 bhp • 5 Seats
+                </div>
+                <a href="/Toyota_camry_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 2 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_fortuner.jpg' %}" alt="Toyota Fortuner">
+            <div class="card-content">
+                <div class="car-title">Toyota Fortuner</div>
+                <div class="car-price">₹33.78 - ₹51.94 Lakh*</div>
+                <div class="car-details">
+                    Diesel / Petrol • 11 kmpl • Manual / Automatic<br>
+                    2694 - 2755 cc • 163.06 - 201.15 bhp • 7 Seats
+                </div>
+                <a href="/Toyota_fortuner_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 3 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_fortuner_legender.jpg' %}" alt="Toyota Fortuner Legender">
+            <div class="card-content">
+                <div class="car-title">Toyota Fortuner Legender</div>
+                <div class="car-price">₹44.11 - ₹48.09 Lakh*</div>
+                <div class="car-details">
+                    Diesel • 10.52 kmpl • Automatic<br>
+                    2755 cc • 201.15 bhp • 7 Seats
+                </div>
+                <a href="/Toyota_fortuner_legender_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 4 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_glanza.jpg' %}" alt="Toyota Glanza">
+            <div class="card-content">
+                <div class="car-title">Toyota Glanza</div>
+                <div class="car-price">₹6.90 - ₹10 Lakh*</div>
+                <div class="car-details">
+                    Petrol / CNG • 22.94 kmpl • Manual / Automatic<br>
+                    1197 cc • 76.43 - 88.5 bhp • 5 Seats
+                </div>
+                <a href="/Toyota_glanza_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 5 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_hilux.jpg' %}" alt="Toyota Hilux">
+            <div class="card-content">
+                <div class="car-title">Toyota Hilux</div>
+                <div class="car-price">₹30.40 - ₹37.90 Lakh*</div>
+                <div class="car-details">
+                    Diesel • 10 kmpl • Manual / Automatic<br>
+                    2755 cc • 201.15 bhp • 5 Seats
+                </div>
+                <a href="/Toyota_hilux_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 6 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_innova_crysta.jpg' %}" alt="Toyota Innova Crysta">
+            <div class="card-content">
+                <div class="car-title">Toyota Innova Crysta</div>
+                <div class="car-price">₹19.99 - ₹26.82 Lakh*</div>
+                <div class="car-details">
+                    Diesel • 9 kmpl • Manual<br>
+                    2393 cc • 147.51 bhp • 7 Seats
+                </div>
+                <a href="/Toyota_innova_crysta_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 7 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_innova_hycross.jpg' %}" alt="Toyota Innova Hycross">
+            <div class="card-content">
+                <div class="car-title">Toyota Innova Hycross</div>
+                <div class="car-price">₹19.94 - ₹31.34 Lakh*</div>
+                <div class="car-details">
+                    Petrol • 16.13 - 23.24 kmpl • Automatic<br>
+                    1987 cc • 172.99 - 183.72 bhp • 7 Seats
+                </div>
+                <a href="/Toyota_innova_hycross_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 8 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_land_cruiser.jpg' %}" alt="Toyota Land Cruiser 300">
+            <div class="card-content">
+                <div class="car-title">Toyota Land Cruiser 300</div>
+                <div class="car-price">₹2.31 - 2.41 CR*</div>
+                <div class="car-details">
+                    Diesel • 11 kmpl • Automatic<br>
+                    3346 cc • 304.41 bhp • 5 Seats
+                </div>
+                <a href="/Toyota_land_cruiser_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 9 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_rumion.jpg' %}" alt="Toyota Rumion">
+            <div class="card-content">
+                <div class="car-title">Toyota Rumion</div>
+                <div class="car-price">₹10.54 - ₹13.83 Lakh*</div>
+                <div class="car-details">
+                    Petrol / CNG • 20.11 - 20.51 kmpl • Manual / Automatic<br>
+                    1462 cc • 86.63 - 101.64 bhp • 7 Seats
+                </div>
+                <a href="/Toyota_rumion_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 10 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_taisor.jpg' %}" alt="Toyota Taisor">
+            <div class="card-content">
+                <div class="car-title">Toyota Taisor</div>
+                <div class="car-price">₹7.74 - ₹13.04 Lakh*</div>
+                <div class="car-details">
+                    Petrol / CNG • 20 - 22.08 kmpl • Manual / Automatic<br>
+                    998 - 1197 cc • 76.43- 98.69 bhp • 5 Seats
+                </div>
+                <a href="/Toyota_taisor_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 11 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_urban_cruiser_hyryder.jpg' %}" alt="Toyota Urban Cruiser Hyryder">
+            <div class="card-content">
+                <div class="car-title">Toyota Urban Cruiser Hyryder</div>
+                <div class="car-price">₹11.14 - ₹19.99 Lakh*</div>
+                <div class="car-details">
+                    Petrol  / CNG • 19.39 - 27.97 kmpl • Manual / Automatic<br>
+                    1462 - 1490 cc • 86.63 - 101.64 bhp • 5 Seats
+                </div>
+                <a href="/Toyota_urban_cruiser_hyryder_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+
+        <!-- Model 12 -->
+        <div class="card">
+            <img src="{% static 'app/Image/Toyota_vellfire.jpg' %}" alt="Toyota Vellfire">
+            <div class="card-content">
+                <div class="car-title">Toyota Vellfire</div>
+                <div class="car-price">₹1.22 - ₹1.32 CR*</div>
+                <div class="car-details">
+                    Petrol • 16 kmpl • Automatic<br>
+                    2487 cc • 190.42 bhp • 7 Seats
+                </div>
+                <a href="/Toyota_vellfire_full_detail" class="action-button">View Full Details</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maybach S-Class</title>
+  <style>
+   /* General Reset */
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background-color: #001f3f;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 101%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar ul {
+      display: flex;
+      justify-content: space-evenly;
+      list-style: none;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar li {
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .navbar li.active {
+      color: #ff5722;
+    }
+
+    .navbar li:hover {
+      color: #ff5722;
+    }
+
+    /* Horizontal Scrolling Sections Styling */
+    .horizontal-container {
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .section {
+      min-width: 100vw;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Section Heading Styling */
+    .section h1 {
+      margin-bottom: 15px;
+      color: #001f3f;
+    }
+
+    /* Section Paragraph Styling */
+    .section p {
+      color: #555;
+      max-width: 800px;
+      text-align: left;
+    }
+
+    /* XC90 Section Styling */
+    .info-section {
+      background-color: #f0f0f0; /* Light grey background */
+      color: #333; /* Dark text for better contrast */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .image-container img {
+      max-width: 80%;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Text Container Styling for XC90 */
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .text-container h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Rating Styling */
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .rating span {
+      background-color: #ff9800;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .rating h4 {
+      color: #555;
+    }
+
+    /* Price Styling */
+    .text-container h2 {
+      font-size: 2rem;
+      color: #1a0579;
+      font-weight: bold;
+    }
+
+    .text-container p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Rate Button Styling */
+    .rate-button {
+      background-color: #001f3f;
+      padding: 12px 25px;
+      color: white;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .rate-button:hover {
+      background-color: #ff5722;
+      transform: scale(1.05);
+    }
+
+    /* About Section Styling */
+    .section:last-child {
+      background: linear-gradient(135deg, #001f3f, #ff5722);
+      color: white;
+      text-align: center;
+    }
+
+    .section:last-child h1 {
+      color: #ffccbc;
+    }
+
+    .section:last-child p {
+      max-width: 900px;
+      font-size: 18px;
+      color: #ffeee4;
+    }
+
+     /* Price Section Styling */
+     .price-section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Ensures only 3 blocks per row */
+        gap: 20px;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+
+    /* Price Card Styling */
+    .price-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .price-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Price Card Header */
+    .price-card-header {
+        background-color: #001f3f;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .price-card-header h4 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    /* Price Card Body */
+    .price-card-body {
+        padding: 20px;
+    }
+
+    .price-card-body p {
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .price-card-body strong {
+        color: #001f3f;
+    }
+
+    /* Price Card Footer */
+    .price-card-footer {
+        padding: 15px;
+        text-align: center;
+        background-color: #f5f5f5;
+        border-top: 1px solid #ddd;
+    }
+
+    .price-card-footer p {
+        color: #001f3f;
+    }
+
+    .price-card-footer button {
+        background-color: #001f3f;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .price-card-footer button:hover {
+        background-color: #ff5722;
+    }
+
+    /* Mileage Table Styling */
+    section table {
+      width: 100%;
+      border-collapse: separate; 
+      border-spacing: 0 10px;
+      margin-top: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+
+    section th, section td {
+      padding: 15px 20px; 
+      text-align: center;
+      border: 1px solid #ddd;
+      transition: background-color 0.3s ease, transform 0.2s ease; 
+    }
+
+    section th {
+      background-color: #003366; 
+      color: white; 
+      font-weight: 600;
+      text-transform: uppercase; 
+      letter-spacing: 1px;
+    }
+
+    section td {
+      background-color: #d6d6d6; 
+      color: #000000; 
+      font-size: 1.2rem; 
+    }
+
+    section tr:hover td {
+      background-color: #e0e0e0; 
+      transform: scale(1.02); 
+    }
+
+    section th, section td {
+      border-radius: 6px; 
+    }
+
+    section td:first-child {
+      font-weight: 600; 
+    }
+
+
+    /* Specifications Section Styling */
+    #specifications {
+      padding: 40px 20px;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    #specifications h2 {
+      font-size: 2.5rem;
+      color: #001f3f;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Table Styling */
+    .specs-table {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden; 
+    }
+
+    /* Table Head */
+    .specs-table thead {
+      background-color: #003366; 
+      color: #ffffff; 
+      font-weight: bold; 
+    }
+
+    .specs-table th {
+      padding: 18px 25px;
+      font-size: 1.25rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px; 
+      background: linear-gradient(135deg, #003366, #001f3f); 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    }
+
+    .specs-table th:hover {
+      background-color: #ff5722; 
+      color: white; 
+      cursor: pointer; 
+    }
+
+
+    .specs-table th {
+      padding: 15px;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    /* Table Body */
+    .specs-table td {
+      padding: 14px 20px; 
+      font-size: 1rem; 
+      color: #000000; 
+      border-bottom: 1px solid #7c7c7c; 
+      text-align: left; 
+      background-color: #fafafa; /
+    }
+
+    .specs-table td:hover {
+      background-color: #f0f0f0; 
+      cursor: pointer; 
+    }
+
+    .specs-table tr:last-child td {
+      border-bottom: none; /* Remove border for the last row */
+    }
+
+    /* Hover Effect */
+    .specs-table tr:hover {
+      background-color: #f0f0f0;
+      transition: background-color 0.3s ease;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <nav>
+      <ul id="navbar">
+        <li onclick="scrollToSection(0)">MAYBACH S-CLASS</li>
+        <li onclick="scrollToSection(1)">PRICE</li>
+        <li onclick="scrollToSection(2)">MILEAGE</li>
+        <li onclick="scrollToSection(3)">SPECIFICATIONS</li>
+        <li onclick="scrollToSection(4)">ABOUT CAR</li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Horizontal Scrolling Sections -->
+  <main class="horizontal-container" id="horizontal-container">
+    
+    <!-- Maybach S-Class Section -->
+    <section class="section info-section">
+      <div class="info-wrapper">
+        <!-- Image -->
+        <div class="image-container">
+          <img src="{% static 'app/Image/Mercedes_benz_maybach_sclass.jpg' %}" alt="Mercedes-Benz Maybach S-Class">
+        </div>
+
+        <!-- Content -->
+        <div class="text-container">
+          <h1>Mercedes-Benz Maybach S-Class</h1>
+          <div class="rating">
+            <span>Not Known</span>
+            <h4>Safety rating</h4>
+          </div>
+          <h2>₹ 2.77 - 3.48 CR*</h2>
+          <p>*Ex-showroom Price in New Delhi</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Price Section -->
+    <section class="section" style="background-color: #f5f5f5;">
+        <h1>Mercedes-Benz Maybach S-Class Road Price</h1>
+        <div class="price-section">
+
+          <div class="price-card">
+            <div class="price-card-header">
+              <h4>Maybach S-Class S580</h4>
+            </div>
+            <div class="price-card-body">
+              <p>Ex-Showroom Price: <strong>₹ 2,77,30,000</strong></p>
+              <p>RTO: <strong>₹ 27,73,000</strong></p>
+              <p>Insurance: <strong>₹ 10,98,558</strong></p>
+              <p>Others: <strong>₹ 2,77,300</strong></p>
+            </div>
+            <div class="price-card-footer">
+              <p>On Road Price : <strong>₹ 3,18,78,858*</strong></p>
+            </div>
+          </div>
+
+          <div class="price-card">
+            <div class="price-card-header">
+              <h4>Maybach S-Class S680</h4>
+            </div>
+            <div class="price-card-body">
+              <p>Ex-Showroom Price: <strong>₹ 3,47,80,000</strong></p>
+              <p>RTO: <strong>₹ 34,78,000</strong></p>
+              <p>Insurance: <strong>₹ 13,70,423</strong></p>
+              <p>Others: <strong>₹ 3,47,800</strong></p>
+            </div>
+            <div class="price-card-footer">
+              <p>On Road Price : <strong>₹ 3,99,76,223*</strong></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Mileage Section -->
+    <section class="section" style="background-color: #f5f5f5;">
+      <h1>Mercedes-Benz Maybach S-Class Mileage</h1>
+      <!-- Mileage Table 1-->
+      <p>The Mercedes-Benz Maybach S-Class S580 Mileage </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Fuel Type</th>
+            <th>Transmission</th>
+            <th>ARAI Mileage</th>
+            <th>City Mileage</th>
+            <th>Highway Mileage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Petrol</td>
+            <td>Automatic</td>
+            <td>23 kmpl</td>
+            <td>--</td>
+            <td>10 kmpl</td>
+          </tr>
+        </tbody>
+      </table><br>
+
+      <!-- Mileage Table 2-->
+      <p>The Mercedes-Benz Maybach S-Class S680 Mileage </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Fuel Type</th>
+            <th>Transmission</th>
+            <th>ARAI Mileage</th>
+            <th>City Mileage</th>
+            <th>Highway Mileage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Petrol</td>
+            <td>Automatic</td>
+            <td>23 kmpl</td>
+            <td>--</td>
+            <td>10 kmpl</td>
+          </tr>
+        </tbody>
+      </table><br>
+    </section>
+
+    <!-- Specifications Section -->
+    <section class="section" id="specifications">
+    <h1>Key Specifications</h1>
+    <table class="specs-table">
+        <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ARAI Mileage</td>
+            <td>23 kmpl</td>
+        </tr>
+        <tr>
+            <td>Fuel Type</td>
+            <td>Petrol</td>
+        </tr>
+        <tr>
+            <td>Engine Displacement</td>
+            <td>5980 cc</td>
+        </tr>
+        <tr>
+            <td>No. of Cylinders</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>Max Power</td>
+            <td>603.46 bhp</td>
+        </tr>
+        <tr>
+            <td>Max Torque</td>
+            <td>900 Nm</td>
+        </tr>
+        <tr>
+            <td>Seating Capacity</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>Transmission Type</td>
+            <td>Automatic</td>
+        </tr>
+        <tr>
+            <td>Boot Space Capacity</td>
+            <td>495 Litres</td>
+        </tr>
+        <tr>
+            <td>Fuel Tank Capacity</td>
+            <td>76 Litres</td>
+        </tr>
+        <tr>
+            <td>Body Type</td>
+            <td>Sedan</td>
+        </tr>
+        <tr>
+          <td>Ground Clearance Unladen</td>
+          <td>109 mm</td>
+      </tr>
+        </tbody>
+    </table>
+    </section>
+
+    <!-- About Car Section -->
+    <section class="section">
+      <h1>About the Car</h1>
+      <p>
+        The Mercedes-Benz Maybach S-Class has 2 Petrol Engine on offer. The Petrol 
+        engine is 3982 cc and 5980 cc . It is available with Automatic transmission.
+        Depending upon the variant and fuel type the Maybach S-Class has a mileage 
+        of 23 kmpl. The Maybach S-Class is a 5 seater 12 cylinder car and has length 
+        of 5469 mm, width of 2109 mm and a wheelbase of 3008 mm.
+      </p>
+    </section>
+  </main>
+
+  <!-- JavaScript for Navigation -->
+  <script>
+    // JavaScript for smooth scrolling and active navbar item highlighting
+    const navbar = document.querySelectorAll("#navbar li");
+    const sections = document.querySelectorAll(".section");
+    const container = document.getElementById("horizontal-container");
+    let sectionOffsets = []; 
+    let isScrolling = false; 
+  
+    // Function to calculate the offsets dynamically
+    function calculateOffsets() {
+      sectionOffsets = [];
+      let cumulativeOffset = 0;
+      sections.forEach((section) => {
+        sectionOffsets.push(cumulativeOffset);
+        cumulativeOffset += section.offsetWidth;
+      });
+    }
+  
+    // Smoothly scroll to a specific section by index
+    function scrollToSection(index) {
+      if (index >= 0 && index < sectionOffsets.length) {
+        container.scrollTo({
+          left: sectionOffsets[index],
+          behavior: "smooth",
+        });
+        setActiveNav(index);
+      }
+    }
+  
+    // Set active class for the navbar item
+    function setActiveNav(index) {
+      navbar.forEach((navItem, i) => {
+        navItem.classList.toggle("active", i === index);
+      });
+    }
+  
+    // Detect active section during scroll and update navbar
+    function handleScroll() {
+      const scrollLeft = container.scrollLeft;
+  
+      // Find the section closest to the current scroll position
+      let activeIndex = 0;
+      for (let i = 0; i < sectionOffsets.length; i++) {
+        if (scrollLeft >= sectionOffsets[i] && scrollLeft < (sectionOffsets[i + 1] || Infinity)) {
+          activeIndex = i;
+          break;
+        }
+      }
+      setActiveNav(activeIndex);
+    }
+  
+    // Debounce function to optimize scroll event handling
+    function debounce(func, delay) {
+      let timer;
+      return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+  
+    // Snap to the nearest section when scrolling stops
+    const smoothSnap = debounce(() => {
+      if (isScrolling) return; // Skip if still scrolling manually
+      const scrollLeft = container.scrollLeft;
+  
+      // Find the nearest section based on current scroll position
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      sectionOffsets.forEach((offset, index) => {
+        const distance = Math.abs(scrollLeft - offset);
+        if (distance < closestDistance) {
+          closestIndex = index;
+          closestDistance = distance;
+        }
+      });
+  
+      // Smooth scroll to the nearest section
+      scrollToSection(closestIndex);
+    }, 150);
+  
+    // Event listener for scroll events
+    container.addEventListener("scroll", () => {
+      handleScroll();
+      smoothSnap(); // Trigger the snap function on scroll
+    });
+  
+    // Initial setup
+    calculateOffsets(); 
+    window.addEventListener("resize", calculateOffsets); 
+    // Adjust navbar active class on page load
+    handleScroll();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signin | Car Info System</title>
+    <link rel="stylesheet" href="{% static 'app/css/login_style.css' %}" />
+    <!-- Unicons for Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="/" class="nav_logo">CarInfoSystem</a>
+        <ul class="nav_items">
+          <li class="nav_item">
+            <a href="/Home" class="nav_link">Home</a>
+            <a href="/About" class="nav_link">About</a>
+            <a href="/Contact" class="nav_link">Contact</a>
+          </li>
+        </ul>
+        <button class="button" id="form-open">Signin</button>
+      </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="home">
+      <div class="form_container">
+        <i class="uil uil-times form_close"></i>
+
+        <!-- Signin Form -->
+        <div class="form login_form">
+          <form method="post">
+            {% csrf_token %}
+            <h2>Signin</h2>
+
+            <!-- Username Field -->
+            <div class="input_box">
+              <i class="uil uil-user"></i>
+              <input type="text" id="username" name="username" required placeholder="Enter your username">
+            </div>
+
+            <!-- Email Field -->
+            <div class="input_box">
+              <i class="uil uil-envelope"></i>
+              <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+
+            <!-- Password Field -->
+            <div class="input_box">
+              <i class="uil uil-lock"></i>
+              <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+
+            <div class="option_field">
+              <span class="checkbox">
+                <input type="checkbox" id="check" />
+                <label for="check">Remember me</label>
+              </span>
+              <a href="#" class="forgot_pw">Forgot password?</a>
+            </div>
+
+            <button class="button">Signin Now</button>
+
+            <div class="login_signup">
+              Don't have an account? <a href="/Login">Login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'app/js/login_script.js' %}"></script>
+  </body>
+</html>

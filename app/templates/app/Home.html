@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Car Brand</title>
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="{% static 'app/css/Navbar.css' %}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #414142;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-block {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-block img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        .logo-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            max-width: 150px;
+            max-height: 150px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .logo {
+            padding: 20px;
+            text-align: center;
+        }
+        .logo a span {
+            color: white; 
+            font-size: 14px; 
+            font-weight: bold; 
+            display: block;
+            margin-top: 10px; 
+            text-align: center; 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .logo a {
+            text-decoration: none; 
+            color: inherit; 
+        }
+        .logo a span:hover {
+            color: #4e4e4e; 
+        }
+
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            position: fixed;
+            top: 40px; 
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #414142;
+            padding: 20px;
+            width: 100%;
+            z-index: 10;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-row {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding-top: 80px; 
+        }
+
+        .main-content {
+            margin-top: 100px; 
+        }
+
+        .navbar-brand {
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+        }
+
+        .navbar-brand img {
+            width: 30px; 
+            height: 30px; 
+            border-radius: 50%; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+            margin-right: 8px; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1); 
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); 
+        }
+
+        .navbar-brand h6 {
+            color: #ffffff; 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            transition: color 0.3s ease; 
+        }
+
+        .navbar-brand:hover h5 {
+            color: #00c6ff; 
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+
+            <a class="navbar-brand d-flex align-items-center" href="{% static 'app/Image/car_icon.jpg' %}">
+                <img src="{% static 'app/Image/car_icon.jpg' %}" alt="Car Icon" class="me-2" style="width: 30px; height: 30px;">
+                <h5 style="margin: 0; color: #ffffff; font-weight: bold;">CarInfoSystem</h5>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <!-- Home Link -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/Home">Home</a>
+                        </li>
+    
+                        <!-- Register/Login Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Login">Register / Login</a>
+                        </li>
+    
+                        <!-- Dropdown Menu -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="typeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sort by Type
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
+                                <li><a class="dropdown-item" href="#">Sedan</a></li>
+                                <li><a class="dropdown-item" href="#">SUV</a></li>
+                                <li><a class="dropdown-item" href="#">Hatchback</a></li>
+                                <li><a class="dropdown-item" href="#">Coupe</a></li>
+                                <li><a class="dropdown-item" href="#">Luxury</a></li>
+                            </ul>
+                        </li>
+    
+                        <!-- About Us Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About">About Us</a>
+                        </li>
+    
+                        <!-- Contact Us Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Contact">Contact Us</a>
+                        </li>
+                    </ul>
+    
+                    <!-- Search Form -->
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>    
+
+    <!-- Static Title -->
+    <h1>Select Car Brand</h1>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- First Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Aston_martin_model"><img src="{% static 'app/Image/Aston_martin_logo.jpg' %}" alt="Aston Martin"><span><h5>Aston Martin</h5></span></a></div>
+                <div class="logo"><a href="/Audi_model"><img src="{% static 'app/Image/Audi_logo.jpg' %}" alt="Audi"><span><h5>Audi</h5></span></a></div>
+                <div class="logo"><a href="/Bentley_model"><img src="{% static 'app/Image/Bentley_logo.jpg' %}" alt="Bentley"><span><h5>Bentley</h5></span></a></div>
+            </div>
+            
+            <!-- Second Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/BMW_model"><img src="{% static 'app/Image/BMW_logo.jpg' %}" alt="BMW"><span><h5>BMW</h5></span></a></div>
+                <div class="logo"><a href="/BYD_model"><img src="{% static 'app/Image/BYD_logo.jpg' %}" alt="BYD"><span><h5>BYD</h5></span></a></div>
+                <div class="logo"><a href="/Ferrari_model"><img src="{% static 'app/Image/Ferrari_logo.jpg' %}" alt="Ferrari"><span><h5>Ferrari</h5></span></a></div>
+            </div>
+            
+            <!-- Third Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Honda_model"><img src="{% static 'app/Image/Honda_logo.jpg' %}" alt="Honda"><span><h5>Honda</h5></span></a></div>
+                <div class="logo"><a href="/Hyundai_model"><img src="{% static 'app/Image/Hyundai_logo.jpg' %}" alt="Hyundai"><span><h5>Hyundai</h5></span></a></div>
+                <div class="logo"><a href="/Jaguar_model"><img src="{% static 'app/Image/Jaguar_logo.jpg' %}" alt="Jaguar"><span><h5>Jaguar</h5></span></a></div>
+            </div>
+            
+            <!-- Fourth Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Jeep_model"><img src="{% static 'app/Image/Jeep_logo.jpg' %}" alt="Jeep"><span><h5>Jeep</h5></span></a></div>
+                <div class="logo"><a href="/Kia_model"><img src="{% static 'app/Image/Kia_logo.jpg' %}" alt="Kia"><span><h5>Kia</h5></span></a></div>
+                <div class="logo"><a href="/Lamborghini_model"><img src="{% static 'app/Image/Lamborghini_logo.jpg' %}" alt="Lamborghini"><span><h5>Lamborghini</h5></span></a></div>
+            </div>
+            
+            <!-- Fifth Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Land_rover"><img src="{% static 'app/Image/Land_rover_logo.jpg' %}" alt="Land Rover"><span><h5>Land Rover</h5></span></a></div>
+                <div class="logo"><a href="/Lexus_model"><img src="{% static 'app/Image/Lexus_logo.jpg' %}" alt="Lexus"><span><h5>Lexus</h5></span></a></div>
+                <div class="logo"><a href="/Mahindra_model"><img src="{% static 'app/Image/Mahindra_logo.jpg' %}" alt="Mahindra"><span><h5>Mahindra</h5></span></a></div>
+            </div>
+            
+            <!-- Sixth Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Maserati_model"><img src="{% static 'app/Image/Maserati_logo.jpg' %}" alt="Maserati"><span><h5>Maserati</h5></span></a></div>
+                <div class="logo"><a href="/McLaren_model"><img src="{% static 'app/Image/McLaren_logo.jpg' %}" alt="McLaren"><span><h5>McLaren</h5></span></a></div>
+                <div class="logo"><a href="/Mercedes_benz_model"><img src="{% static 'app/Image/Mercedes_benz_logo.jpg' %}" alt="Mercedes Benz"><span><h5>Mercedes Benz</h5></span></a></div>
+            </div>
+            
+            <!-- Seventh Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Mg_model"><img src="{% static 'app/Image/MG_logo.jpg' %}" alt="MG"><span><h5>MG</h5></span></a></div>
+                <div class="logo"><a href="/Mini_model"><img src="{% static 'app/Image/Mini_logo.jpg' %}" alt="Mini"><span><h5>Mini</h5></span></a></div>
+                <div class="logo"><a href="/Nissan_model"><img src="{% static 'app/Image/Nissan_logo.jpg' %}" alt="Nissan"><span><h5>Nissan</h5></span></a></div>
+            </div>
+
+            <!-- Eighth Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Prosche_model"><img src="{% static 'app/Image/Porsche_logo.jpg' %}" alt="Porsche"><span><h5>Porsche</h5></span></a></div>
+                <div class="logo"><a href="/Renault_model"><img src="{% static 'app/Image/Renault_logo.jpg' %}" alt="Renault"><span><h5>Renault</h5></span></a></div>
+                <div class="logo"><a href="/Rolls_royce"><img src="{% static 'app/Image/Rolls_royce_logo.jpg' %}" alt="Rolls Royce"><span><h5>Rolls Royce</h5></span></a></div>
+            </div>
+
+            <!-- Ninth Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Skoda_model"><img src="{% static 'app/Image/Skoda_logo.jpg' %}" alt="Skoda"><span><h5>Skoda</h5></span></a></div>
+                <div class="logo"><a href="/suzuki_model"><img src="{% static 'app/Image/Suzuki_logo.jpg' %}" alt="Suzuki"><span><h5>Suzuki</h5></span></a></div>
+                <div class="logo"><a href="/Tata_model"><img src="{% static 'app/Image/Tata_logo.jpg' %}" alt="Tata"><span><h5>Tata</h5></span></a></div>
+            </div>
+            
+            <!-- Tenth Row -->
+            <div class="logo-row">
+                <div class="logo"><a href="/Toyota_model"><img src="{% static 'app/Image/Toyota_logo.jpg' %}" alt="Toyota"><span><h5>Toyota</h5></span></a></div>
+                <div class="logo"><a href="/Volkswagen_model"><img src="{% static 'app/Image/Volkswagen_logo.jpg' %}" alt="Volkswagen"><span><h5>Volkswagen</h5></span></a></div>
+                <div class="logo"><a href="/Volvo_model"><img src="{% static 'app/Image/Volvo_logo.jpg' %}" alt="Volvo"><span><h5>Volvo</h5></span></a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

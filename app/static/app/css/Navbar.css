@@ -1,0 +1,31 @@
+$navbar-dark-color:                 rgba(255, 255, 255, 0.55);
+$navbar-dark-hover-color:           rgba(255, 255, 255, 0.75);
+$navbar-dark-active-color:          #ffffff;
+$navbar-dark-disabled-color:        rgba(255, 255, 255, 0.25);
+$navbar-dark-icon-color:            $navbar-dark-color;
+$navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-icon-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$navbar-dark-toggler-border-color:  rgba(255, 255, 255, 0.1);
+$navbar-dark-brand-color:           $navbar-dark-active-color;
+$navbar-dark-brand-hover-color:     $navbar-dark-active-color;
+
+// Import Bootstrap's Dark Theme for Navbar
+@import "bootstrap/scss/bootstrap";
+
+// Override Navbar Dark Theme
+.navbar-dark {
+  background-color: #343a40 !important;
+  color: $navbar-dark-color !important;
+
+  .navbar-brand {
+    color: $navbar-dark-brand-color;
+    &:hover {
+      color: $navbar-dark-brand-hover-color;
+    }
+  }
+  .navbar-toggler {
+    border-color: $navbar-dark-toggler-border-color;
+    .navbar-toggler-icon {
+      background-image: $navbar-dark-toggler-icon-bg;
+    }
+  }
+}
