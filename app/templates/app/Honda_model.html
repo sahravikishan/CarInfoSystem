@@ -1,35 +1,53 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Honda Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Honda 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Honda India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+    .card-img-wrap {
+        background: #eef0f2;
+        overflow: hidden;
+    }
+    .card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Honda_logo.jpg' %}" class="hero-visual" alt="Honda Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Honda_elevate.jpg' %}" class="hero-visual" alt="Honda showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Honda_logo.jpg' %}" alt="Honda" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Honda_hero_logo.png' %}" alt="Honda">
         </div>
-        <span class="hero-tagline">HONDA SHOWROOM</span>
+        <span class="hero-tagline">TOKYO - RELIABILITY IN MOTION</span>
         <h1>Honda 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">4 MODELS LISTED</span>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">A refined India lineup led by City, Amaze and Elevate, updated from CarDekho 2026 data.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">5 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #e3183780 !important; color: #e31837 !important;">VTEC PERFORMANCE</span>
+            <span class="status-badge" style="border-color: #1b788880 !important; color: #18d5e3 !important;">VTEC PERFORMANCE</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        4 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Honda models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        5 Models &nbsp;-&nbsp; Current India Lineup &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,28 +57,43 @@
             <img src="{% static 'app/Image/Honda_amaze.jpg' %}" alt="Honda Amaze">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹8 - ₹10.90 Lakh</span>
+            <span class="card-price">STARTS Rs. 7.51 - 10 Lakh</span>
             <h3>Honda Amaze</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">89 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">19.46 kmpl</span></div>
         </div>
     </a>
+
+    <article class="model-card" data-model="honda amaze 2nd gen">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Honda_amaze_2nd_gen.jpg' %}" alt="Honda Amaze 2nd Gen">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 6.98 - 7.80 Lakh</span>
+            <h3>Honda Amaze 2nd Gen</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">88.5 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">1199 cc</span></div>
+        </div>
+    </article>
 
     <a href="{% url 'Honda_city_full_detail' %}" class="model-card" data-model="honda city">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Honda_city.jpg' %}" alt="Honda City">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹11.82 - ₹16.55 Lakh</span>
+            <span class="card-price">STARTS Rs. 12 - 16.07 Lakh</span>
             <h3>Honda City</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">119.35 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1498 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">18.4 kmpl</span></div>
         </div>
     </a>
 
@@ -69,30 +102,48 @@
             <img src="{% static 'app/Image/Honda_city_hybrid.jpg' %}" alt="Honda City Hybrid">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹19 - ₹20.75 Lakh</span>
+            <span class="card-price">STARTS Rs. 20 Lakh</span>
             <h3>Honda City Hybrid</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">96.55 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1498 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">27.13 kmpl</span></div>
         </div>
     </a>
 
     <a href="{% url 'Honda_elevate_full_detail' %}" class="model-card" data-model="honda elevate">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Honda_elevate.jpg' %}" alt="Honda Elevate">
+            <img src="{% static 'app/Image/Honda_elevate_2026_card.jpg' %}" alt="Honda Elevate">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹11.69 - ₹16.73 Lakh</span>
+            <span class="card-price">STARTS Rs. 11.60 - 16.67 Lakh</span>
             <h3>Honda Elevate</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">119 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1498 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">16.92 kmpl</span></div>
         </div>
     </a>
 </div>
 
+{% include 'app/components/brand_editorial.html' with editorial_brand='honda' %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

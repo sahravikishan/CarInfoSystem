@@ -1,745 +1,181 @@
-<!DOCTYPE html>
+﻿{% extends 'app/base_editorial.html' %}
 {% load static %}
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A4</title>
-  <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    /* Body Styling */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+{% block title %}Audi A4 2026 — Pricing, Specs & Rivalry Index | Car Info System{% endblock %}
+{% block description %}Explore the 2026 Audi A4 Signature Edition. Full Indian on-road pricing breakdown (RTO & Insurance), technical specifications, and segment comparison rivalry.{% endblock %}
 
-    /* Navbar Styling */
-    .navbar {
-      background-color: #001f3f;
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      width: 101%;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/detail_page.css' %}?v=1.2">
+{% endblock %}
 
-    .navbar ul {
-      display: flex;
-      justify-content: space-evenly;
-      list-style: none;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-    }
+{% block content %}
+<!-- 1. CINEMATIC HERO: THE 2026 A4 -->
+<section class="car-hero">
+    <div class="car-hero-img-container">
+        <!-- THE "SAME WIDTH" STANDARD: 21:9 CINEMATIC HD VISUAL -->
+        <img src="{% static 'app/Image/Audi_A4.jpg' %}" alt="Audi A4 2026 Editorial">
+    </div>
+    <div class="car-hero-overlay">
+        <div class="car-title-block">
+            <div class="status-badge-container">
+                <span class="status-badge">MID-SIZE LUXURY SEGMENT LEADER</span>
+                <span class="status-badge">2026 FLAGSHIP SEDAN</span>
+            </div>
+            <div class="car-subtitle">Manufacturer: Audi AG • India</div>
+            <h1>Audi A4</h1>
+            <div class="car-subtitle" style="color: var(--edit-text-muted);">2026 SIGNATURE EDITION</div>
+        </div>
+        <div class="car-price-summary" style="text-align: right;">
+            <div class="label" style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 2px; color: var(--detail-accent);">ON-ROAD PRICE (DELHI)</div>
+            <div class="value" style="font-family: var(--detail-price-font); font-size: 2.5rem; color: var(--detail-accent);">₹53.0L - 64.7L</div>
+            <div class="label" style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--edit-text-muted);">*INCLUDES RTO & INSURANCE ESTIMATES</div>
+        </div>
+    </div>
+</section>
 
-    .navbar li {
-      color: white;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
+<!-- 2. POWER STATS RIBBON -->
+<div class="key-stats-ribbon">
+    <div class="stat-box">
+        <span class="label">Acceleration</span>
+        <span class="value">7.1S <small style="font-size: 0.8rem; opacity: 0.6;">(0-100 KM/H)</small></span>
+    </div>
+    <div class="stat-box">
+        <span class="label">Performance</span>
+        <span class="value">241 KM/H <small style="font-size: 0.8rem; opacity: 0.6;">TOP SPEED</small></span>
+    </div>
+    <div class="stat-box">
+        <span class="label">Efficiency</span>
+        <span class="value">17.41 <small style="font-size: 0.8rem; opacity: 0.6;">KMPL (ARAI)</small></span>
+    </div>
+    <div class="stat-box">
+        <span class="label">Engine Core</span>
+        <span class="value">2.0L TFSI <small style="font-size: 0.8rem; opacity: 0.6;">MILD HYBRID</small></span>
+    </div>
+</div>
 
-    .navbar li.active {
-      color: #ff5722;
-    }
+<!-- 3. TECHNICAL CORE SECTION -->
+<section class="spec-section">
+    <div class="spec-sidebar">
+        <div class="status-badge" style="display: inline-block; margin-bottom: 20px;">ENGINEERING</div>
+        <h2 style="color: var(--edit-text);">Technical Core</h2>
+        <p style="color: var(--edit-text-muted); line-height: 1.8;">The heart of the 2026 A4 is the balance between efficiency and response. The TFSI unit provides instantaneous torque while the 12V system manages electrical load seamlessly.</p>
+    </div>
+    <div class="spec-grid">
+        <div class="spec-item" style="background: var(--edit-bg); padding: 35px; border-bottom: 1px solid var(--edit-border);">
+            <span class="s-label" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--detail-accent); letter-spacing: 1px;">Engine Type</span>
+            <span class="s-value" style="font-size: 1.2rem; display: block; margin-top: 8px;">2.0L I4 TFSI Turbo Petrol</span>
+        </div>
+        <div class="spec-item" style="background: var(--edit-bg); padding: 35px; border-bottom: 1px solid var(--edit-border);">
+            <span class="s-label" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--detail-accent); letter-spacing: 1px;">Output</span>
+            <span class="s-value" style="font-size: 1.2rem; display: block; margin-top: 8px;">201 BHP / 320 NM</span>
+        </div>
+        <div class="spec-item" style="background: var(--edit-bg); padding: 35px;">
+            <span class="s-label" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--detail-accent); letter-spacing: 1px;">Transmission</span>
+            <span class="s-value" style="font-size: 1.2rem; display: block; margin-top: 8px;">7-Speed S-tronic (DCT)</span>
+        </div>
+        <div class="spec-item" style="background: var(--edit-bg); padding: 35px;">
+            <span class="s-label" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--detail-accent); letter-spacing: 1px;">Drivetrain</span>
+            <span class="s-value" style="font-size: 1.2rem; display: block; margin-top: 8px;">Front Wheel Drive</span>
+        </div>
+    </div>
+</section>
 
-    .navbar li:hover {
-      color: #ff5722;
-    }
-
-    /* Horizontal Scrolling Sections Styling */
-    .horizontal-container {
-      display: flex;
-      flex-direction: row;
-      width: 100vw;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    .section {
-      min-width: 100vw;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Section Heading Styling */
-    .section h1 {
-      margin-bottom: 15px;
-      color: #001f3f;
-    }
-
-    /* Section Paragraph Styling */
-    .section p {
-      color: #555;
-      max-width: 800px;
-      text-align: left;
-    }
-
-    /* XC90 Section Styling */
-    .info-section {
-      background-color: #f0f0f0; /* Light grey background */
-      color: #333; /* Dark text for better contrast */
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .info-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-      text-align: center;
-    }
-
-    .image-container img {
-      max-width: 60%;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .image-container img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Text Container Styling for XC90 */
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-      text-align: center;
-    }
-
-    .text-container h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Rating Styling */
-    .rating {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .rating span {
-      background-color: #ff9800;
-      padding: 5px 10px;
-      border-radius: 5px;
-      color: white;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .rating h4 {
-      color: #555;
-    }
-
-    /* Price Styling */
-    .text-container h2 {
-      font-size: 2rem;
-      color: #1a0579;
-      font-weight: bold;
-    }
-
-    .text-container p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /* Rate Button Styling */
-    .rate-button {
-      background-color: #001f3f;
-      padding: 12px 25px;
-      color: white;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .rate-button:hover {
-      background-color: #ff5722;
-      transform: scale(1.05);
-    }
-
-    /* About Section Styling */
-    .section:last-child {
-      background: linear-gradient(135deg, #001f3f, #ff5722);
-      color: white;
-      text-align: center;
-    }
-
-    .section:last-child h1 {
-      color: #ffccbc;
-    }
-
-    .section:last-child p {
-      max-width: 900px;
-      font-size: 18px;
-      color: #ffeee4;
-    }
-
-    /* Price Section Styling */
-    .price-section {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      background-color: #f5f5f5;
-    }
-
-    /* Price Card Styling */
-    .price-card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .price-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Price Card Header */
-    .price-card-header {
-      background-color: #001f3f;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .price-card-header h4 {
-      font-size: 1.5rem;
-      margin-bottom: 5px;
-    }
-
-    /* Price Card Body */
-    .price-card-body {
-      padding: 20px;
-    }
-
-    .price-card-body p {
-      margin: 10px 0;
-      color: #555;
-    }
-
-    .price-card-body strong {
-      color: #001f3f;
-    }
-
-    /* Price Card Footer */
-    .price-card-footer {
-      padding: 15px;
-      text-align: center;
-      background-color: #f5f5f5;
-      border-top: 1px solid #ddd;
-    }
-
-    .price-card-footer p {
-      color: #001f3f;
-    }
-
-    .price-card-footer button {
-      background-color: #001f3f;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .price-card-footer button:hover {
-      background-color: #ff5722;
-    }
-
-    /* Mileage Table Styling */
-    section table {
-      width: 100%;
-      border-collapse: separate; 
-      border-spacing: 0 10px;
-      margin-top: 30px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    }
-
-    section th, section td {
-      padding: 15px 20px; 
-      text-align: center;
-      border: 1px solid #ddd;
-      transition: background-color 0.3s ease, transform 0.2s ease; 
-    }
-
-    section th {
-      background-color: #003366; 
-      color: white; 
-      font-weight: 600;
-      text-transform: uppercase; 
-      letter-spacing: 1px;
-    }
-
-    section td {
-      background-color: #d6d6d6; 
-      color: #000000; 
-      font-size: 1.2rem; 
-    }
-
-    section tr:hover td {
-      background-color: #e0e0e0; 
-      transform: scale(1.02); 
-    }
-
-    section th, section td {
-      border-radius: 6px; 
-    }
-
-    section td:first-child {
-      font-weight: 600; 
-    }
-
-
-    /* Specifications Section Styling */
-    #specifications {
-      padding: 40px 20px;
-      background-color: #f5f5f5;
-      text-align: center;
-    }
-
-    #specifications h2 {
-      font-size: 2.5rem;
-      color: #001f3f;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Table Styling */
-    .specs-table {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      border-collapse: collapse;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-      border-radius: 10px;
-      overflow: hidden; 
-    }
-
-    /* Table Head */
-    .specs-table thead {
-      background-color: #003366; 
-      color: #ffffff; 
-      font-weight: bold; 
-    }
-
-    .specs-table th {
-      padding: 18px 25px;
-      font-size: 1.25rem;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 1px; 
-      background: linear-gradient(135deg, #003366, #001f3f); 
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    }
-
-    .specs-table th:hover {
-      background-color: #ff5722; 
-      color: white; 
-      cursor: pointer; 
-    }
-
-
-    .specs-table th {
-      padding: 15px;
-      font-size: 1.2rem;
-      text-align: center;
-    }
-
-    /* Table Body */
-    .specs-table td {
-      padding: 14px 20px; 
-      font-size: 1rem; 
-      color: #000000; 
-      border-bottom: 1px solid #7c7c7c; 
-      text-align: left; 
-      background-color: #fafafa; /
-    }
-
-    .specs-table td:hover {
-      background-color: #f0f0f0; 
-      cursor: pointer; 
-    }
-
-    .specs-table tr:last-child td {
-      border-bottom: none; /* Remove border for the last row */
-    }
-
-    /* Hover Effect */
-    .specs-table tr:hover {
-      background-color: #f0f0f0;
-      transition: background-color 0.3s ease;
-    }
-
-  </style>
-</head>
-<body>
-
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <nav>
-      <ul id="navbar">
-        <li onclick="scrollToSection(0)">A4</li>
-        <li onclick="scrollToSection(1)">PRICE</li>
-        <li onclick="scrollToSection(2)">MILEAGE</li>
-        <li onclick="scrollToSection(3)">SPECIFICATIONS</li>
-        <li onclick="scrollToSection(4)">ABOUT CAR</li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Horizontal Scrolling Sections -->
-  <main class="horizontal-container" id="horizontal-container">
+<!-- 4. 2026 COMPREHENSIVE PRICING MATRIX -->
+<section class="price-matrix">
+    <div class="status-badge" style="display: inline-block; margin-bottom: 20px;">INVESTMENT</div>
+    <h2 style="font-family: var(--font-serif); font-size: 3rem; margin-bottom: 10px;">Price Breakdown</h2>
+    <p style="color: var(--edit-text-muted); margin-bottom: 50px;">Complete financial index including 2026 RTO (10%) and estimated Insurance charges.</p>
     
-    <!-- A4 Section -->
-    <section class="section info-section">
-      <div class="info-wrapper">
-        <!-- Image -->
-        <div class="image-container">
-          <img src="{% static 'app/Image/Audi_A4.jpg' %}" alt="Audi A4">
-        </div>
-
-        <!-- Content -->
-        <div class="text-container">
-          <h1>Audi A4</h1>
-          <div class="rating">
-            <span>5 ★</span>
-            <h4>Safety rating</h4>
-          </div>
-          <h2>₹ 46.99 - 55.84 Lakh*</h2>
-          <p>*Ex-showroom Price in New Delhi</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Price Section -->
-    <section class="section" style="background-color: #f5f5f5;">
-        <h1>Audi A4 On Road Price</h1>
-
-        <div class="price-section">
-          <div class="price-card">
-            <div class="price-card-header">
-              <h4>Audi A4 Premium</h4>
-            </div>
-            <div class="price-card-body">
-              <p>Ex-Showroom Price: <strong>₹ 46,99,000</strong></p>
-              <p>RTO: <strong>₹ 4,69,900</strong></p>
-              <p>Insurance: <strong>₹ 2,10,427</strong></p>
-              <p>Others: <strong>₹ 46,990</strong></p>
-            </div>
-            <div class="price-card-footer">
-              <p>On Road Price : <strong>₹ 54,26,317*</strong></p>
-            </div>
-          </div>
-
-          <div class="price-card">
-            <div class="price-card-header">
-              <h4>Audi A4 Premium Plus</h4>
-            </div>
-            <div class="price-card-body">
-              <p>Ex-Showroom Price: <strong>₹ 51,99,000</strong></p>
-              <p>RTO: <strong>₹ 5,19,900</strong></p>
-              <p>Insurance: <strong>₹ 2,29,709</strong></p>
-              <p>Others: <strong>₹ 51,990</strong></p>
-            </div>
-            <div class="price-card-footer">
-              <p>On Road Price : <strong>₹ 60,00,559*</strong></p>
-            </div>
-          </div>
-
-          <div class="price-card">
-            <div class="price-card-header">
-              <h4>Audi A4 Technology</h4>
-            </div>
-            <div class="price-card-body">
-              <p>Ex-Showroom Price: <strong>₹ 55,84,000</strong></p>
-              <p>RTO: <strong>₹ 5,58,400</strong></p>
-              <p>Insurance: <strong>₹ 2,44,555</strong></p>
-              <p>Others: <strong>₹ 55,840</strong></p>
-            </div>
-            <div class="price-card-footer">
-              <p>On Road Price : <strong>₹ 64,42,795*</strong></p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <!-- Mileage Section -->
-    <section class="section" style="background-color: #f5f5f5;">
-      <h1>Audi A4 Mileage</h1>
-      <!-- Mileage Table 1-->
-      <p>The Audi A4 Premium Mileage </p>
-      <table>
+    <table class="price-table">
         <thead>
-          <tr>
-            <th>Fuel Type</th>
-            <th>Transmission</th>
-            <th>ARAI Mileage</th>
-            <th>City Mileage</th>
-            <th>Highway Mileage</th>
-          </tr>
+            <tr>
+                <th>VARIANT</th>
+                <th>EX-SHOWROOM</th>
+                <th>RTO (10%)</th>
+                <th>INSURANCE (EST)</th>
+                <th>FEES (MCD)</th>
+                <th>ON-ROAD DELHI</th>
+            </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Petrol</td>
-            <td>Automatic</td>
-            <td>--</td>
-            <td>14.1 kmpl</td>
-            <td>17.4 kmpl</td>
-          </tr>
-        </tbody>
-      </table><br>
-
-      <!-- Mileage Table 2-->
-      <p>The Audi A4 Premium Plus Mileage </p>
-      <table>
-        <thead>
-          <tr>
-            <th>Fuel Type</th>
-            <th>Transmission</th>
-            <th>ARAI Mileage</th>
-            <th>City Mileage</th>
-            <th>Highway Mileage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Petrol</td>
-            <td>Automatic</td>
-            <td>--</td>
-            <td>14.1 kmpl</td>
-            <td>17.4 kmpl</td>
-          </tr>
-        </tbody>
-      </table><br>
-
-      <!-- Mileage Table 3-->
-      <p>The Audi A4 Technology Mileage </p>
-      <table>
-        <thead>
-          <tr>
-            <th>Fuel Type</th>
-            <th>Transmission</th>
-            <th>ARAI Mileage</th>
-            <th>City Mileage</th>
-            <th>Highway Mileage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Petrol</td>
-            <td>Automatic</td>
-            <td>--</td>
-            <td>14.1 kmpl</td>
-            <td>17.4 kmpl</td>
-          </tr>
-        </tbody>
-      </table>
-
-
-    </section>
-
-    <!-- Specifications Section -->
-    <section class="section" id="specifications">
-    <h1>Key Specifications</h1>
-    <table class="specs-table">
-        <thead>
-        <tr>
-            <th>Feature</th>
-            <th>Details</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>ARAI Mileage</td>
-            <td>14.1 kmpl</td>
-        </tr>
-        <tr>
-            <td>Fuel Type</td>
-            <td>Petrol</td>
-        </tr>
-        <tr>
-            <td>Engine Displacement</td>
-            <td>1984 cc</td>
-        </tr>
-        <tr>
-            <td>No. of Cylinders</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>Max Power</td>
-            <td>207 bhp</td>
-        </tr>
-        <tr>
-            <td>Max Torque</td>
-            <td>320 Nm</td>
-        </tr>
-        <tr>
-            <td>Seating Capacity</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td>Boot Space Capacity</td>
-            <td>460 Litres</td>
-        </tr>
-        <tr>
-            <td>Transmission Type</td>
-            <td>Automatic</td>
-        </tr>
-        <tr>
-            <td>Fuel Tank Capacity</td>
-            <td>54 Litres</td>
-        </tr>
-        <tr>
-            <td>Body Type</td>
-            <td>Sedan</td>
-        </tr>
-        <tr>
-          <td>Ground Clearance Unladen</td>
-          <td>138 mm</td>
-      </tr>
+            <tr>
+                <td class="variant-name">A4 Premium</td>
+                <td class="price-val">₹46,88,000</td>
+                <td>₹4,68,800</td>
+                <td>₹1,40,000</td>
+                <td>₹4,000</td>
+                <td class="on-road-val">₹53,00,800</td>
+            </tr>
+            <tr>
+                <td class="variant-name">A4 Premium Plus</td>
+                <td class="price-val">₹51,85,000</td>
+                <td>₹5,18,500</td>
+                <td>₹1,65,000</td>
+                <td>₹4,000</td>
+                <td class="on-road-val">₹58,72,500</td>
+            </tr>
+            <tr>
+                <td class="variant-name">A4 Technology</td>
+                <td class="price-val">₹55,58,000</td>
+                <td>₹5,55,800</td>
+                <td>₹1,80,000</td>
+                <td>₹4,000</td>
+                <td class="on-road-val">₹62,97,800</td>
+            </tr>
+            <tr style="background: rgba(245,158,11,0.05);">
+                <td class="variant-name">A4 Signature Edition <span style="font-size: 0.5rem; background: var(--detail-accent); color: #000; padding: 3px 8px; margin-left: 10px; font-family: var(--font-mono); vertical-align: middle;">2026 TOP TIER</span></td>
+                <td class="price-val">₹57,11,000</td>
+                <td>₹5,71,100</td>
+                <td>₹1,90,000</td>
+                <td>₹4,000</td>
+                <td class="on-road-val">₹64,76,100</td>
+            </tr>
         </tbody>
     </table>
-    </section>
+</section>
 
-    <!-- About Car Section -->
-    <section class="section">
-      <h1>About the Car</h1>
-      <p>
-        The Audi A4 has 1 Petrol Engine on offer. The Petrol engine is 1984 cc. 
-        It is available with Automatic transmission. Depending upon the variant and 
-        fuel type the A4 has a mileage of 14.1 kmpl. The A4 is a 5 seater 4 cylinder car 
-        and has length of 4762 mm, width of 1847 mm and a wheelbase of 2500 mm.
-      </p>
-    </section>
-  </main>
+<!-- 5. THE RIVALRY: SEGMENT COMPARISON -->
+<section class="rivalry-section">
+    <div class="status-badge" style="display: inline-block; margin-bottom: 20px;">SEGMENT CROSS-SHOP</div>
+    <h2 style="font-family: var(--font-serif); font-size: 3rem;">The Rivalry</h2>
+    <p style="color: var(--edit-text-muted);">See how the A4 measures up against the benchmark leaders in the compact luxury segment.</p>
 
-  <!-- JavaScript for Navigation -->
-  <script>
-    // JavaScript for smooth scrolling and active navbar item highlighting
-    const navbar = document.querySelectorAll("#navbar li");
-    const sections = document.querySelectorAll(".section");
-    const container = document.getElementById("horizontal-container");
-    let sectionOffsets = []; 
-    let isScrolling = false; 
-  
-    // Function to calculate the offsets dynamically
-    function calculateOffsets() {
-      sectionOffsets = [];
-      let cumulativeOffset = 0;
-      sections.forEach((section) => {
-        sectionOffsets.push(cumulativeOffset);
-        cumulativeOffset += section.offsetWidth;
-      });
-    }
-  
-    // Smoothly scroll to a specific section by index
-    function scrollToSection(index) {
-      if (index >= 0 && index < sectionOffsets.length) {
-        container.scrollTo({
-          left: sectionOffsets[index],
-          behavior: "smooth",
-        });
-        setActiveNav(index);
-      }
-    }
-  
-    // Set active class for the navbar item
-    function setActiveNav(index) {
-      navbar.forEach((navItem, i) => {
-        navItem.classList.toggle("active", i === index);
-      });
-    }
-  
-    // Detect active section during scroll and update navbar
-    function handleScroll() {
-      const scrollLeft = container.scrollLeft;
-  
-      // Find the section closest to the current scroll position
-      let activeIndex = 0;
-      for (let i = 0; i < sectionOffsets.length; i++) {
-        if (scrollLeft >= sectionOffsets[i] && scrollLeft < (sectionOffsets[i + 1] || Infinity)) {
-          activeIndex = i;
-          break;
-        }
-      }
-      setActiveNav(activeIndex);
-    }
-  
-    // Debounce function to optimize scroll event handling
-    function debounce(func, delay) {
-      let timer;
-      return function (...args) {
-        clearTimeout(timer);
-        timer = setTimeout(() => func.apply(this, args), delay);
-      };
-    }
-  
-    // Snap to the nearest section when scrolling stops
-    const smoothSnap = debounce(() => {
-      if (isScrolling) return; // Skip if still scrolling manually
-      const scrollLeft = container.scrollLeft;
-  
-      // Find the nearest section based on current scroll position
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-      sectionOffsets.forEach((offset, index) => {
-        const distance = Math.abs(scrollLeft - offset);
-        if (distance < closestDistance) {
-          closestIndex = index;
-          closestDistance = distance;
-        }
-      });
-  
-      // Smooth scroll to the nearest section
-      scrollToSection(closestIndex);
-    }, 150);
-  
-    // Event listener for scroll events
-    container.addEventListener("scroll", () => {
-      handleScroll();
-      smoothSnap(); // Trigger the snap function on scroll
-    });
-  
-    // Initial setup
-    calculateOffsets(); 
-    window.addEventListener("resize", calculateOffsets); 
-    // Adjust navbar active class on page load
-    handleScroll();
-  </script>
+    <div class="rivalry-grid">
+        <!-- RIVAL 1 -->
+        <a href="{% url 'BMW_model' %}" class="rival-card">
+            <div class="rival-brand">BMW • GERMANY</div>
+            <div class="rival-name">3 Series</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.9rem;">The athlete of the segment. Rear-wheel drive dynamics with an edge.</p>
+            <div class="price-val" style="font-size: 1.2rem;">Est. ₹61.4L - 74.1L (On-Road)</div>
+        </a>
+        <!-- RIVAL 2 -->
+        <a href="{% url 'Mercedes_benz_model' %}" class="rival-card">
+            <div class="rival-brand">Mercedes-Benz • GERMANY</div>
+            <div class="rival-name">C-Class</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.9rem;">The "Baby S-Class." Pure focus on luxury, acoustics, and interior opulence.</p>
+            <div class="price-val" style="font-size: 1.2rem;">Est. ₹68.2L - 76.5L (On-Road)</div>
+        </a>
+    </div>
 
-</body>
-</html>
+    <div style="text-align: center; margin-top: 60px;">
+        <a href="#" class="compare-action">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-right: 10px;"><path d="M16 3l4 4-4 4M8 21l-4-4 4-4M20 7H4M4 17h16"/></svg>
+            START CUSTOM COMPARISON
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section style="padding: 100px 4vw; text-align: center;">
+    <div class="status-badge" style="display: inline-block; margin-bottom: 20px;">NEXT STEP</div>
+    <h2 style="font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 40px;">Ready to Experience Excellence?</h2>
+    <div style="display: flex; gap: 20px; justify-content: center;">
+        <a href="{% url 'Home' %}" class="edo-back-btn" style="position: static; padding: 15px 40px;">
+            <span>BACK TO COLLECTION</span>
+        </a>
+        <a href="{% url 'Contact' %}" class="edo-back-btn" style="position: static; padding: 15px 40px; background: var(--detail-accent); border-color: var(--detail-accent); color: #000;">
+            <span>INQUIRE NOW</span>
+        </a>
+    </div>
+</section>
+{% endblock %}

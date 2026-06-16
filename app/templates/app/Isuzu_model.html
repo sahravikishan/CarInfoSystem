@@ -1,0 +1,168 @@
+{% extends 'app/base_editorial.html' %}
+{% load static %}
+
+{% block title %}Isuzu 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Isuzu India utility lineup with prices, diesel specs and pickup-focused highlights in the shared showroom style.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+    .card-img-wrap {
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef0f2;
+    }
+    .card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .model-card:hover .card-img-wrap img {
+        transform: scale(1.05);
+    }
+    .isuzu-page-width {
+        width: min(100%, 1440px);
+        margin-inline: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="showroom-hero">
+    <img src="{% static 'app/Image/Isuzu_header.png' %}" class="hero-visual" alt="Isuzu showroom hero">
+    <div class="hero-content">
+        <div class="brand-logo-badge">
+            <img src="{% static 'app/Image/Isuzu_hero_logo.png' %}" alt="Isuzu">
+        </div>
+        <span class="hero-tagline">YOKOHAMA - BUILT FOR UTILITY</span>
+        <h1>Isuzu 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Diesel-first utility vehicles built around body-on-frame strength, commercial-duty endurance and go-anywhere pickup character for India.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">4 MODELS LISTED</span>
+            <span class="status-badge">2026 INDIA LINEUP</span>
+            <span class="status-badge">PICKUP SPECIALIST</span>
+        </div>
+    </div>
+</section>
+
+<section class="showroom-controls">
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Isuzu models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        4 Models &nbsp;-&nbsp; India Utility Lineup &nbsp;-&nbsp; Hover to Reveal Stats
+    </div>
+</section>
+
+<div class="model-grid isuzu-page-width" id="modelGrid">
+    <article class="model-card" data-model="isuzu d max d-max commercial pickup">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Isuzu_dmax.webp' %}" alt="Isuzu D-Max">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 10 LAKH RANGE*</span>
+            <h3>Isuzu D-Max</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">77.77 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2499 cc</span></div>
+        </div>
+    </article>
+
+    <article class="model-card" data-model="isuzu hi lander hi-lander pickup">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Isuzu_Hi_Lander.jpg' %}" alt="Isuzu Hi-Lander">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 21.50 - 23.60 Lakh</span>
+            <h3>Isuzu Hi-Lander</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">160.92 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1898 cc</span></div>
+        </div>
+    </article>
+
+    <article class="model-card" data-model="isuzu mu x mu-x suv seven seater">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Isuzu_mu-x.jpg' %}" alt="Isuzu MU-X">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 37 LAKH RANGE*</span>
+            <h3>Isuzu MU-X</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">160.92 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Layout</span><span class="stat-value">7 Seats</span></div>
+        </div>
+    </article>
+
+    <article class="model-card" data-model="isuzu v cross v-cross d max pickup 4x4">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Isuzu_v-cross.webp' %}" alt="Isuzu V-Cross">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 25.50 - 30.28 Lakh</span>
+            <h3>Isuzu V-Cross</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">160.92 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Drivetrain</span><span class="stat-value">4x4</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1898 cc</span></div>
+        </div>
+    </article>
+</div>
+
+<!-- ISUZU ENGINEERING EDITORIAL STRIP -->
+<section style="padding: 80px 4vw; background: var(--edit-bg); border-top: 1px solid var(--edit-border);">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <div class="status-badge" style="display: inline-block; margin-bottom: 20px;">ISUZU ENGINEERING</div>
+        <h2 style="font-family: var(--font-serif); font-size: 2.8rem; color: var(--edit-text);">Go Your Own Way</h2>
+        <p style="color: var(--edit-text-muted); max-width: 650px; margin: 15px auto 0;">Three pillars behind Isuzu's reputation in India: diesel durability, ladder-frame toughness and real utility for work, travel and rough-road use.</p>
+    </div>
+    <div class="isuzu-page-width" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; border: 1px solid var(--edit-border);">
+        <div style="padding: 50px 40px; background: var(--edit-card-bg); border-right: 1px solid var(--edit-border);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #F59E0B; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">01 - DIESEL DNA</div>
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--edit-text); margin-bottom: 15px;">Torque.<br>Built Daily.</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.95rem; line-height: 1.7;">Isuzu's India range stays focused on diesel power. The D-Max work pickup uses a proven 2.5L diesel setup, while Hi-Lander, V-Cross and MU-X use the 1.9L turbo-diesel tuned for relaxed pulling power and long-distance dependability.</p>
+        </div>
+        <div style="padding: 50px 40px; background: var(--edit-card-bg); border-right: 1px solid var(--edit-border);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #F59E0B; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">02 - BODY-ON-FRAME</div>
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--edit-text); margin-bottom: 15px;">Strong.<br>Underneath.</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.95rem; line-height: 1.7;">The D-Max family and MU-X are built around a ladder-frame architecture, giving the lineup the sturdy base expected from pickups and rugged SUVs rather than soft-road crossovers.</p>
+        </div>
+        <div style="padding: 50px 40px; background: var(--edit-card-bg);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #F59E0B; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">03 - 4X4 UTILITY</div>
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--edit-text); margin-bottom: 15px;">Work Ready.<br>Trail Ready.</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.95rem; line-height: 1.7;">The latest V-Cross update in India makes 4x4 standard across its variants, sharpening its role as a lifestyle pickup for highways, farms, trails and equipment-heavy weekend plans.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,68 +1,108 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Nissan Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Nissan 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Nissan India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Nissan_logo.jpg' %}" class="hero-visual" alt="Nissan Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Nissan_magnite.jpg' %}" class="hero-visual" alt="Nissan showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Nissan_logo.jpg' %}" alt="Nissan" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Nissan_hero_logo.png' %}" alt="Nissan">
         </div>
-        <span class="hero-tagline">NISSAN SHOWROOM</span>
+        <span class="hero-tagline">YOKOHAMA - INTELLIGENT MOBILITY</span>
         <h1>Nissan 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">2 MODELS LISTED</span>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Nissan India's available models with compact SUV and premium SUV coverage.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">3 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #c7102c80 !important; color: #c7102c !important;">INNOVATION THAT EXCITES</span>
+            <span class="status-badge" style="border-color: rgba(158, 59, 74, 0.5) !important; color: #996375 !important;">INTELLIGENT MOBILITY</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        2 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Nissan models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        3 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
 <div class="model-grid" id="modelGrid">
+    <a href="{% url 'Nissan_gravite_full_detail' %}" class="model-card" data-model="nissan gravite">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Nissan_gravite.png' %}" alt="Nissan Gravite">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 8.50 Lakh</span>
+            <h3>Nissan Gravite</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">118 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">16.5 kmpl</span></div>
+        </div>
+    </a>
+
     <a href="{% url 'Nissan_magnite_full_detail' %}" class="model-card" data-model="nissan magnite">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Nissan_magnite.jpg' %}" alt="Nissan Magnite">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹5.99 - ₹11.50 Lakh</span>
+            <span class="card-price">STARTS Rs. 6.12 - 11.72 Lakh</span>
             <h3>Nissan Magnite</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">71 - 99 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">999 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">99 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">17.9 kmpl</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Nissan_x_trail_full_detail' %}" class="model-card" data-model="nissan x-trail">
+    <a href="{% url 'Nissan_x_trail_full_detail' %}" class="model-card" data-model="nissan x trail">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Nissan_x-trail.jpg' %}" alt="Nissan X-Trail">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹49.92 Lakh</span>
+            <span class="card-price">STARTS Rs. 49.92 Lakh</span>
             <h3>Nissan X-Trail</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">161 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1498 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">10 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='nissan' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

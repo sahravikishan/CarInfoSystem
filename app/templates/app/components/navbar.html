@@ -1,0 +1,56 @@
+<!-- Navigation Bar -->
+<nav class="navbar" style="background-color: #0F1C2E; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000;">
+    
+    <!-- Logo/Brand -->
+    <div class="navbar-brand" style="display: flex; align-items: center; gap: 12px;">
+        <a href="{% url 'home' %}" style="color: #F5F3F0; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; display: flex; align-items: center; text-decoration: none;">
+            <i class="fas fa-car" style="color: #D4A574; margin-right: 8px;"></i>
+            Car Info
+        </a>
+    </div>
+    
+    <!-- Navigation Menu -->
+    <ul class="navbar-menu" style="display: flex; gap: 32px; list-style: none; margin: 0;">
+        <li>
+            <a href="{% url 'home' %}" style="color: #F5F3F0; text-decoration: none; transition: color 300ms ease;">
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="#brands" style="color: #F5F3F0; text-decoration: none; transition: color 300ms ease;">
+                Brands
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}" style="color: #F5F3F0; text-decoration: none; transition: color 300ms ease;">
+                Contact
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}" style="color: #F5F3F0; text-decoration: none; transition: color 300ms ease;">
+                About
+            </a>
+        </li>
+    </ul>
+    
+    <!-- Mobile Menu Toggle (hidden on desktop) -->
+    <button class="navbar-toggle" style="display: none; background: none; border: none; color: #F5F3F0; font-size: 24px; cursor: pointer;">
+        <i class="fas fa-bars"></i>
+    </button>
+</nav>
+
+<style>
+    .navbar a:hover {
+        color: #D4A574 !important;
+    }
+    
+    @media (max-width: 768px) {
+        .navbar-menu {
+            display: none;
+        }
+        
+        .navbar-toggle {
+            display: block !important;
+        }
+    }
+</style>

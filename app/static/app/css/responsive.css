@@ -1,0 +1,162 @@
+/* ====================================
+   RESPONSIVE DESIGN
+   ==================================== */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  :root {
+    --font-size-h1: 36px;
+    --font-size-h2: 28px;
+    --font-size-h3: 20px;
+  }
+
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 20px; }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  section {
+    padding: 32px 16px;
+  }
+
+  /* Hide desktop elements */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  /* Full width buttons on mobile */
+  .btn-block,
+  .btn-full {
+    width: 100%;
+  }
+
+  /* Adjust navbar on mobile */
+  .navbar-menu {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Grid 2 columns on tablet */
+  .grid-auto {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Mobile (576px and below) */
+@media (max-width: 576px) {
+  :root {
+    --font-size-h1: 28px;
+    --font-size-h2: 22px;
+    --font-size-h3: 18px;
+    --font-size-body: 14px;
+  }
+
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 18px; }
+  p { font-size: 14px; }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  section {
+    padding: 24px 12px;
+  }
+
+  /* Single column grid on mobile */
+  .grid-auto {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Full width buttons */
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Hide on mobile */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  /* Adjust headings */
+  h1 {
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    margin-bottom: 12px;
+  }
+
+  /* Stack flex items */
+  .flex {
+    flex-direction: column;
+  }
+
+  /* Card adjustments */
+  .card {
+    margin-bottom: 16px;
+  }
+
+  /* Hero section on mobile */
+  .hero {
+    min-height: 300px;
+    padding: 32px 16px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+}
+
+/* Large screens (1400px and above) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  section {
+    padding: 64px 24px;
+  }
+
+  /* Show desktop elements */
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: 250px;
+    padding: 20px 16px;
+  }
+
+  section {
+    padding: 20px 16px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

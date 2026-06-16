@@ -1,83 +1,143 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Aston Martin Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Aston Martin Editorial Showroom — 2026 Collection India | Car Info System{% endblock %}
+{% block description %}Step into the Aston Martin Digital Showroom. Explore the ultra-luxury 2026 India lineup — from the thrilling Vantage to the V12 Vanquish flaghsip.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.6">
+<style>
+    /* Ensure hero h1 text is always white — hero bg is always dark */
+    .showroom-hero h1 {
+        color: #ffffff;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
+<!-- 1. IMMERSIVE SHOWROOM HERO -->
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Aston_martin_logo.jpg' %}" class="hero-visual" alt="Aston_martin Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <!-- THE HIGH-RES HERO IMAGE -->
+    <img src="{% static 'app/Image/Aston_martin_hero.jpg' %}"
+         class="hero-visual"
+         alt="Aston Martin Luxury Showroom">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Aston_martin_logo.jpg' %}" alt="Aston_martin" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Aston_martin_hero_logo.png' %}" alt="Aston Martin">
         </div>
-        <span class="hero-tagline">ASTON MARTIN SHOWROOM</span>
+        <span class="hero-tagline">GAYDON • BEAUTY IS DRIVEN</span>
         <h1>Aston Martin 2026</h1>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
+            Power, Beauty, and Soul. The defining 2026 British luxury machine collection — from the breathtaking Vantage coupe to the legendary newly revived V12 Vanquish.
         </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">3 MODELS LISTED</span>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">4 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #00664f80 !important; color: #00664f !important;">ULTRA LUXURY</span>
+            <span class="status-badge" style="border-color: rgba(76, 230, 194, 0.5) !important; color: #0bdbab !important;">ULTRA LUXURY</span>
         </div>
     </div>
 </section>
 
+<!-- 2. DISCOVERY CONTROLS -->
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        3 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Aston (e.g. DB12, Vanquish)...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        4 Models &nbsp;•&nbsp; Alphabetical Order &nbsp;•&nbsp; Hover to Reveal Stats &nbsp;<i class="fa-solid fa-arrow-down" style="color: #F59E0B;"></i>
     </div>
 </section>
 
+<!-- 3. THE MODEL GALLERY GRID — ALPHABETICAL ORDER -->
 <div class="model-grid" id="modelGrid">
-    <a href="{% url 'Aston_martin_DB12_full_detail' %}" class="model-card" data-model="aston martin db12">
+
+    <!-- 1. ASTON MARTIN DB12 -->
+    <a href="{% url 'Aston_martin_DB12_full_detail' %}" class="model-card" data-model="db12 super tourer">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Aston_martin_DB12.jpg' %}" alt="Aston Martin DB12">
+            <img src="{% static 'app/Image/Aston_martin_DB12.jpg' %}" alt="Aston Martin DB12 2026">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹4.95 CR</span>
-            <h3>Aston Martin DB12</h3>
+            <span class="card-price">STARTS ₹4.59 CR</span>
+            <h3>DB12</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">670.69 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3982 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">671 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Class</span><span class="stat-value">SUPER TOURER</span></div>
+            <div class="reveal-stat"><span class="stat-label">Top Speed</span><span class="stat-value">325 KM/H</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Aston_martin_DBX_full_detail' %}" class="model-card" data-model="aston martin dbx">
+    <!-- 2. ASTON MARTIN DBX 707 -->
+    <a href="{% url 'Aston_martin_DBX_full_detail' %}" class="model-card" data-model="dbx dbx707 suv">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Aston_martin_DBX.jpg' %}" alt="Aston Martin DBX">
+            <img src="{% static 'app/Image/Aston_martin_DBX.jpg' %}" alt="Aston Martin DBX 2026">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹3.82 - ₹4.63 CR</span>
-            <h3>Aston Martin DBX</h3>
+            <span class="card-price">STARTS ₹3.82 - 4.63 CR</span>
+            <h3>DBX 707</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">697 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3982 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">697 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Class</span><span class="stat-value">LUXURY SUV</span></div>
+            <div class="reveal-stat"><span class="stat-label">0-100 KM/H</span><span class="stat-value">3.3S</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Aston_martin_vantage_full_detail' %}" class="model-card" data-model="aston martin vantage">
+    <!-- 3. ASTON MARTIN VANQUISH -->
+    <a href="#" class="model-card" data-model="vanquish v12 flagship">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Aston_martin_vantage.jpg' %}" alt="Aston Martin Vantage">
+            <img src="{% static 'app/Image/Aston_martin_Vanquish.jpg' %}" alt="Aston Martin Vanquish 2026">
+        </div>
+        <div class="card-info">
+            <span class="card-price" style="display:flex;align-items:center;gap:8px;">
+                EST ₹8.00 CR+
+                <span style="background:#F59E0B;color:#000;font-size:0.55rem;padding:2px 6px;font-family:var(--font-mono);font-weight:900;">V12 FLAGSHIP</span>
+            </span>
+            <h3>Vanquish</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">824 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">5.2L TWIN-V12</span></div>
+            <div class="reveal-stat"><span class="stat-label">Launch</span><span class="stat-value">MAR 2025</span></div>
+        </div>
+    </a>
+
+    <!-- 4. ASTON MARTIN VANTAGE -->
+    <a href="{% url 'Aston_martin_vantage_full_detail' %}" class="model-card" data-model="vantage sports coupe">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Aston_martin_vantage.jpg' %}" alt="Aston Martin Vantage 2026">
         </div>
         <div class="card-info">
             <span class="card-price">STARTS ₹3.99 CR</span>
-            <h3>Aston Martin Vantage</h3>
+            <h3>Vantage</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">656 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">656 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">0-100 KM/H</span><span class="stat-value">3.4S</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">4.0L TWIN-V8</span></div>
         </div>
     </a>
+
 </div>
 
+{% include 'app/components/brand_editorial.html' with editorial_brand='aston_martin' %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    
+    if (!input || cards.length === 0) return;
+    
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Lexus Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Lexus 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Lexus India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Lexus_logo.jpg' %}" class="hero-visual" alt="Lexus Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Lexus_rx.jpg' %}" class="hero-visual" alt="Lexus showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Lexus_logo.jpg' %}" alt="Lexus" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Lexus_hero_logo.png' %}" alt="Lexus">
         </div>
-        <span class="hero-tagline">LEXUS SHOWROOM</span>
+        <span class="hero-tagline">NAGOYA - OMOTENASHI LUXURY</span>
         <h1>Lexus 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Hybrid luxury sedans, SUVs and MPVs with clean specification reveals.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">5 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #ba0c2f80 !important; color: #ba0c2f !important;">TAKUMI CRAFTSMANSHIP</span>
+            <span class="status-badge" style="border-color: rgba(196, 108, 204, 0.5) !important; color: #9566a8 !important;">TAKUMI CRAFTED</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        5 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Lexus models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        5 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,13 +47,13 @@
             <img src="{% static 'app/Image/Lexus_es.jpg' %}" alt="Lexus ES">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹63.10 - ₹69.70 Lakh</span>
+            <span class="card-price">STARTS Rs. 64 - 69.70 Lakh</span>
             <h3>Lexus ES</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">175.67 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2487 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">18 kmpl</span></div>
         </div>
     </a>
 
@@ -54,13 +62,13 @@
             <img src="{% static 'app/Image/Lexus_lm.jpg' %}" alt="Lexus LM">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹2 - ₹2.50 CR</span>
+            <span class="card-price">STARTS Rs. 2.10 - 2.62 Cr</span>
             <h3>Lexus LM</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">190.42 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2487 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">12 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +77,13 @@
             <img src="{% static 'app/Image/Lexus_lx.jpg' %}" alt="Lexus LX">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹2.84 CR</span>
+            <span class="card-price">STARTS Rs. 2.84 Cr</span>
             <h3>Lexus LX</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">304.41 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3346 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">5 kmpl</span></div>
         </div>
     </a>
 
@@ -84,13 +92,13 @@
             <img src="{% static 'app/Image/Lexus_nx.jpg' %}" alt="Lexus NX">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹67.35 - ₹74.24 Lakh</span>
+            <span class="card-price">STARTS Rs. 68.02 - 74.98 Lakh</span>
             <h3>Lexus NX</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">187.74 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2487 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">15 kmpl</span></div>
         </div>
     </a>
 
@@ -99,15 +107,32 @@
             <img src="{% static 'app/Image/Lexus_rx.jpg' %}" alt="Lexus RX">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹95.80 Lakh - ₹1.20 CR</span>
+            <span class="card-price">STARTS Rs. 95.80 Lakh</span>
             <h3>Lexus RX</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">190.42 - 268 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2393 - 2487 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">190.42 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">18.80 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='lexus' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Mahindra Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Mahindra 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Mahindra India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Mahindra_logo.jpg' %}" class="hero-visual" alt="Mahindra Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Mahindra_thar_roxx.jpg' %}" class="hero-visual" alt="Mahindra showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Mahindra_logo.jpg' %}" alt="Mahindra" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Mahindra_hero_logo.png' %}" alt="Mahindra">
         </div>
-        <span class="hero-tagline">MAHINDRA SHOWROOM</span>
+        <span class="hero-tagline">MUMBAI - RISE WITH RUGGEDNESS</span>
         <h1>Mahindra 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Mahindra's SUV and pickup portfolio, refreshed in the showroom presentation.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">12 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #dd191d80 !important; color: #dd191d !important;">RISE ABOVE</span>
+            <span class="status-badge" style="border-color: rgba(59, 120, 122, 0.5) !important; color: #639da5 !important;">EXPLORE IMPOSSIBLE</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        12 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Mahindra models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        12 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,13 +47,13 @@
             <img src="{% static 'app/Image/Mahindra_be6.jpg' %}" alt="Mahindra BE 6">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹18.90 - ₹26.90 Lakh</span>
+            <span class="card-price">STARTS Rs. 18.90 - 26.90 Lakh</span>
             <h3>Mahindra BE 6</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">228 - 282 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">282 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -54,13 +62,13 @@
             <img src="{% static 'app/Image/Mahindra_bolero.jpg' %}" alt="Mahindra Bolero">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹9.79 - ₹10.91 Lakh</span>
+            <span class="card-price">STARTS Rs. 9.79 - 10.91 Lakh</span>
             <h3>Mahindra Bolero</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">74.96 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1493 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">16 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +77,13 @@
             <img src="{% static 'app/Image/Mahindra_bolero_camper.jpg' %}" alt="Mahindra Bolero Camper">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹10.28- ₹10.63 Lakh</span>
+            <span class="card-price">STARTS Rs. 10.28 - 10.63 Lakh</span>
             <h3>Mahindra Bolero Camper</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">75.09 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2523 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">16 kmpl</span></div>
         </div>
     </a>
 
@@ -84,13 +92,13 @@
             <img src="{% static 'app/Image/Mahindra_bolero_neo.jpg' %}" alt="Mahindra Bolero Neo">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹9.95 - 12.15 Lakh</span>
+            <span class="card-price">STARTS Rs. 9.95 - 12.15 Lakh</span>
             <h3>Mahindra Bolero Neo</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">98.56 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1493 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">17.29 kmpl</span></div>
         </div>
     </a>
 
@@ -99,13 +107,13 @@
             <img src="{% static 'app/Image/Mahindra_scorpio.jpg' %}" alt="Mahindra Scorpio">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹13.62 - ₹17.50 Lakh</span>
+            <span class="card-price">STARTS Rs. 13.62 - 17.50 Lakh</span>
             <h3>Mahindra Scorpio</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">130 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2184 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">14.44 kmpl</span></div>
         </div>
     </a>
 
@@ -114,13 +122,13 @@
             <img src="{% static 'app/Image/Mahindra_scorpio_n.jpg' %}" alt="Mahindra Scorpio N">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹13.99 - ₹24.69 Lakh</span>
+            <span class="card-price">STARTS Rs. 13.99 - 24.69 Lakh</span>
             <h3>Mahindra Scorpio N</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">130 - 200 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1997 - 2198 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">172.45 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">15.42 kmpl</span></div>
         </div>
     </a>
 
@@ -129,13 +137,13 @@
             <img src="{% static 'app/Image/Mahindra_thar.jpg' %}" alt="Mahindra Thar">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹11.50 -₹17.60 Lakh</span>
+            <span class="card-price">STARTS Rs. 11.50 - 17.60 Lakh</span>
             <h3>Mahindra Thar</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">116.93 - 150.19 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1497 - 2184 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">130.75 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">9 kmpl</span></div>
         </div>
     </a>
 
@@ -144,75 +152,92 @@
             <img src="{% static 'app/Image/Mahindra_thar_roxx.jpg' %}" alt="Mahindra Thar Roxx">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹12.99 - ₹23.09 Lakh</span>
+            <span class="card-price">STARTS Rs. 12.99 - 23.09 Lakh</span>
             <h3>Mahindra Thar Roxx</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">150 - 174 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1997 - 2184 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">172 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">15.2 kmpl</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Mahindra_xev_9e_full_detail' %}" class="model-card" data-model="mahindra xev 9e">
+    <article class="model-card" data-model="mahindra xev 9e">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Mahindra_xev_9e.jpg' %}" alt="Mahindra XEV 9e">
+            <img src="{% static 'app/Image/Mahindra_xev_9e.jpg' %}" alt="Mahindra XEV 9E">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹21.90 - ₹30.50 Lakh</span>
-            <h3>Mahindra XEV 9e</h3>
+            <span class="card-price">STARTS Rs. 21.90 - 30.50 Lakh</span>
+            <h3>Mahindra XEV 9E</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">228 - 282 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">282 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
-    </a>
+    </article>
 
-    <a href="{% url 'Mahindra_xuv_3xo_full_detail' %}" class="model-card" data-model="mahindra xuv 3xo">
+    <article class="model-card" data-model="mahindra xuv 3xo">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Mahindra_xuv_3xo.jpg' %}" alt="Mahindra XUV 3XO">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹7.99 - ₹15.56 Lakh</span>
+            <span class="card-price">STARTS Rs. 7.99 - 15.56 Lakh</span>
             <h3>Mahindra XUV 3XO</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">109.96 - 128.73 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1197 - 1498 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">128.73 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">18.2 kmpl</span></div>
         </div>
-    </a>
+    </article>
 
-    <a href="{% url 'Mahindra_xuv400_ev_full_detail' %}" class="model-card" data-model="mahindra xuv400 ev">
+    <article class="model-card" data-model="mahindra xuv400 ev">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Mahindra_xuv400_ev.jpg' %}" alt="Mahindra XUV400 EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹16.74 - ₹17.69 Lakh</span>
+            <span class="card-price">STARTS Rs. 16.74 - 17.69 Lakh</span>
             <h3>Mahindra XUV400 EV</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">147.51 - 149.55 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">147.51 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
-    </a>
+    </article>
 
-    <a href="{% url 'Mahindra_xuv700_full_detail' %}" class="model-card" data-model="mahindra xuv700">
+    <article class="model-card" data-model="mahindra xuv 7xo">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Mahindra_xuv700.jpg' %}" alt="Mahindra XUV700">
+            <img src="{% static 'app/Image/Mahindra_xuv700.jpg' %}" alt="Mahindra XUV 7XO">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹13.99 - ₹25.74 Lakh</span>
-            <h3>Mahindra XUV700</h3>
+            <span class="card-price">STARTS Rs. 13.66 - 24.92 Lakh</span>
+            <h3>Mahindra XUV 7XO</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">152 - 197 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1999 - 2198 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">197 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">12.5 kmpl</span></div>
         </div>
-    </a>
+    </article>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='mahindra' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

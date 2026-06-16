@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}Find your perfect luxury car{% endblock %}">
+    
+    <title>{% block title %}Car Info System{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'app/images/favicon.ico' %}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'app/css/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/Navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/detail-page.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/enhancements.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/site-redesign.css' %}">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (already in variables.css, but backup) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="cis-site">
+    <!-- Navigation -->
+    {% include 'app/components/navbar.html' %}
+
+    {% if messages %}
+    <section class="cis-message-stack">
+        {% for message in messages %}
+            <div class="cis-message {% if 'success' in message.tags %}cis-message-success{% else %}cis-message-error{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+    
+    <!-- Main Content -->
+    <main class="cis-main">
+        {% block content %}
+            <section style="padding: 100px 24px; text-align: center;">
+                <h1 style="color: #E2E2E0; margin-bottom: 24px;">Welcome to Car Info System</h1>
+                <p style="color: #2B7574; font-size: 18px;">Premium Unified Design</p>
+            </section>
+        {% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    {% include 'app/components/footer.html' %}
+    
+    <!-- Scripts -->
+    <script src="{% static 'app/js/site-search-index.js' %}"></script>
+    <script src="{% static 'app/js/navbar.js' %}"></script>
+    <script src="{% static 'app/js/brand-pages.js' %}"></script>
+    <script src="{% static 'app/js/car-compare-data.js' %}"></script>
+    <script src="{% static 'app/js/model-page-compare.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

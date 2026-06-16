@@ -1,0 +1,110 @@
+/* ====================================
+   FOOTER STYLES
+   ==================================== */
+
+footer {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-charcoal) 100%);
+  color: var(--color-cream);
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  margin-top: var(--spacing-3xl);
+  border-top: 3px solid var(--color-rose-gold);
+}
+
+footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+footer .footer-section h4 {
+  color: var(--color-rose-gold);
+  font-size: var(--font-size-h5);
+  margin-bottom: var(--spacing-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+footer .footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer-section li {
+  margin-bottom: var(--spacing-md);
+}
+
+footer .footer-section a {
+  color: var(--color-soft-gray);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+footer .footer-section a:hover {
+  color: var(--color-rose-gold);
+  margin-left: var(--spacing-sm);
+}
+
+footer .footer-section i {
+  color: var(--color-rose-gold);
+  width: 20px;
+}
+
+/* Social Icons */
+.social-links {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(212, 165, 116, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-rose-gold);
+  transition: all var(--transition-normal);
+}
+
+.social-links a:hover {
+  background-color: var(--color-rose-gold);
+  color: var(--color-navy);
+  transform: translateY(-4px);
+  margin-left: 0;
+}
+
+/* Footer Bottom */
+footer .footer-bottom {
+  border-top: 1px solid rgba(212, 165, 116, 0.2);
+  padding-top: var(--spacing-xl);
+  text-align: center;
+  color: var(--color-soft-gray);
+  font-size: var(--font-size-small);
+}
+
+footer .footer-bottom p {
+  margin: var(--spacing-sm) 0;
+}
+
+footer .footer-bottom a {
+  color: var(--color-rose-gold);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+footer .footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Copyright */
+.copyright {
+  color: var(--color-light-gray);
+  font-size: var(--font-size-xs);
+}

@@ -1,83 +1,125 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Bentley Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Bentley Editorial Showroom — 2026 Collection India | Car Info System{% endblock %}
+{% block description %}Step into the Bentley Digital Showroom. Explore the ultra-luxury 2026 India lineup — from the Flying Spur to the Continental GT.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.6">
+<style>
+    /* Make sure hero h1 text is white in light mode */
+    .showroom-hero h1 {
+        color: #ffffff;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
+<!-- 1. IMMERSIVE SHOWROOM HERO — BENTLEY BENTAYGA -->
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Bentley_logo.jpg' %}" class="hero-visual" alt="Bentley Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <!-- THE HIGH-RES HERO IMAGE -->
+    <img src="{% static 'app/Image/Bentley_continental_gt_hero.jpg' %}"
+         class="hero-visual"
+         alt="Bentley Luxury Showroom">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Bentley_logo.jpg' %}" alt="Bentley" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Bentley_hero_logo.png' %}" alt="Bentley">
         </div>
-        <span class="hero-tagline">BENTLEY SHOWROOM</span>
+        <span class="hero-tagline">CREWE • EXTRAORDINARY JOURNEYS</span>
         <h1>Bentley 2026</h1>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
+            Extraordinary performance meets unmatched craftsmanship. The pinnacle of British grand touring technology in the form of our legendary 3-car collection.
         </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">3 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #02413080 !important; color: #024130 !important;">BESPOKE LUXURY</span>
+            <span class="status-badge" style="border-color: #06a85780 !important; color: #06be2e !important;">BESPOKE LUXURY</span>
         </div>
     </div>
 </section>
 
+<!-- 2. DISCOVERY CONTROLS -->
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        3 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Bentley (e.g. Continental, Bentayga)...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        3 Models &nbsp;•&nbsp; Hover to Reveal Stats &nbsp;<i class="fa-solid fa-arrow-down" style="color: #F59E0B;"></i>
     </div>
 </section>
 
+<!-- 3. THE MODEL GALLERY GRID — FULL 2026 INDIA LINEUP -->
 <div class="model-grid" id="modelGrid">
-    <a href="{% url 'Bentley_bentayga_full_detail' %}" class="model-card" data-model="bentley bentayga">
+
+    <!-- BENTLEY BENTAYGA -->
+    <a href="{% url 'Bentley_bentayga_full_detail' %}" class="model-card" data-model="bentley bentayga suv">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Bentley_bentayga.jpg' %}" alt="Bentley Bentayga">
+            <img src="{% static 'app/Image/Bentley_bentayga.jpg' %}" alt="Bentley Bentayga 2026">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹5.00 - ₹6.75 CR</span>
-            <h3>Bentley Bentayga</h3>
+            <span class="card-price">STARTS ₹5.00 CR</span>
+            <h3>Bentayga</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">542 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3956 - 3993 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">542 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">4.0L V8</span></div>
+            <div class="reveal-stat"><span class="stat-label">Class</span><span class="stat-value">ULTRA LUX SUV</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Bentley_continental_full_detail' %}" class="model-card" data-model="bentley continental">
+    <!-- BENTLEY CONTINENTAL GT -->
+    <a href="{% url 'Bentley_continental_full_detail' %}" class="model-card" data-model="bentley continental gt coupe">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Bentley_continental.jpg' %}" alt="Bentley Continental">
+            <img src="{% static 'app/Image/Bentley_continental.jpg' %}" alt="Bentley Continental 2026">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹5.23 - ₹8.45 CR</span>
-            <h3>Bentley Continental</h3>
+            <span class="card-price">STARTS ₹5.23 CR</span>
+            <h3>Continental</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">410 - 626 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3993 - 5993 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">626 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Style</span><span class="stat-value">GRAND TOURER</span></div>
+            <div class="reveal-stat"><span class="stat-label">0-100 KM/H</span><span class="stat-value">3.6S</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Bentley_flying_spur_full_detail' %}" class="model-card" data-model="bentley flying spur">
+    <!-- BENTLEY FLYING SPUR -->
+    <a href="{% url 'Bentley_flying_spur_full_detail' %}" class="model-card" data-model="bentley flying spur sedan">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Bentley_flying_spur.jpg' %}" alt="Bentley Flying Spur">
+            <img src="{% static 'app/Image/Bentley_flying_spur.jpg' %}" alt="Bentley Flying Spur 2026">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹5.25 - ₹7.60 CR</span>
-            <h3>Bentley Flying Spur</h3>
+            <span class="card-price">STARTS ₹5.25 CR</span>
+            <h3>Flying Spur</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">656 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2998 - 5950 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">656 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Class</span><span class="stat-value">LUX SALOON</span></div>
+            <div class="reveal-stat"><span class="stat-label">Comfort</span><span class="stat-value">MULLINER</span></div>
         </div>
     </a>
+
 </div>
 
+{% include 'app/components/brand_editorial.html' with editorial_brand='bentley' %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    
+    if (!input || cards.length === 0) return;
+    
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

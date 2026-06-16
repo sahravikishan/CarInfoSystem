@@ -1,51 +1,74 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Volvo Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Volvo 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Volvo India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Volvo_logo.jpg' %}" class="hero-visual" alt="Volvo Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Volvo_xc90.jpg' %}" class="hero-visual" alt="Volvo showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Volvo_logo.jpg' %}" alt="Volvo" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Volvo_hero_logo.png' %}" alt="Volvo">
         </div>
-        <span class="hero-tagline">VOLVO SHOWROOM</span>
+        <span class="hero-tagline">GOTHENBURG - SAFETY REIMAGINED</span>
         <h1>Volvo 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">5 MODELS LISTED</span>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Volvo India's current SUV-led range updated from CarDekho 2026 data.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">6 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #00308780 !important; color: #003087 !important;">SWEDISH SAFETY</span>
+            <span class="status-badge" style="border-color: rgba(0, 135, 101, 0.5) !important; color: #03b48e !important;">SAFETY FIRST LEADER</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        5 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Volvo models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        6 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
 <div class="model-grid" id="modelGrid">
-    <a href="{% url 'Volvo_c40_recharge_full_detail' %}" class="model-card" data-model="volvo c40 recharge">
+    <a href="{% url 'Volvo_ec40_full_detail' %}" class="model-card" data-model="volvo ec40">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Volvo_c40_recharge.jpg' %}" alt="Volvo C40 Recharge">
+            <img src="{% static 'app/Image/Volvo_c40_recharge.jpg' %}" alt="Volvo EC40">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹62.95 Lakh</span>
-            <h3>Volvo C40 Recharge</h3>
+            <span class="card-price">STARTS Rs. 59 Lakh</span>
+            <h3>Volvo EC40</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">402.3 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">78 kWh</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Volvo_ex30_full_detail' %}" class="model-card" data-model="volvo ex30">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Volvo_ex40.jpg' %}" alt="Volvo EX30">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 41 Lakh</span>
+            <h3>Volvo EX30</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">272 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">69 kWh</span></div>
         </div>
     </a>
 
@@ -54,13 +77,13 @@
             <img src="{% static 'app/Image/Volvo_ex40.jpg' %}" alt="Volvo EX40">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹56.10 - ₹57.90 Lakh</span>
+            <span class="card-price">STARTS Rs. 56.10 - 57.90 Lakh</span>
             <h3>Volvo EX40</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">237.99 - 408 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">408 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -69,13 +92,13 @@
             <img src="{% static 'app/Image/Volvo_s90.jpg' %}" alt="Volvo S90">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹68.25 Lakh</span>
+            <span class="card-price">STARTS Rs. 68.25 Lakh</span>
             <h3>Volvo S90</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">246.58 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1969 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">250 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">14.7 kmpl</span></div>
         </div>
     </a>
 
@@ -84,13 +107,13 @@
             <img src="{% static 'app/Image/Volvo_xc60.jpg' %}" alt="Volvo XC60">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹69.90 Lakh</span>
+            <span class="card-price">STARTS Rs. 69.90 Lakh</span>
             <h3>Volvo XC60</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">250 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1969 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">11.2 kmpl</span></div>
         </div>
     </a>
 
@@ -99,15 +122,32 @@
             <img src="{% static 'app/Image/Volvo_xc90.jpg' %}" alt="Volvo XC90">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.01 CR</span>
+            <span class="card-price">STARTS Rs. 1.01 Cr</span>
             <h3>Volvo XC90</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">247 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1969 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">8 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='volvo' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

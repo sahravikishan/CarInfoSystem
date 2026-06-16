@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Kia Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Kia 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Kia India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Kia_logo.jpg' %}" class="hero-visual" alt="Kia Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Kia_header.jpg' %}" class="hero-visual" alt="Kia showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Kia_logo.jpg' %}" alt="Kia" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Kia_hero_logo.png' %}" alt="Kia">
         </div>
-        <span class="hero-tagline">KIA SHOWROOM</span>
+        <span class="hero-tagline">SEOUL - MOVEMENT THAT INSPIRES</span>
         <h1>Kia 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Kia India models across SUV, MPV and electric categories with 2026 market data.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">7 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #e3183780 !important; color: #e31837 !important;">MOVEMENT THAT INSPIRES</span>
+            <span class="status-badge" style="border-color: rgba(227, 24, 55, 0.5) !important; color: #e31837 !important;">KIA CONNECT APPROVED</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        7 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Kia models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        7 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,28 +47,28 @@
             <img src="{% static 'app/Image/Kia_carens.jpg' %}" alt="Kia Carens">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹10.60 - ₹19.70 Lakh</span>
+            <span class="card-price">STARTS Rs. 11 - 12.86 Lakh</span>
             <h3>Kia Carens</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">113.42 - 157.81 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1482 - 1497 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">157.81 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">15 kmpl</span></div>
         </div>
     </a>
 
     <a href="{% url 'Kia_carnival_full_detail' %}" class="model-card" data-model="kia carnival">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Kia_carnival.jpg' %}" alt="Kia Carnival">
+            <img src="{% static 'app/Image/Kia_carnival.jpeg' %}" alt="Kia Carnival">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹67.50 Lakh</span>
+            <span class="card-price">STARTS Rs. 63.90 Lakh</span>
             <h3>Kia Carnival</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">190 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2151 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">14.85 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +77,13 @@
             <img src="{% static 'app/Image/Kia_ev6.jpg' %}" alt="Kia EV6">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹60.97 - ₹65.97 Lakh</span>
+            <span class="card-price">STARTS Rs. 60.97 - 65.97 Lakh</span>
             <h3>Kia EV6</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">225.86 - 320.55 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">320.55 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -84,13 +92,13 @@
             <img src="{% static 'app/Image/Kia_ev9.jpg' %}" alt="Kia EV9">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.30 CR</span>
+            <span class="card-price">STARTS Rs. 1.30 Cr</span>
             <h3>Kia EV9</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">379 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -99,13 +107,13 @@
             <img src="{% static 'app/Image/Kia_seltos.jpg' %}" alt="Kia Seltos">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹11.13 - ₹20.15 Lakh</span>
+            <span class="card-price">STARTS Rs. 10.79 - 19.99 Lakh</span>
             <h3>Kia Seltos</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">113.42 - 157.81 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1482 - 1497 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">114.41 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">19.1 kmpl</span></div>
         </div>
     </a>
 
@@ -114,13 +122,13 @@
             <img src="{% static 'app/Image/Kia_sonet.jpg' %}" alt="Kia Sonet">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹8 - ₹15.70 Lakh</span>
+            <span class="card-price">STARTS Rs. 7.30 - 14 Lakh</span>
             <h3>Kia Sonet</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">81.08 - 118 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">998 - 1493 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">114 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">19 kmpl</span></div>
         </div>
     </a>
 
@@ -129,15 +137,32 @@
             <img src="{% static 'app/Image/Kia_syros.jpg' %}" alt="Kia Syros">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹9 - ₹17.80 Lakh</span>
+            <span class="card-price">STARTS Rs. 8.40 - 15.80 Lakh</span>
             <h3>Kia Syros</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">118 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1493 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">114 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">17.65 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='kia' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

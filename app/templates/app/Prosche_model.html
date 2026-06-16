@@ -1,35 +1,44 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Prosche Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Porsche 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Porsche India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+    .showroom-hero .hero-visual { object-position: center center; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Prosche_logo.jpg' %}" class="hero-visual" alt="Prosche Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/porsche_header.webp' %}" class="hero-visual" alt="Porsche showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Prosche_logo.jpg' %}" alt="Prosche" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Porsche_hero_logo.png' %}" alt="Porsche">
         </div>
-        <span class="hero-tagline">PROSCHE SHOWROOM</span>
-        <h1>Prosche 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <span class="hero-tagline">STUTTGART - ENGINEERED DESIRE</span>
+        <h1>Porsche 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Sports cars, SUVs and EVs arranged in the shared performance gallery.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">7 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #d52b1e80 !important; color: #d52b1e !important;">STUTTGART RACING DNA</span>
+            <span class="status-badge">CARDEKHO VERIFIED</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        7 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Porsche models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        7 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,13 +48,13 @@
             <img src="{% static 'app/Image/Porsche_911.jpg' %}" alt="Porsche 911">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.99 - ₹4.26 CR</span>
+            <span class="card-price">STARTS Rs. 1.99 - 4.26 Cr</span>
             <h3>Porsche 911</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">379.5 - 641 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2981 - 3996 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">517.63 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">5.5 kmpl</span></div>
         </div>
     </a>
 
@@ -54,13 +63,13 @@
             <img src="{% static 'app/Image/Porsche_cayenne.jpg' %}" alt="Porsche Cayenne">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.42 - ₹2.00 CR</span>
+            <span class="card-price">STARTS Rs. 1.42 - 2 Cr</span>
             <h3>Porsche Cayenne</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">348.66 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2894 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">6.1 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +78,13 @@
             <img src="{% static 'app/Image/Porsche_cayenne_coupe.jpg' %}" alt="Porsche Cayenne Coupe">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.49 - ₹2.01 CR</span>
+            <span class="card-price">STARTS Rs. 1.49 - 2.01 Cr</span>
             <h3>Porsche Cayenne Coupe</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">348.66 - 493 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2894 - 3996 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">493 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">8 kmpl</span></div>
         </div>
     </a>
 
@@ -84,13 +93,13 @@
             <img src="{% static 'app/Image/Porsche_macan.jpg' %}" alt="Porsche Macan">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹96.05 Lakh - ₹1.53 CR</span>
+            <span class="card-price">STARTS Rs. 96.05 Lakh</span>
             <h3>Porsche Macan</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">261.49 - 434.49 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1984 - 2894 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">434.49 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">6 kmpl</span></div>
         </div>
     </a>
 
@@ -99,13 +108,13 @@
             <img src="{% static 'app/Image/Porsche_macan_ev.jpg' %}" alt="Porsche Macan EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.22 - ₹1.69 CR</span>
+            <span class="card-price">STARTS Rs. 1.22 - 1.69 Cr</span>
             <h3>Porsche Macan EV</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">402 - 608 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">608 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -114,13 +123,13 @@
             <img src="{% static 'app/Image/Porsche_panamera.jpg' %}" alt="Porsche Panamera">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.70 - ₹2.34 CR</span>
+            <span class="card-price">STARTS Rs. 1.70 - 2.34 Cr</span>
             <h3>Porsche Panamera</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">670.51 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2897 - 3996 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">20 kmpl</span></div>
         </div>
     </a>
 
@@ -129,15 +138,31 @@
             <img src="{% static 'app/Image/Porsche_taycan.jpg' %}" alt="Porsche Taycan">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.89 - ₹2.53 CR</span>
+            <span class="card-price">STARTS Rs. 1.89 - 2.53 Cr</span>
             <h3>Porsche Taycan</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">590 - 872 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">872 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 </div>
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

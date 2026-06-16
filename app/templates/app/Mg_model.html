@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Mg Editorial Showroom | Car Info System{% endblock %}
+{% block title %}MG 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the MG India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Mg_logo.jpg' %}" class="hero-visual" alt="Mg Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Mg_windsor_ev.jpg' %}" class="hero-visual" alt="MG showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Mg_logo.jpg' %}" alt="Mg" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/MG_hero_logo.png' %}" alt="MG">
         </div>
-        <span class="hero-tagline">MG SHOWROOM</span>
-        <h1>Mg 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">6 MODELS LISTED</span>
+        <span class="hero-tagline">LONGBRIDGE - CONNECTED MOBILITY</span>
+        <h1>MG 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">MG India SUVs and EVs in the unified showroom format.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">9 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #c5171d80 !important; color: #c5171d !important;">BRITISH HERITAGE</span>
+            <span class="status-badge" style="border-color: rgba(175, 55, 59, 0.5) !important; color: #dd4146 !important;">MORRIS GARAGES HERITAGE</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        6 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search MG models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        9 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,13 +47,13 @@
             <img src="{% static 'app/Image/Mg_astor.jpg' %}" alt="MG Astor">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹10 - ₹18.35 Lakh</span>
+            <span class="card-price">STARTS Rs. 9.79 - 15.50 Lakh</span>
             <h3>MG Astor</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">108.49 - 138.08 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1349 - 1498 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">108.49 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">14.82 kmpl</span></div>
         </div>
     </a>
 
@@ -54,28 +62,43 @@
             <img src="{% static 'app/Image/Mg_comet_ev.jpg' %}" alt="MG Comet EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹7 - ₹9.84 Lakh</span>
+            <span class="card-price">STARTS Rs. 7.50 - 9.56 Lakh</span>
             <h3>MG Comet EV</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">41.42 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
+
+    <article class="model-card" data-model="mg cyberster">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mg_cyberster.png' %}" alt="MG Cyberster">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 75.00 Lakh</span>
+            <h3>MG Cyberster</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">536 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">509 km</span></div>
+        </div>
+    </article>
 
     <a href="{% url 'Mg_gloster_full_detail' %}" class="model-card" data-model="mg gloster">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Mg_gloster.jpg' %}" alt="MG Gloster">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹39.57- ₹44.74 Lakh</span>
-            <h3>MG GLoster</h3>
+            <span class="card-price">STARTS Rs. 38.33 - 43.16 Lakh</span>
+            <h3>MG Gloster</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">158.79 - 212.55 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1996 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">212.55 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">10 kmpl</span></div>
         </div>
     </a>
 
@@ -84,28 +107,58 @@
             <img src="{% static 'app/Image/Mg_hector.jpg' %}" alt="MG Hector">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹14 - ₹22.89 Lakh</span>
+            <span class="card-price">STARTS Rs. 11.99 - 22.89 Lakh</span>
             <h3>MG Hector</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">141.04 - 167.67 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1451 - 1956 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">141.04 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">12.34 kmpl</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Mg_windsor_ev_full_detail' %}" class="model-card" data-model="mg windsor ev">
+    <article class="model-card" data-model="mg hector plus">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Mg_Windsor_ev.jpg' %}" alt="MG Windsor EV">
+            <img src="{% static 'app/Image/Mg_hector.jpg' %}" alt="MG Hector Plus">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹14 - ₹16 Lakh</span>
+            <span class="card-price">STARTS Rs. 17.49 - 19.69 Lakh</span>
+            <h3>MG Hector Plus</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">167.76 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">15.58 kmpl</span></div>
+        </div>
+    </article>
+
+    <article class="model-card" data-model="mg majestor">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mg_majestor.png' %}" alt="MG Majestor">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 40.99 - 44.99 Lakh</span>
+            <h3>MG Majestor</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">215 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">12 kmpl</span></div>
+        </div>
+    </article>
+
+    <a href="{% url 'Mg_windsor_ev_full_detail' %}" class="model-card" data-model="mg windsor ev">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mg_windsor_ev.jpg' %}" alt="MG Windsor EV">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 14.00 - 18.50 Lakh</span>
             <h3>MG Windsor EV</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">134 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -114,15 +167,32 @@
             <img src="{% static 'app/Image/Mg_zs_ev.jpg' %}" alt="MG ZS EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹18.98 - ₹25.75 Lakh</span>
+            <span class="card-price">STARTS Rs. 18.98 - 26.64 Lakh</span>
             <h3>MG ZS EV</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">174.33 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='mg' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

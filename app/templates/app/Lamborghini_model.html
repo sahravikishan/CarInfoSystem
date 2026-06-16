@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Lamborghini Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Lamborghini 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Lamborghini India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Lamborghini_logo.jpg' %}" class="hero-visual" alt="Lamborghini Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Lamborghini_header.jpg' %}" class="hero-visual" alt="Lamborghini showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Lamborghini_logo.jpg' %}" alt="Lamborghini" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Lamborghini_hero_logo.png' %}" alt="Lamborghini">
         </div>
-        <span class="hero-tagline">LAMBORGHINI SHOWROOM</span>
+        <span class="hero-tagline">SANT'AGATA - RAGING PERFORMANCE</span>
         <h1>Lamborghini 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">3 MODELS LISTED</span>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Italian supercars and super SUVs presented in the same editorial grid.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">4 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #d4af3780 !important; color: #d4af37 !important;">SQUADRA CORSE</span>
+            <span class="status-badge" style="border-color: rgba(224, 125, 79, 0.5) !important; color: #e95115 !important;">SQUADRA CORSE LEGEND</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        3 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Lamborghini models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        4 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,13 +47,13 @@
             <img src="{% static 'app/Image/Lambo_huracan_evo.jpg' %}" alt="Lamborghini Huracan EVO">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹4 - ₹4.99 CR</span>
+            <span class="card-price">STARTS Rs. 4 - 4.99 Cr</span>
             <h3>Lamborghini Huracan EVO</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">602.11 - 630.3 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">5204 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">630.28 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">5.9 kmpl</span></div>
         </div>
     </a>
 
@@ -54,30 +62,62 @@
             <img src="{% static 'app/Image/Lambo_revuelto.jpg' %}" alt="Lamborghini Revuelto">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹8.89 CR</span>
+            <span class="card-price">STARTS Rs. 8.89 Cr</span>
             <h3>Lamborghini Revuelto</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">1001.11 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">6498 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">12 kmpl</span></div>
         </div>
     </a>
+
+    <article class="model-card" data-model="lamborghini temerario">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Lambo_temerario.png' %}" alt="Lamborghini Temerario">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 6.00 Cr</span>
+            <h3>Lamborghini Temerario</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">920 PS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">4.0L V8 TT</span></div>
+        </div>
+    </article>
 
     <a href="{% url 'Lambo_urus_full_detail' %}" class="model-card" data-model="lamborghini urus">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Lambo_urus.jpg' %}" alt="Lamborghini Urus">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹4.18 - ₹4.57 CR</span>
+            <span class="card-price">STARTS Rs. 4.18 - 4.57 Cr</span>
             <h3>Lamborghini Urus</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">657.1 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3999 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">657.10 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">5.5 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='lamborghini' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

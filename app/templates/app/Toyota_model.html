@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Toyota Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Toyota 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Toyota India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Toyota_logo.jpg' %}" class="hero-visual" alt="Toyota Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Toyota_fortuner.jpg' %}" class="hero-visual" alt="Toyota showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Toyota_logo.jpg' %}" alt="Toyota" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Toyota_hero_logo.png' %}" alt="Toyota">
         </div>
-        <span class="hero-tagline">TOYOTA SHOWROOM</span>
+        <span class="hero-tagline">AICHI - QUALITY DURABILITY RELIABILITY</span>
         <h1>Toyota 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Toyota India's hatchback, sedan, MPV, SUV and pickup lineup in one grid.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">12 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #eb0a1e80 !important; color: #eb0a1e !important;">QDR HERITAGE</span>
+            <span class="status-badge" style="border-color: rgba(145, 78, 190, 0.5) !important; color: #8f49eb !important;">TOYOTA QDR PROVEN</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        12 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Toyota models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        12 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,13 +47,13 @@
             <img src="{% static 'app/Image/Toyota_camry.jpg' %}" alt="Toyota Camry">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹48 Lakh</span>
+            <span class="card-price">STARTS Rs. 48 Lakh</span>
             <h3>Toyota Camry</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">227 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2487 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">25.49 kmpl</span></div>
         </div>
     </a>
 
@@ -54,13 +62,13 @@
             <img src="{% static 'app/Image/Toyota_fortuner.jpg' %}" alt="Toyota Fortuner">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹33.78 - ₹51.94 Lakh</span>
+            <span class="card-price">STARTS Rs. 33.78 - 51.94 Lakh</span>
             <h3>Toyota Fortuner</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">163.06 - 201.15 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2694 - 2755 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">201.15 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">12 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +77,13 @@
             <img src="{% static 'app/Image/Toyota_fortuner_legender.jpg' %}" alt="Toyota Fortuner Legender">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹44.11 - ₹48.09 Lakh</span>
+            <span class="card-price">STARTS Rs. 44.11 - 48.09 Lakh</span>
             <h3>Toyota Fortuner Legender</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">201.15 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2755 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">10.52 kmpl</span></div>
         </div>
     </a>
 
@@ -84,13 +92,13 @@
             <img src="{% static 'app/Image/Toyota_glanza.jpg' %}" alt="Toyota Glanza">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹6.90 - ₹10 Lakh</span>
+            <span class="card-price">STARTS Rs. 6.90 - 10 Lakh</span>
             <h3>Toyota Glanza</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">76.43 - 88.5 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1197 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">88.50 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">24.94 kmpl</span></div>
         </div>
     </a>
 
@@ -99,13 +107,13 @@
             <img src="{% static 'app/Image/Toyota_hilux.jpg' %}" alt="Toyota Hilux">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹30.40 - ₹37.90 Lakh</span>
+            <span class="card-price">STARTS Rs. 30.40 - 37.90 Lakh</span>
             <h3>Toyota Hilux</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">201.15 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2755 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">10 kmpl</span></div>
         </div>
     </a>
 
@@ -114,13 +122,13 @@
             <img src="{% static 'app/Image/Toyota_innova_crysta.jpg' %}" alt="Toyota Innova Crysta">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹19.99 - ₹26.82 Lakh</span>
+            <span class="card-price">STARTS Rs. 19.99 - 26.82 Lakh</span>
             <h3>Toyota Innova Crysta</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">147.51 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2393 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">9 kmpl</span></div>
         </div>
     </a>
 
@@ -129,13 +137,13 @@
             <img src="{% static 'app/Image/Toyota_innova_hycross.jpg' %}" alt="Toyota Innova Hycross">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹19.94 - ₹31.34 Lakh</span>
+            <span class="card-price">STARTS Rs. 19.94 - 31.34 Lakh</span>
             <h3>Toyota Innova Hycross</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">172.99 - 183.72 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1987 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">183.72 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">23.24 kmpl</span></div>
         </div>
     </a>
 
@@ -144,13 +152,13 @@
             <img src="{% static 'app/Image/Toyota_land_cruiser.jpg' %}" alt="Toyota Land Cruiser 300">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹2.31 - 2.41 CR</span>
+            <span class="card-price">STARTS Rs. 2.31 - 2.41 Lakh</span>
             <h3>Toyota Land Cruiser 300</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">304.41 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">3346 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">11 kmpl</span></div>
         </div>
     </a>
 
@@ -159,13 +167,13 @@
             <img src="{% static 'app/Image/Toyota_rumion.jpg' %}" alt="Toyota Rumion">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹10.54 - ₹13.83 Lakh</span>
+            <span class="card-price">STARTS Rs. 10.54 - 13.83 Lakh</span>
             <h3>Toyota Rumion</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">86.63 - 101.64 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1462 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">101.64 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">20.11 kmpl</span></div>
         </div>
     </a>
 
@@ -174,13 +182,13 @@
             <img src="{% static 'app/Image/Toyota_taisor.jpg' %}" alt="Toyota Taisor">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹7.74 - ₹13.04 Lakh</span>
+            <span class="card-price">STARTS Rs. 7.74 - 13.04 Lakh</span>
             <h3>Toyota Taisor</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">76.43- 98.69 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">998 - 1197 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">98.69 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">20 kmpl</span></div>
         </div>
     </a>
 
@@ -189,13 +197,13 @@
             <img src="{% static 'app/Image/Toyota_urban_cruiser_hyryder.jpg' %}" alt="Toyota Urban Cruiser Hyryder">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹11.14 - ₹19.99 Lakh</span>
+            <span class="card-price">STARTS Rs. 11.14 - 19.99 Lakh</span>
             <h3>Toyota Urban Cruiser Hyryder</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">86.63 - 101.64 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1462 - 1490 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">91.18 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">27.97 kmpl</span></div>
         </div>
     </a>
 
@@ -204,15 +212,32 @@
             <img src="{% static 'app/Image/Toyota_vellfire.jpg' %}" alt="Toyota Vellfire">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.22 - ₹1.32 CR</span>
+            <span class="card-price">STARTS Rs. 1.22 - 1.32 Lakh</span>
             <h3>Toyota Vellfire</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">190.42 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2487 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">16 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='toyota' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

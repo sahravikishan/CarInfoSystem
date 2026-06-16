@@ -1,0 +1,93 @@
+{% extends 'app/base_editorial.html' %}
+{% load static %}
+
+{% block title %}Tesla 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Tesla India electric model lineup with prices and key specs in the shared showroom style.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+    .card-img-wrap { background: #0c0c0f; overflow: hidden; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="showroom-hero">
+    <img src="{% static 'app/Image/Tesla_model_y.svg' %}" class="hero-visual" alt="Tesla Model Y hero">
+    <div class="hero-content">
+        <div class="brand-logo-badge">
+            <img src="{% static 'app/Image/Tesla_hero_logo.jpg' %}" alt="Tesla">
+        </div>
+        <span class="hero-tagline">AUSTIN - ELECTRIC MINIMALISM</span>
+        <h1>Tesla 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Tesla's India entry is led by the Model Y range, including the new long-wheelbase six-seat version.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">2 CARDS LISTED</span>
+            <span class="status-badge">MODEL Y RANGE</span>
+            <span class="status-badge">100% ELECTRIC</span>
+        </div>
+    </div>
+</section>
+
+<section class="showroom-controls">
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Tesla models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        1 Model Range &nbsp;-&nbsp; 2 Visible India Variants &nbsp;-&nbsp; Hover to Reveal Stats
+    </div>
+</section>
+
+<div class="model-grid" id="modelGrid">
+    <article class="model-card" data-model="tesla model y">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Tesla_model_y.svg' %}" alt="Tesla Model Y">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 59.89 - 67.89 Lakh</span>
+            <h3>Model Y</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Range</span><span class="stat-value">Up to 661 km</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Layout</span><span class="stat-value">5 Seats</span></div>
+        </div>
+    </article>
+
+    <article class="model-card" data-model="tesla model y l">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Tesla_model_y_l.svg' %}" alt="Tesla Model Y L">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 61.99 Lakh</span>
+            <h3>Model Y L</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Range</span><span class="stat-value">681 km</span></div>
+            <div class="reveal-stat"><span class="stat-label">Battery</span><span class="stat-value">88 kWh</span></div>
+            <div class="reveal-stat"><span class="stat-label">Layout</span><span class="stat-value">6 Seats</span></div>
+        </div>
+    </article>
+</div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='tesla' %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
+{% endblock %}

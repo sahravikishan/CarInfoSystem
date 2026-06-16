@@ -1,0 +1,75 @@
+<!-- Footer -->
+<footer style="background-color: #0F1C2E; color: #E8E6E1; padding: 48px 24px; margin-top: 64px; border-top: 1px solid rgba(212, 165, 116, 0.2);">
+    
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+        
+        <!-- Footer Content -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-bottom: 32px;">
+            
+            <!-- About Section -->
+            <div>
+                <h4 style="color: #F5F3F0; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">About Us</h4>
+                <p style="color: #E8E6E1; font-size: 14px; line-height: 1.6;">
+                    Premium car information system bringing you the finest selection of luxury vehicles from around the world.
+                </p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h4 style="color: #F5F3F0; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">Quick Links</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;">
+                        <a href="{% url 'home' %}" style="color: #E8E6E1; text-decoration: none; transition: color 300ms ease;">
+                            Home
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <a href="#brands" style="color: #E8E6E1; text-decoration: none; transition: color 300ms ease;">
+                            Browse Cars
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <a href="{% url 'contact' %}" style="color: #E8E6E1; text-decoration: none; transition: color 300ms ease;">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <h4 style="color: #F5F3F0; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">Contact Info</h4>
+                <p style="color: #E8E6E1; font-size: 14px; margin-bottom: 8px;">
+                    <i class="fas fa-phone" style="color: #D4A574; margin-right: 8px;"></i>
+                    +1 (555) 123-4567
+                </p>
+                <p style="color: #E8E6E1; font-size: 14px;">
+                    <i class="fas fa-envelope" style="color: #D4A574; margin-right: 8px;"></i>
+                    info@carinfo.com
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div style="border-top: 1px solid rgba(212, 165, 116, 0.2); padding-top: 24px; text-align: center; color: #E8E6E1;">
+            <p style="margin: 0; font-size: 14px;">
+                &copy; 2024 Car Info System. All rights reserved.
+            </p>
+            <p style="margin: 8px 0 0 0; font-size: 12px;">
+                Premium Midnight Design
+            </p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer a:hover {
+        color: #D4A574 !important;
+    }
+    
+    @media (max-width: 768px) {
+        footer {
+            padding: 32px 16px;
+        }
+    }
+</style>

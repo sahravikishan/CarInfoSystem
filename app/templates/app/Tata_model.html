@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Tata Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Tata 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Tata India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Tata_logo.jpg' %}" class="hero-visual" alt="Tata Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Tata_harrier.jpg' %}" class="hero-visual" alt="Tata showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Tata_logo.jpg' %}" alt="Tata" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Tata_hero_logo.png' %}" alt="Tata">
         </div>
-        <span class="hero-tagline">TATA SHOWROOM</span>
+        <span class="hero-tagline">PUNE - NEW FOREVER</span>
         <h1>Tata 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">13 MODELS LISTED</span>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Tata's ICE and EV lineup with clear prices and quick spec reveal cards.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">14 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #00a8cc80 !important; color: #00a8cc !important;">CONNECTING ASPIRATIONS</span>
+            <span class="status-badge" style="border-color: rgba(41, 204, 0, 0.5) !important; color: #9bd332 !important;">5-STAR SAFETY ASSURED</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        13 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Tata models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        14 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,13 +47,13 @@
             <img src="{% static 'app/Image/Tata_altroz.jpg' %}" alt="Tata Altroz">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹6. 65- ₹11.30 Lakh</span>
+            <span class="card-price">STARTS Rs. 6.65 - 11.30 Lakh</span>
             <h3>Tata Altroz</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">72.49 - 88.76 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 - 1497 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">88.76 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">19.33 kmpl</span></div>
         </div>
     </a>
 
@@ -54,13 +62,13 @@
             <img src="{% static 'app/Image/Tata_curvv.jpg' %}" alt="Tata Curvv">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹10 - ₹19.20 Lakh</span>
+            <span class="card-price">STARTS Rs. 10 - 19.20 Lakh</span>
             <h3>Tata Curvv</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">116 - 123 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 - 1497 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">116 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">13 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +77,13 @@
             <img src="{% static 'app/Image/Tata_curvv_ev.jpg' %}" alt="Tata Curvv EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹17.49 - ₹21.99 Lakh</span>
+            <span class="card-price">STARTS Rs. 17.49 - 21.99 Lakh</span>
             <h3>Tata Curvv EV</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">148 - 165 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">165 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -84,13 +92,28 @@
             <img src="{% static 'app/Image/Tata_harrier.jpg' %}" alt="Tata Harrier">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹15 - ₹26.25 Lakh</span>
+            <span class="card-price">STARTS Rs. 10 - 19.20 Lakh</span>
             <h3>Tata Harrier</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">167.62 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1956 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">16.8 kmpl</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Tata_harrier_ev_full_detail' %}" class="model-card" data-model="tata harrier ev">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Tata_harrier_ev.png' %}" alt="Tata Harrier EV">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 22.00 - 25.00 Lakh</span>
+            <h3>Tata Harrier EV</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">--</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -99,13 +122,13 @@
             <img src="{% static 'app/Image/Tata_nexon.jpg' %}" alt="Tata Nexon">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹8 - ₹15.60 Lakh</span>
+            <span class="card-price">STARTS Rs. 8 - 15.60 Lakh</span>
             <h3>Tata Nexon</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">99 - 118.27 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 - 1497 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">113.31 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">24.08 kmpl</span></div>
         </div>
     </a>
 
@@ -114,13 +137,13 @@
             <img src="{% static 'app/Image/Tata_nexon_ev.jpg' %}" alt="Tata Nexon EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹12.49 - ₹17.19 Lakh</span>
+            <span class="card-price">STARTS Rs. 12.49 - 17.19 Lakh</span>
             <h3>Tata Nexon EV</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">127 - 148 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">148 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -129,13 +152,13 @@
             <img src="{% static 'app/Image/Tata_punch.jpg' %}" alt="Tata Punch">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹6 - ₹10.32 Lakh</span>
+            <span class="card-price">STARTS Rs. 6.49 - 9.64 Lakh</span>
             <h3>Tata Punch</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">72 - 87 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">87 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">18.08 kmpl</span></div>
         </div>
     </a>
 
@@ -144,13 +167,13 @@
             <img src="{% static 'app/Image/Tata_punch_ev.jpg' %}" alt="Tata Punch EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹9.99 - ₹14.29 Lakh</span>
+            <span class="card-price">STARTS Rs. 9.99 - 14.44 Lakh</span>
             <h3>Tata Punch EV</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">80.46 - 120.69 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">120.69 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -159,13 +182,13 @@
             <img src="{% static 'app/Image/Tata_safari.jpg' %}" alt="Tata Safari">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹15.50 - ₹27 Lakh</span>
+            <span class="card-price">STARTS Rs. 15.50 - 27.25 Lakh</span>
             <h3>Tata Safari</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">167.62 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1956 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">14.1 kmpl</span></div>
         </div>
     </a>
 
@@ -174,13 +197,13 @@
             <img src="{% static 'app/Image/Tata_tiago.jpg' %}" alt="Tata Tiago">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹5 - ₹8.45 Lakh</span>
+            <span class="card-price">STARTS Rs. 5 - 8.45 Lakh</span>
             <h3>Tata Tiago</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">72.41 - 84.82 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">84.82 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">20.09 kmpl</span></div>
         </div>
     </a>
 
@@ -189,13 +212,13 @@
             <img src="{% static 'app/Image/Tata_tiago_ev.jpg' %}" alt="Tata Tiago EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹7.99 - ₹11.14 Lakh</span>
+            <span class="card-price">STARTS Rs. 7.99 - 11.14 Lakh</span>
             <h3>Tata Tiago EV</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">60.34 - 73.75 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">73.75 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 
@@ -204,13 +227,13 @@
             <img src="{% static 'app/Image/Tata_tigor.jpg' %}" alt="Tata Tigor">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹6 - ₹9.50 Lakh</span>
+            <span class="card-price">STARTS Rs. 6 - 9.50 Lakh</span>
             <h3>Tata Tigor</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">72.41 - 84.48 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">72.41 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/CNG</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">19.28 kmpl</span></div>
         </div>
     </a>
 
@@ -219,15 +242,32 @@
             <img src="{% static 'app/Image/Tata_tigor_ev.jpg' %}" alt="Tata Tigor EV">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹12.49 - ₹13.75 Lakh</span>
+            <span class="card-price">STARTS Rs. 12.49 - 13.75 Lakh</span>
             <h3>Tata Tigor EV</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">73.75 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='tata' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

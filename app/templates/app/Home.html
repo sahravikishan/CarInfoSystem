@@ -1,274 +1,664 @@
-<!DOCTYPE html>
+{% extends 'app/base_editorial.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Car Brand</title>
-    <!-- Link to External CSS -->
-    <link rel="stylesheet" href="{% static 'app/css/Navbar.css' %}">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #414142;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
 
-        .logo-block {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+{% block title %}Home | Car Info System{% endblock %}
+{% block description %}Explore 30+ premium car brands, compare detailed specifications, and check live pricing in our high-end editorial automotive index.{% endblock %}
 
-        .logo-block img {
-            max-width: 100%;
-            max-height: 80px;
-            object-fit: contain;
-        }
+{% block extra_css %}
+<style>
+    :root {
+        --brand-logo-frame-width: 180px;
+        --brand-logo-frame-height: 92px;
+        --brand-logo-image-width: 160px;
+        --brand-logo-image-height: 68px;
+        --brand-logo-plate: #ffffff;
+        --brand-logo-plate-dark: #0b1320;
+        --brand-logo-plate-border: rgba(15, 23, 42, 0.12);
+        --brand-info-bg: rgba(255, 255, 255, 0.72);
+        --brand-info-text: #172033;
+        --brand-info-muted: #4b5563;
+    }
 
-        .logo-block:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
+    [data-theme="dark"] {
+        --brand-logo-plate: #f8fafc;
+        --brand-logo-plate-border: rgba(255, 255, 255, 0.18);
+        --brand-info-bg: rgba(15, 23, 42, 0.34);
+        --brand-info-text: #f8fafc;
+        --brand-info-muted: #cbd5e1;
+    }
 
-        .logo img {
-            max-width: 150px;
-            max-height: 150px;
-            display: block;
-            margin: 0 auto;
-            border-radius: 10px;
-        }
+    /* ── Base filter chain (dark logos on white/transparent bg) ── */
+    .brand-cell img {
+        display: block;
+        width: var(--brand-logo-image-width);
+        height: var(--brand-logo-image-height);
+        max-width: var(--brand-logo-image-width);
+        max-height: var(--brand-logo-image-height);
+        object-fit: contain;
+        filter: none !important;
+        mix-blend-mode: normal;
+    }
 
-        .logo {
-            padding: 20px;
-            text-align: center;
-        }
-        .logo a span {
-            color: white; 
-            font-size: 14px; 
-            font-weight: bold; 
-            display: block;
-            margin-top: 10px; 
-            text-align: center; 
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .logo a {
-            text-decoration: none; 
-            color: inherit; 
-        }
-        .logo a span:hover {
-            color: #4e4e4e; 
-        }
+    [data-theme="dark"] .brand-cell img {
+        filter: none !important;
+        mix-blend-mode: normal;
+    }
 
+    /* ── Size overrides ── */
+    .brand-logo-safezone {
+        width: var(--brand-logo-frame-width);
+        height: var(--brand-logo-frame-height);
+        background: var(--brand-logo-plate);
+        border: 1px solid var(--brand-logo-plate-border);
+        border-radius: 8px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            position: fixed;
-            top: 40px; 
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #414142;
-            padding: 20px;
-            width: 100%;
-            z-index: 10;
-            color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    /* ─────────────────────────────────────────────────────────────
+       VINFAST FIX — custom clean SVG uses white fills on transparent.
+       White SVG paths need a dark plate to stay visible.
+    ───────────────────────────────────────────────────────────── */
+    .brand-cell:hover .brand-logo-safezone,
+    .brand-cell:focus .brand-logo-safezone,
+    .brand-cell.is-brand-active .brand-logo-safezone {
+        transform: translateY(-10px) scale(1.04);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .brand-cell:hover .brand-logo-safezone,
+        .brand-cell:focus .brand-logo-safezone,
+        .brand-cell.is-brand-active .brand-logo-safezone {
+            transform: none;
         }
+    }
+</style>
+{% endblock %}
 
-        .logo-row {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
-            padding-top: 80px; 
-        }
+{% block content %}
 
-        .main-content {
-            margin-top: 100px; 
-        }
-
-        .navbar-brand {
-            display: flex; 
-            align-items: center; 
-            text-decoration: none; 
-        }
-
-        .navbar-brand img {
-            width: 30px; 
-            height: 30px; 
-            border-radius: 50%; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
-            margin-right: 8px; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-        }
-
-        .navbar-brand img:hover {
-            transform: scale(1.1); 
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); 
-        }
-
-        .navbar-brand h6 {
-            color: #ffffff; 
-            font-size: 1.5rem; 
-            font-weight: bold; 
-            transition: color 0.3s ease; 
-        }
-
-        .navbar-brand:hover h5 {
-            color: #00c6ff; 
-        }
-
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-
-            <a class="navbar-brand d-flex align-items-center" href="{% static 'app/Image/car_icon.jpg' %}">
-                <img src="{% static 'app/Image/car_icon.jpg' %}" alt="Car Icon" class="me-2" style="width: 30px; height: 30px;">
-                <h5 style="margin: 0; color: #ffffff; font-weight: bold;">CarInfoSystem</h5>
-            </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <!-- Home Link -->
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/Home">Home</a>
-                        </li>
-    
-                        <!-- Register/Login Link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Login">Register / Login</a>
-                        </li>
-    
-                        <!-- Dropdown Menu -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="typeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Sort by Type
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
-                                <li><a class="dropdown-item" href="#">Sedan</a></li>
-                                <li><a class="dropdown-item" href="#">SUV</a></li>
-                                <li><a class="dropdown-item" href="#">Hatchback</a></li>
-                                <li><a class="dropdown-item" href="#">Coupe</a></li>
-                                <li><a class="dropdown-item" href="#">Luxury</a></li>
-                            </ul>
-                        </li>
-    
-                        <!-- About Us Link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/About">About Us</a>
-                        </li>
-    
-                        <!-- Contact Us Link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Contact">Contact Us</a>
-                        </li>
-                    </ul>
-    
-                    <!-- Search Form -->
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
+<!-- Hero Section -->
+<section class="home-hero">
+    <div class="home-hero-content">
+        <p class="eyebrow" style="color: var(--edit-accent);">Premium Automotive Discovery</p>
+        <h1>Find Your <br> Next Legacy.</h1>
+        <p>Browse 30+ iconic car brands, compare hundreds of models, and dive deep into full specifications — all in one fast, beautifully designed platform.</p>
+        
+        <div style="margin-top: 50px; display: flex; gap: 20px;">
+            <a href="#brands" class="cta" style="width: auto; padding: 20px 40px; text-decoration: none;">Browse Collection</a>
+            <a href="{% url 'About' %}" class="cta" style="width: auto; padding: 20px 40px; text-decoration: none; background: transparent; border-color: var(--edit-border); color: var(--edit-text);">How It Works</a>
         </div>
-    </nav>    
+    </div>
+</section>
 
-    <!-- Static Title -->
-    <h1>Select Car Brand</h1>
+<!-- Stats Ribbon -->
+<section class="stat-strip">
+    <div class="stat-strip-item">
+        <span class="stat-val">35</span>
+        <span class="stat-lab">Global Brands</span>
+    </div>
+    <div class="stat-strip-item">
+        <span class="stat-val">250+</span>
+        <span class="stat-lab">Unique Models</span>
+    </div>
+    <div class="stat-strip-item">
+        <span class="stat-val">100%</span>
+        <span class="stat-lab">Verified Data</span>
+    </div>
+    <div class="stat-strip-item">
+        <span class="stat-val">Free</span>
+        <span class="stat-lab">Always & Forever</span>
+    </div>
+</section>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <!-- First Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Aston_martin_model"><img src="{% static 'app/Image/Aston_martin_logo.jpg' %}" alt="Aston Martin"><span><h5>Aston Martin</h5></span></a></div>
-                <div class="logo"><a href="/Audi_model"><img src="{% static 'app/Image/Audi_logo.jpg' %}" alt="Audi"><span><h5>Audi</h5></span></a></div>
-                <div class="logo"><a href="/Bentley_model"><img src="{% static 'app/Image/Bentley_logo.jpg' %}" alt="Bentley"><span><h5>Bentley</h5></span></a></div>
-            </div>
-            
-            <!-- Second Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/BMW_model"><img src="{% static 'app/Image/BMW_logo.jpg' %}" alt="BMW"><span><h5>BMW</h5></span></a></div>
-                <div class="logo"><a href="/BYD_model"><img src="{% static 'app/Image/BYD_logo.jpg' %}" alt="BYD"><span><h5>BYD</h5></span></a></div>
-                <div class="logo"><a href="/Ferrari_model"><img src="{% static 'app/Image/Ferrari_logo.jpg' %}" alt="Ferrari"><span><h5>Ferrari</h5></span></a></div>
-            </div>
-            
-            <!-- Third Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Honda_model"><img src="{% static 'app/Image/Honda_logo.jpg' %}" alt="Honda"><span><h5>Honda</h5></span></a></div>
-                <div class="logo"><a href="/Hyundai_model"><img src="{% static 'app/Image/Hyundai_logo.jpg' %}" alt="Hyundai"><span><h5>Hyundai</h5></span></a></div>
-                <div class="logo"><a href="/Jaguar_model"><img src="{% static 'app/Image/Jaguar_logo.jpg' %}" alt="Jaguar"><span><h5>Jaguar</h5></span></a></div>
-            </div>
-            
-            <!-- Fourth Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Jeep_model"><img src="{% static 'app/Image/Jeep_logo.jpg' %}" alt="Jeep"><span><h5>Jeep</h5></span></a></div>
-                <div class="logo"><a href="/Kia_model"><img src="{% static 'app/Image/Kia_logo.jpg' %}" alt="Kia"><span><h5>Kia</h5></span></a></div>
-                <div class="logo"><a href="/Lamborghini_model"><img src="{% static 'app/Image/Lamborghini_logo.jpg' %}" alt="Lamborghini"><span><h5>Lamborghini</h5></span></a></div>
-            </div>
-            
-            <!-- Fifth Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Land_rover"><img src="{% static 'app/Image/Land_rover_logo.jpg' %}" alt="Land Rover"><span><h5>Land Rover</h5></span></a></div>
-                <div class="logo"><a href="/Lexus_model"><img src="{% static 'app/Image/Lexus_logo.jpg' %}" alt="Lexus"><span><h5>Lexus</h5></span></a></div>
-                <div class="logo"><a href="/Mahindra_model"><img src="{% static 'app/Image/Mahindra_logo.jpg' %}" alt="Mahindra"><span><h5>Mahindra</h5></span></a></div>
-            </div>
-            
-            <!-- Sixth Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Maserati_model"><img src="{% static 'app/Image/Maserati_logo.jpg' %}" alt="Maserati"><span><h5>Maserati</h5></span></a></div>
-                <div class="logo"><a href="/McLaren_model"><img src="{% static 'app/Image/McLaren_logo.jpg' %}" alt="McLaren"><span><h5>McLaren</h5></span></a></div>
-                <div class="logo"><a href="/Mercedes_benz_model"><img src="{% static 'app/Image/Mercedes_benz_logo.jpg' %}" alt="Mercedes Benz"><span><h5>Mercedes Benz</h5></span></a></div>
-            </div>
-            
-            <!-- Seventh Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Mg_model"><img src="{% static 'app/Image/MG_logo.jpg' %}" alt="MG"><span><h5>MG</h5></span></a></div>
-                <div class="logo"><a href="/Mini_model"><img src="{% static 'app/Image/Mini_logo.jpg' %}" alt="Mini"><span><h5>Mini</h5></span></a></div>
-                <div class="logo"><a href="/Nissan_model"><img src="{% static 'app/Image/Nissan_logo.jpg' %}" alt="Nissan"><span><h5>Nissan</h5></span></a></div>
-            </div>
-
-            <!-- Eighth Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Prosche_model"><img src="{% static 'app/Image/Porsche_logo.jpg' %}" alt="Porsche"><span><h5>Porsche</h5></span></a></div>
-                <div class="logo"><a href="/Renault_model"><img src="{% static 'app/Image/Renault_logo.jpg' %}" alt="Renault"><span><h5>Renault</h5></span></a></div>
-                <div class="logo"><a href="/Rolls_royce"><img src="{% static 'app/Image/Rolls_royce_logo.jpg' %}" alt="Rolls Royce"><span><h5>Rolls Royce</h5></span></a></div>
-            </div>
-
-            <!-- Ninth Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Skoda_model"><img src="{% static 'app/Image/Skoda_logo.jpg' %}" alt="Skoda"><span><h5>Skoda</h5></span></a></div>
-                <div class="logo"><a href="/suzuki_model"><img src="{% static 'app/Image/Suzuki_logo.jpg' %}" alt="Suzuki"><span><h5>Suzuki</h5></span></a></div>
-                <div class="logo"><a href="/Tata_model"><img src="{% static 'app/Image/Tata_logo.jpg' %}" alt="Tata"><span><h5>Tata</h5></span></a></div>
-            </div>
-            
-            <!-- Tenth Row -->
-            <div class="logo-row">
-                <div class="logo"><a href="/Toyota_model"><img src="{% static 'app/Image/Toyota_logo.jpg' %}" alt="Toyota"><span><h5>Toyota</h5></span></a></div>
-                <div class="logo"><a href="/Volkswagen_model"><img src="{% static 'app/Image/Volkswagen_logo.jpg' %}" alt="Volkswagen"><span><h5>Volkswagen</h5></span></a></div>
-                <div class="logo"><a href="/Volvo_model"><img src="{% static 'app/Image/Volvo_logo.jpg' %}" alt="Volvo"><span><h5>Volvo</h5></span></a></div>
+<!-- Brand Discovery -->
+<section id="brands" style="background-color: var(--edit-bg);">
+    <div class="discovery-head">
+        <div class="discovery-title">
+            <span class="eyebrow" style="margin-bottom: 10px; display: block;">The Collection</span>
+            <h2>Select a Manufacturer</h2>
+        </div>
+        
+        <div style="flex: 1; max-width: 400px;">
+            <div class="field" style="margin-bottom: 0;">
+                <input type="search" id="brandSearch" placeholder="Search brands (e.g. BMW, Porsche)..." style="padding-left: 0;">
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JavaScript Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <!-- Segment Tags -->
+    <div style="padding: 0 4vw 40px; display: flex; gap: 30px; border-bottom: 1px solid var(--edit-border); margin-bottom: 1px; overflow-x: auto; scrollbar-width: none;">
+        <button class="theme-toggle-btn cis-segment-tag is-active" style="margin: 0;">All</button>
+        <button class="theme-toggle-btn cis-segment-tag" style="margin: 0;">Luxury</button>
+        <button class="theme-toggle-btn cis-segment-tag" style="margin: 0;">SUV</button>
+        <button class="theme-toggle-btn cis-segment-tag" style="margin: 0;">Electric</button>
+        <button class="theme-toggle-btn cis-segment-tag" style="margin: 0;">Sport</button>
+        <button class="theme-toggle-btn cis-segment-tag" style="margin: 0;">Sedan</button>
+    </div>
+
+    <!-- Brand Gallery Grid -->
+    <div class="brand-gallery" id="brandGrid">
+        <!-- Aston Martin -->
+        <a href="{% url 'Aston_martin_model' %}" class="brand-cell" data-brand="aston martin">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Aston_Martin_Home_logo.png' %}" alt="Aston Martin">
+            </div>
+            <div class="brand-identity">
+                <h3>Aston Martin</h3>
+                <div class="brand-metadata"><span>UK</span><span>1913</span></div>
+            </div>
+        </a>
+        <!-- Audi -->
+        <a href="{% url 'Audi_model' %}" class="brand-cell" data-brand="audi">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Audi_home_logo.png' %}" alt="Audi">
+            </div>
+            <div class="brand-identity">
+                <h3>Audi</h3>
+                <div class="brand-metadata"><span>Germany</span><span>1910</span></div>
+            </div>
+        </a>
+        <!-- Bentley -->
+        <a href="{% url 'Bentley_model' %}" class="brand-cell" data-brand="bentley">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Bentley_home_logo.png' %}" alt="Bentley">
+            </div>
+            <div class="brand-identity">
+                <h3>Bentley</h3>
+                <div class="brand-metadata"><span>UK</span><span>1919</span></div>
+            </div>
+        </a>
+        <!-- BMW -->
+        <a href="{% url 'BMW_model' %}" class="brand-cell" data-brand="bmw">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/BMW_home_logo.png' %}" alt="BMW">
+            </div>
+            <div class="brand-identity">
+                <h3>BMW</h3>
+                <div class="brand-metadata"><span>Germany</span><span>1916</span></div>
+            </div>
+        </a>
+        <!-- BYD -->
+        <a href="{% url 'BYD_model' %}" class="brand-cell" data-brand="byd">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/BYD_home_logo.png' %}" alt="BYD">
+            </div>
+            <div class="brand-identity">
+                <h3>BYD</h3>
+                <div class="brand-metadata"><span>China</span><span>1995</span></div>
+            </div>
+        </a>
+        <!-- Citroen -->
+        <a href="{% url 'Citroen_model' %}" class="brand-cell" data-brand="citroen">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Citroen_home_logo.png' %}" alt="Citroen">
+            </div>
+            <div class="brand-identity">
+                <h3>Citroën</h3>
+                <div class="brand-metadata"><span>France</span><span>1919</span></div>
+            </div>
+        </a>
+        <!-- Ferrari -->
+        <a href="{% url 'Ferrari_model' %}" class="brand-cell" data-brand="ferrari">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Ferrari_home_logo.png' %}" alt="Ferrari">
+            </div>
+            <div class="brand-identity">
+                <h3>Ferrari</h3>
+                <div class="brand-metadata"><span>Italy</span><span>1947</span></div>
+            </div>
+        </a>
+        <!-- Force Motors -->
+        <a href="{% url 'Force_motors_model' %}" class="brand-cell" data-brand="force motors">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Force_motors_home_logo.png' %}" alt="Force Motors">
+            </div>
+            <div class="brand-identity">
+                <h3>Force Motors</h3>
+                <div class="brand-metadata"><span>India</span><span>1958</span></div>
+            </div>
+        </a>
+        <!-- Honda -->
+        <a href="{% url 'Honda_model' %}" class="brand-cell" data-brand="honda">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Honda_home_logo.png' %}" alt="Honda">
+            </div>
+            <div class="brand-identity">
+                <h3>Honda</h3>
+                <div class="brand-metadata"><span>Japan</span><span>1948</span></div>
+            </div>
+        </a>
+        <!-- Hyundai -->
+        <a href="{% url 'Hyundai_model' %}" class="brand-cell" data-brand="hyundai">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Hyundai_home_logo.png' %}" alt="Hyundai">
+            </div>
+            <div class="brand-identity">
+                <h3>Hyundai</h3>
+                <div class="brand-metadata"><span>South Korea</span><span>1967</span></div>
+            </div>
+        </a>
+        <!-- Isuzu -->
+        <a href="{% url 'Isuzu_model' %}" class="brand-cell" data-brand="isuzu">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Isuzu_home_logo.png' %}" alt="Isuzu">
+            </div>
+            <div class="brand-identity">
+                <h3>Isuzu</h3>
+                <div class="brand-metadata"><span>Japan</span><span>1916</span></div>
+            </div>
+        </a>
+        <!-- Jeep -->
+        <a href="{% url 'Jeep_model' %}" class="brand-cell" data-brand="jeep">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Jeep_home_logo.png' %}" alt="Jeep">
+            </div>
+            <div class="brand-identity">
+                <h3>Jeep</h3>
+                <div class="brand-metadata"><span>USA</span><span>1941</span></div>
+            </div>
+        </a>
+        <!-- Kia -->
+        <a href="{% url 'Kia_model' %}" class="brand-cell" data-brand="kia">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Kia_home_logo.png' %}" alt="Kia">
+            </div>
+            <div class="brand-identity">
+                <h3>Kia</h3>
+                <div class="brand-metadata"><span>South Korea</span><span>1944</span></div>
+            </div>
+        </a>
+        <!-- Lamborghini -->
+        <a href="{% url 'Lamborghini_model' %}" class="brand-cell" data-brand="lamborghini">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Lamborghini_home_logo.png' %}" alt="Lamborghini">
+            </div>
+            <div class="brand-identity">
+                <h3>Lamborghini</h3>
+                <div class="brand-metadata"><span>Italy</span><span>1963</span></div>
+            </div>
+        </a>
+        <!-- Land Rover -->
+        <a href="{% url 'Land_rover' %}" class="brand-cell" data-brand="land rover">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Land_rover_home_logo.png' %}" alt="Land Rover">
+            </div>
+            <div class="brand-identity">
+                <h3>Land Rover</h3>
+                <div class="brand-metadata"><span>UK</span><span>1948</span></div>
+            </div>
+        </a>
+        <!-- Lexus -->
+        <a href="{% url 'Lexus_model' %}" class="brand-cell" data-brand="lexus">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Lexus_home_logo.png' %}" alt="Lexus">
+            </div>
+            <div class="brand-identity">
+                <h3>Lexus</h3>
+                <div class="brand-metadata"><span>Japan</span><span>1989</span></div>
+            </div>
+        </a>
+        <!-- Lotus -->
+        <a href="{% url 'Lotus_model' %}" class="brand-cell" data-brand="lotus">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Lotus_home_logo.png' %}" alt="Lotus">
+            </div>
+            <div class="brand-identity">
+                <h3>Lotus</h3>
+                <div class="brand-metadata"><span>UK</span><span>1948</span></div>
+            </div>
+        </a>
+        <!-- Mahindra -->
+        <a href="{% url 'Mahindra_model' %}" class="brand-cell" data-brand="mahindra">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Mahindra_home_logo.png' %}" alt="Mahindra">
+            </div>
+            <div class="brand-identity">
+                <h3>Mahindra</h3>
+                <div class="brand-metadata"><span>India</span><span>1945</span></div>
+            </div>
+        </a>
+        <!-- Maserati -->
+        <a href="{% url 'Maserati_model' %}" class="brand-cell" data-brand="maserati">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Maserati_home_logo.png' %}" alt="Maserati">
+            </div>
+            <div class="brand-identity">
+                <h3>Maserati</h3>
+                <div class="brand-metadata"><span>Italy</span><span>1914</span></div>
+            </div>
+        </a>
+        <!-- McLaren -->
+        <a href="{% url 'McLaren_model' %}" class="brand-cell" data-brand="mclaren">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/McLaren_home_logo.png' %}" alt="McLaren">
+            </div>
+            <div class="brand-identity">
+                <h3>McLaren</h3>
+                <div class="brand-metadata"><span>UK</span><span>1985</span></div>
+            </div>
+        </a>
+        <!-- Mercedes Benz -->
+        <a href="{% url 'Mercedes_benz_model' %}" class="brand-cell" data-brand="mercedes benz">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Mercedes_benz_home_logo.png' %}" alt="Mercedes Benz">
+            </div>
+            <div class="brand-identity">
+                <h3>Mercedes Benz</h3>
+                <div class="brand-metadata"><span>Germany</span><span>1886</span></div>
+            </div>
+        </a>
+        <!-- MG -->
+        <a href="{% url 'Mg_model' %}" class="brand-cell" data-brand="mg">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/MG_home_logo.png' %}" alt="MG">
+            </div>
+            <div class="brand-identity">
+                <h3>MG</h3>
+                <div class="brand-metadata"><span>UK</span><span>1924</span></div>
+            </div>
+        </a>
+        <!-- Mini -->
+        <a href="{% url 'Mini_model' %}" class="brand-cell" data-brand="mini">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Mini_home_logo.png' %}" alt="Mini">
+            </div>
+            <div class="brand-identity">
+                <h3>Mini</h3>
+                <div class="brand-metadata"><span>UK</span><span>1959</span></div>
+            </div>
+        </a>
+        <!-- Nissan -->
+        <a href="{% url 'Nissan_model' %}" class="brand-cell" data-brand="nissan">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Nissan_home_logo.png' %}" alt="Nissan">
+            </div>
+            <div class="brand-identity">
+                <h3>Nissan</h3>
+                <div class="brand-metadata"><span>Japan</span><span>1933</span></div>
+            </div>
+        </a>
+        <!-- Porsche -->
+        <a href="{% url 'Prosche_model' %}" class="brand-cell" data-brand="porsche">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Porsche_home_logo.png' %}" alt="Porsche">
+            </div>
+            <div class="brand-identity">
+                <h3>Porsche</h3>
+                <div class="brand-metadata"><span>Germany</span><span>1931</span></div>
+            </div>
+        </a>
+        <!-- Renault -->
+        <a href="{% url 'Renault_model' %}" class="brand-cell" data-brand="renault">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Renault_home_logo.png' %}" alt="Renault">
+            </div>
+            <div class="brand-identity">
+                <h3>Renault</h3>
+                <div class="brand-metadata"><span>France</span><span>1899</span></div>
+            </div>
+        </a>
+        <!-- Rolls Royce -->
+        <a href="{% url 'Rolls_royce' %}" class="brand-cell" data-brand="rolls royce">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Rolls_royce_home_logo.png' %}" alt="Rolls Royce">
+            </div>
+            <div class="brand-identity">
+                <h3>Rolls Royce</h3>
+                <div class="brand-metadata"><span>UK</span><span>1904</span></div>
+            </div>
+        </a>
+        <!-- Skoda -->
+        <a href="{% url 'Skoda_model' %}" class="brand-cell" data-brand="skoda">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Skoda_home_logo.png' %}" alt="Skoda">
+            </div>
+            <div class="brand-identity">
+                <h3>Skoda</h3>
+                <div class="brand-metadata"><span>Czech Rep.</span><span>1895</span></div>
+            </div>
+        </a>
+        <!-- Maruti Suzuki -->
+        <a href="{% url 'suzuki_model' %}" class="brand-cell" data-brand="suzuki maruti">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Suzuki_home_logo.png' %}" alt="Suzuki">
+            </div>
+            <div class="brand-identity">
+                <h3>Maruti Suzuki</h3>
+                <div class="brand-metadata"><span>Japan/India</span><span>1909</span></div>
+            </div>
+        </a>
+        <!-- Tata -->
+        <a href="{% url 'Tata_model' %}" class="brand-cell" data-brand="tata">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Tata_home_logo.png' %}" alt="Tata">
+            </div>
+            <div class="brand-identity">
+                <h3>Tata</h3>
+                <div class="brand-metadata"><span>India</span><span>1945</span></div>
+            </div>
+        </a>
+        <!-- Tesla -->
+        <a href="{% url 'Tesla_model' %}" class="brand-cell" data-brand="tesla">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Tesla_logo.jpg' %}" alt="Tesla">
+            </div>
+            <div class="brand-identity">
+                <h3>Tesla</h3>
+                <div class="brand-metadata"><span>USA</span><span>2003</span></div>
+            </div>
+        </a>
+        <!-- Toyota -->
+        <a href="{% url 'Toyota_model' %}" class="brand-cell" data-brand="toyota">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Toyota_home_logo.png' %}" alt="Toyota">
+            </div>
+            <div class="brand-identity">
+                <h3>Toyota</h3>
+                <div class="brand-metadata"><span>Japan</span><span>1937</span></div>
+            </div>
+        </a>
+        <!-- VinFast -->
+        <a href="{% url 'VinFast_model' %}" class="brand-cell" data-brand="vinfast">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/VinFast_logo.jpg' %}" alt="VinFast">
+            </div>
+            <div class="brand-identity">
+                <h3>VinFast</h3>
+                <div class="brand-metadata"><span>Vietnam</span><span>2017</span></div>
+            </div>
+        </a>
+        <!-- Volkswagen -->
+        <a href="{% url 'Volkswagen_model' %}" class="brand-cell" data-brand="volkswagen vw">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Volkswagen_home_logo.png' %}" alt="Volkswagen">
+            </div>
+            <div class="brand-identity">
+                <h3>Volkswagen</h3>
+                <div class="brand-metadata"><span>Germany</span><span>1937</span></div>
+            </div>
+        </a>
+        <!-- Volvo -->
+        <a href="{% url 'Volvo_model' %}" class="brand-cell" data-brand="volvo">
+            <div class="brand-logo-safezone">
+                <img src="{% static 'app/Image/Volvo_home_logo.png' %}" alt="Volvo">
+            </div>
+            <div class="brand-identity">
+                <h3>Volvo</h3>
+                <div class="brand-metadata"><span>Sweden</span><span>1927</span></div>
+            </div>
+        </a>
+    </div>
+
+    <!-- No match message -->
+    <div id="brandNoMatch" style="display:none; padding: 100px 4vw; text-align: center; border-bottom: 1px solid var(--edit-border);">
+        <p class="eyebrow">Zero Results</p>
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem;">No brands matching "<span id="brandNoMatchQuery"></span>"</h3>
+    </div>
+</section>
+
+<!-- Why Section -->
+<section style="padding: 120px 4vw; background: var(--edit-surface);">
+    <div class="discovery-head" style="padding: 0 0 60px 0;">
+        <div class="discovery-title">
+            <span class="eyebrow" style="margin-bottom: 10px; display: block;">Our Advantage</span>
+            <h2>Pure Information. <br> Zero Clutter.</h2>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+        <div style="border-top: 2px solid var(--edit-text); padding-top: 30px;">
+            <p class="eyebrow" style="margin-bottom: 15px;">01</p>
+            <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 15px;">Detailed Specs</h3>
+            <p style="color: var(--edit-text-muted); line-height: 1.6;">Full engine mechanics, precise dimensions, and safety ratings for every model in our index.</p>
+        </div>
+        <div style="border-top: 2px solid var(--edit-text); padding-top: 30px;">
+            <p class="eyebrow" style="margin-bottom: 15px;">02</p>
+            <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 15px;">Price Breakdown</h3>
+            <p style="color: var(--edit-text-muted); line-height: 1.6;">Transparent variant-wise pricing including ex-showroom and estimated on-road values.</p>
+        </div>
+        <div style="border-top: 2px solid var(--edit-text); padding-top: 30px;">
+            <p class="eyebrow" style="margin-bottom: 15px;">03</p>
+            <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 15px;">The Future</h3>
+            <p style="color: var(--edit-text-muted); line-height: 1.6;">Comprehensive charging and battery data for the latest electric and hybrid powerplants.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const BRAND_DATA = [
+    { key: "aston martin", name: "Aston Martin", description: "British grand tourers with a luxury performance focus.", link: "{% url 'Aston_martin_model' %}", logoAsset: "{% static 'app/Image/Aston_Martin_Home_logo.png' %}", country: "UK", founded: "1913", aliases: ["aston"] },
+    { key: "audi", name: "Audi", description: "German premium cars known for quattro engineering and clean cabins.", link: "{% url 'Audi_model' %}", logoAsset: "{% static 'app/Image/Audi_home_logo.png' %}", country: "Germany", founded: "1910", aliases: [] },
+    { key: "bentley", name: "Bentley", description: "Hand-finished luxury cars built around effortless power.", link: "{% url 'Bentley_model' %}", logoAsset: "{% static 'app/Image/Bentley_home_logo.png' %}", country: "UK", founded: "1919", aliases: [] },
+    { key: "bmw", name: "BMW", description: "Driver-focused luxury cars, SUVs, and electric models.", link: "{% url 'BMW_model' %}", logoAsset: "{% static 'app/Image/BMW_home_logo.png' %}", country: "Germany", founded: "1916", aliases: [] },
+    { key: "byd", name: "BYD", description: "Electric and hybrid vehicles with strong battery-first engineering.", link: "{% url 'BYD_model' %}", logoAsset: "{% static 'app/Image/BYD_home_logo.png' %}", country: "China", founded: "1995", aliases: [] },
+    { key: "citroen", name: "Citroen", description: "French cars with comfort-led suspension and distinctive design.", link: "{% url 'Citroen_model' %}", logoAsset: "{% static 'app/Image/Citroen_home_logo.png' %}", country: "France", founded: "1919", aliases: ["citroën"] },
+    { key: "ferrari", name: "Ferrari", description: "Italian supercars shaped by racing heritage and high-rev performance.", link: "{% url 'Ferrari_model' %}", logoAsset: "{% static 'app/Image/Ferrari_home_logo.png' %}", country: "Italy", founded: "1947", aliases: [] },
+    { key: "force motors", name: "Force Motors", description: "Indian utility vehicles built for rugged people-moving duties.", link: "{% url 'Force_motors_model' %}", logoAsset: "{% static 'app/Image/Force_motors_home_logo.png' %}", country: "India", founded: "1958", aliases: ["force"] },
+    { key: "honda", name: "Honda", description: "Reliable sedans and SUVs with efficient powertrains.", link: "{% url 'Honda_model' %}", logoAsset: "{% static 'app/Image/Honda_home_logo.png' %}", country: "Japan", founded: "1948", aliases: [] },
+    { key: "hyundai", name: "Hyundai", description: "Feature-rich mainstream cars, SUVs, and EVs for daily use.", link: "{% url 'Hyundai_model' %}", logoAsset: "{% static 'app/Image/Hyundai_home_logo.png' %}", country: "South Korea", founded: "1967", aliases: [] },
+    { key: "isuzu", name: "Isuzu", description: "Durable SUVs and pickups with commercial-grade roots.", link: "{% url 'Isuzu_model' %}", logoAsset: "{% static 'app/Image/Isuzu_home_logo.png' %}", country: "Japan", founded: "1916", aliases: [] },
+    { key: "jeep", name: "Jeep", description: "SUVs with trail-ready identity and strong off-road credibility.", link: "{% url 'Jeep_model' %}", logoAsset: "{% static 'app/Image/Jeep_home_logo.png' %}", country: "USA", founded: "1941", aliases: [] },
+    { key: "kia", name: "Kia", description: "Modern Korean cars and SUVs with bold styling and value.", link: "{% url 'Kia_model' %}", logoAsset: "{% static 'app/Image/Kia_home_logo.png' %}", country: "South Korea", founded: "1944", aliases: [] },
+    { key: "lamborghini", name: "Lamborghini", description: "Italian supercars and SUVs with dramatic design and sound.", link: "{% url 'Lamborghini_model' %}", logoAsset: "{% static 'app/Image/Lamborghini_home_logo.png' %}", country: "Italy", founded: "1963", aliases: ["lambo"] },
+    { key: "land rover", name: "Land Rover", description: "Premium SUVs built around luxury, capability, and terrain tech.", link: "{% url 'Land_rover' %}", logoAsset: "{% static 'app/Image/Land_rover_home_logo.png' %}", country: "UK", founded: "1948", aliases: ["range rover"] },
+    { key: "lexus", name: "Lexus", description: "Japanese luxury cars focused on quiet cabins and hybrid refinement.", link: "{% url 'Lexus_model' %}", logoAsset: "{% static 'app/Image/Lexus_home_logo.png' %}", country: "Japan", founded: "1989", aliases: [] },
+    { key: "lotus", name: "Lotus", description: "Lightweight performance cars and new electric performance models.", link: "{% url 'Lotus_model' %}", logoAsset: "{% static 'app/Image/Lotus_home_logo.png' %}", country: "UK", founded: "1948", aliases: [] },
+    { key: "mahindra", name: "Mahindra", description: "Indian SUVs with rugged capability and expanding electric options.", link: "{% url 'Mahindra_model' %}", logoAsset: "{% static 'app/Image/Mahindra_home_logo.png' %}", country: "India", founded: "1945", aliases: [] },
+    { key: "maserati", name: "Maserati", description: "Italian luxury performance cars with grand touring character.", link: "{% url 'Maserati_model' %}", logoAsset: "{% static 'app/Image/Maserati_home_logo.png' %}", country: "Italy", founded: "1914", aliases: [] },
+    { key: "mclaren", name: "McLaren", description: "British supercars driven by lightweight carbon-fiber engineering.", link: "{% url 'McLaren_model' %}", logoAsset: "{% static 'app/Image/McLaren_home_logo.png' %}", country: "UK", founded: "1985", aliases: ["mc laren"] },
+    { key: "mercedes benz", name: "Mercedes Benz", description: "Luxury cars and SUVs spanning comfort, tech, and AMG performance.", link: "{% url 'Mercedes_benz_model' %}", logoAsset: "{% static 'app/Image/Mercedes_benz_home_logo.png' %}", country: "Germany", founded: "1886", aliases: ["mercedes"] },
+    { key: "mg", name: "MG", description: "Value-led SUVs and EVs with connected features.", link: "{% url 'Mg_model' %}", logoAsset: "{% static 'app/Image/MG_home_logo.png' %}", country: "UK", founded: "1924", aliases: ["morris garages"] },
+    { key: "mini", name: "Mini", description: "Compact premium cars with playful design and urban handling.", link: "{% url 'Mini_model' %}", logoAsset: "{% static 'app/Image/Mini_home_logo.png' %}", country: "UK", founded: "1959", aliases: [] },
+    { key: "nissan", name: "Nissan", description: "Practical Japanese cars and SUVs with global-market versatility.", link: "{% url 'Nissan_model' %}", logoAsset: "{% static 'app/Image/Nissan_home_logo.png' %}", country: "Japan", founded: "1933", aliases: [] },
+    { key: "porsche", name: "Porsche", description: "Sports cars, SUVs, and EVs with precision performance.", link: "{% url 'Prosche_model' %}", logoAsset: "{% static 'app/Image/Porsche_home_logo.png' %}", country: "Germany", founded: "1931", aliases: ["prosche"] },
+    { key: "renault", name: "Renault", description: "French cars with practical packaging and city-friendly models.", link: "{% url 'Renault_model' %}", logoAsset: "{% static 'app/Image/Renault_home_logo.png' %}", country: "France", founded: "1899", aliases: [] },
+    { key: "rolls royce", name: "Rolls Royce", description: "Ultra-luxury cars built around silence, craft, and presence.", link: "{% url 'Rolls_royce' %}", logoAsset: "{% static 'app/Image/Rolls_royce_home_logo.png' %}", country: "UK", founded: "1904", aliases: ["rolls"] },
+    { key: "skoda", name: "Skoda", description: "European sedans and SUVs with practical interiors and sharp value.", link: "{% url 'Skoda_model' %}", logoAsset: "{% static 'app/Image/Skoda_home_logo.png' %}", country: "Czech Rep.", founded: "1895", aliases: ["škoda"] },
+    { key: "suzuki maruti", name: "Maruti Suzuki", description: "Efficient, accessible cars with a huge India service network.", link: "{% url 'suzuki_model' %}", logoAsset: "{% static 'app/Image/Suzuki_home_logo.png' %}", country: "Japan/India", founded: "1909", aliases: ["suzuki", "maruti"] },
+    { key: "tata", name: "Tata", description: "Indian cars and SUVs with strong safety and EV momentum.", link: "{% url 'Tata_model' %}", logoAsset: "{% static 'app/Image/Tata_home_logo.png' %}", country: "India", founded: "1945", aliases: [] },
+    { key: "tesla", name: "Tesla", description: "Electric vehicles centered on range, software, and charging tech.", link: "{% url 'Tesla_model' %}", logoAsset: "{% static 'app/Image/Tesla_logo.svg' %}", country: "USA", founded: "2003", aliases: [] },
+    { key: "toyota", name: "Toyota", description: "Reliable global cars, SUVs, and hybrids with broad ownership appeal.", link: "{% url 'Toyota_model' %}", logoAsset: "{% static 'app/Image/Toyota_home_logo.png' %}", country: "Japan", founded: "1937", aliases: [] },
+    { key: "vinfast", name: "VinFast", description: "Vietnamese EV brand focused on electric SUVs and global expansion.", link: "{% url 'VinFast_model' %}", logoAsset: "{% static 'app/Image/VinFast_home_logo_official.png' %}", country: "Vietnam", founded: "2017", aliases: [] },
+    { key: "volkswagen vw", name: "Volkswagen", description: "German mainstream cars known for solid engineering and restraint.", link: "{% url 'Volkswagen_model' %}", logoAsset: "{% static 'app/Image/Volkswagen_home_logo.png' %}", country: "Germany", founded: "1937", aliases: ["vw", "volkswagen"] },
+    { key: "volvo", name: "Volvo", description: "Swedish cars and SUVs with safety-first design and electrified trims.", link: "{% url 'Volvo_model' %}", logoAsset: "{% static 'app/Image/Volvo_home_logo.png' %}", country: "Sweden", founded: "1927", aliases: [] }
+];
+
+document.addEventListener("DOMContentLoaded", function () {
+    const input    = document.getElementById("brandSearch");
+    const cards    = Array.from(document.querySelectorAll("#brandGrid .brand-cell"));
+    const noMatch  = document.getElementById("brandNoMatch");
+    const noMatchQ = document.getElementById("brandNoMatchQuery");
+
+    if (!input || !cards.length) return;
+
+    const brandMap = new Map(BRAND_DATA.map(brand => [brand.key, brand]));
+    cards.forEach(card => {
+        const brand = brandMap.get((card.dataset.brand || "").toLowerCase());
+        if (!brand) return;
+
+        const panelId = `brand-info-${brand.key.replace(/[^a-z0-9]+/g, "-")}`;
+        card.setAttribute("aria-describedby", panelId);
+        card.setAttribute("data-logo-asset", brand.logoAsset);
+        const logo = card.querySelector("img");
+        if (logo) logo.alt = `${brand.name} logo`;
+
+        const panel = document.createElement("div");
+        panel.className = "brand-info-panel";
+        panel.id = panelId;
+        panel.innerHTML = `
+            <strong>${brand.country} / ${brand.founded}</strong>
+            <p>${brand.description}</p>
+            <span class="brand-info-action">View ${brand.name} models</span>
+        `;
+        card.appendChild(panel);
+
+        card.addEventListener("mouseenter", () => card.classList.add("is-brand-active"));
+        card.addEventListener("mouseleave", () => card.classList.remove("is-brand-active"));
+        card.addEventListener("focus", () => card.classList.add("is-brand-active"));
+        card.addEventListener("blur", () => card.classList.remove("is-brand-active"));
+    });
+
+    input.addEventListener("input", function () {
+        const q = input.value.trim().toLowerCase();
+        let visible = 0;
+        cards.forEach(card => {
+            const brandKey = (card.dataset.brand || "").toLowerCase();
+            const brandData = brandMap.get(brandKey);
+            const searchable = [
+                brandKey,
+                brandData?.name || "",
+                brandData?.country || "",
+                ...(brandData?.aliases || [])
+            ].join(" ").toLowerCase();
+            const show = searchable.includes(q);
+            card.style.display = show ? "" : "none";
+            if (show) visible++;
+        });
+        if (noMatch) {
+            noMatch.style.display = q && visible === 0 ? "block" : "none";
+            if (noMatchQ) noMatchQ.textContent = input.value.trim();
+        }
+    });
+
+    // Segment Filter Logic
+    const segTags = document.querySelectorAll(".cis-segment-tag");
+    const segMap  = {
+        "luxury":    ["aston martin","bentley","rolls royce","lamborghini","ferrari","mclaren","porsche","maserati","mercedes benz","lexus","lotus","tesla"],
+        "suv":       ["land rover","jeep","mahindra","tata","hyundai","kia","mg","volvo","bmw","mercedes benz","audi","toyota","citroen","isuzu","force motors","tesla","vinfast"],
+        "electric":  ["byd","tata","hyundai","kia","mg","volvo","bmw","mercedes benz","audi","mahindra","citroen","lotus","tesla","vinfast"],
+        "sport":     ["ferrari","lamborghini","mclaren","porsche","aston martin","bmw","audi","mercedes benz","lotus"],
+        "sedan":     ["honda","hyundai","toyota","suzuki maruti","skoda","volkswagen","bmw","mercedes benz","audi","tata"]
+    };
+
+    segTags.forEach(tag => {
+        tag.addEventListener("click", function () {
+            segTags.forEach(t => t.classList.remove("is-active"));
+            tag.classList.add("is-active");
+            
+            const label = tag.textContent.trim().toLowerCase();
+            if (label === "all") {
+                cards.forEach(c => c.style.display = "");
+                input.value = "";
+                if (noMatch) noMatch.style.display = "none";
+                return;
+            }
+            const allowed = segMap[label] || [];
+            let visible = 0;
+            cards.forEach(c => {
+                const brand = (c.dataset.brand || "").toLowerCase();
+                const show  = allowed.some(a => brand.includes(a));
+                c.style.display = show ? "" : "none";
+                if (show) visible++;
+            });
+            if (noMatch) {
+                noMatch.style.display = visible === 0 ? "block" : "none";
+                if (noMatchQ) noMatchQ.textContent = label;
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,334 @@
+/* ====================================
+   ANIMATIONS & TRANSITIONS
+   ==================================== */
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide down animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Glow animation */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(212, 165, 116, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
+  }
+}
+
+/* Page load animation */
+body {
+  animation: fadeIn 300ms ease-in-out;
+}
+
+/* Navbar animation */
+.navbar {
+  animation: slideDown 500ms ease-out;
+}
+
+/* Section animations */
+section {
+  animation: slideUp 600ms ease-out;
+}
+
+/* Heading animations */
+h1, h2, h3, h4, h5, h6 {
+  animation: slideInLeft 500ms ease-out;
+}
+
+/* Card animations */
+.card, 
+[style*="border-radius"][style*="box-shadow"],
+a > div {
+  animation: scaleIn 400ms ease-out;
+}
+
+/* Button hover effects */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 600ms ease, height 600ms ease;
+}
+
+button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Link hover effects */
+a {
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4A574;
+  transition: width 300ms ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Input focus animation */
+input:focus,
+textarea:focus,
+select:focus {
+  animation: glow 1500ms ease-in-out infinite;
+}
+
+/* Gradient animation for hero section */
+@keyframes gradientShift {
+  0%, 100% {
+    background: linear-gradient(135deg, #0F1C2E, #1A2A3D);
+  }
+  50% {
+    background: linear-gradient(135deg, #1A2A3D, #0F1C2E);
+  }
+}
+
+.hero,
+[style*="linear-gradient"] {
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+/* Smooth page transitions */
+main {
+  animation: fadeIn 500ms ease-out;
+}
+
+footer {
+  animation: slideUp 600ms ease-out 300ms both;
+}
+
+/* List item animations */
+li {
+  animation: slideInLeft 400ms ease-out;
+}
+
+li:nth-child(2) {
+  animation-delay: 50ms;
+}
+
+li:nth-child(3) {
+  animation-delay: 100ms;
+}
+
+li:nth-child(4) {
+  animation-delay: 150ms;
+}
+
+li:nth-child(5) {
+  animation-delay: 200ms;
+}
+
+li:nth-child(6) {
+  animation-delay: 250ms;
+}
+
+/* Grid item animations */
+[style*="grid"],
+[style*="display: grid"] > * {
+  animation: scaleIn 400ms ease-out;
+}
+
+[style*="display: grid"] > *:nth-child(2) {
+  animation-delay: 50ms;
+}
+
+[style*="display: grid"] > *:nth-child(3) {
+  animation-delay: 100ms;
+}
+
+[style*="display: grid"] > *:nth-child(4) {
+  animation-delay: 150ms;
+}
+
+[style*="display: grid"] > *:nth-child(5) {
+  animation-delay: 200ms;
+}
+
+[style*="display: grid"] > *:nth-child(6) {
+  animation-delay: 250ms;
+}
+
+/* Loading state */
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Bounce effect on interaction */
+.bounce-on-click {
+  animation: bounce 600ms ease-out;
+}
+
+/* Text reveal animation */
+@keyframes textReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+h1, h2 {
+  animation: textReveal 800ms ease-out;
+}
+
+/* Stagger animation for multiple elements */
+.stagger {
+  display: flex;
+  gap: 1rem;
+}
+
+.stagger > * {
+  animation: slideUp 400ms ease-out backwards;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 100ms; }
+.stagger > *:nth-child(3) { animation-delay: 200ms; }
+.stagger > *:nth-child(4) { animation-delay: 300ms; }
+.stagger > *:nth-child(5) { animation-delay: 400ms; }
+
+/* Smooth color transitions */
+* {
+  transition: all 300ms ease;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 01ms !important;
+  }
+}
+
+/* Dark mode hover effects */
+@media (prefers-color-scheme: dark) {
+  a:hover {
+    color: #F0D9A0;
+  }
+  
+  button:hover {
+    background-color: #A67550;
+  }
+}
+
+/* Light mode hover effects */
+@media (prefers-color-scheme: light) {
+  a:hover {
+    color: #D4A574;
+  }
+  
+  button:hover {
+    background-color: #D4A574;
+  }
+}

@@ -1,35 +1,43 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Rolls Royce Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Rolls Royce 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Rolls Royce India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Rolls_royce_logo.jpg' %}" class="hero-visual" alt="Rolls_royce Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Rolls_royce_spectre.jpg' %}" class="hero-visual" alt="Rolls Royce showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Rolls_royce_logo.jpg' %}" alt="Rolls_royce" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Rolls_Royce_hero_logo.png' %}" alt="Rolls Royce">
         </div>
-        <span class="hero-tagline">ROLLS ROYCE SHOWROOM</span>
+        <span class="hero-tagline">GOODWOOD - POST OPULENCE</span>
         <h1>Rolls Royce 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Ultra-luxury Rolls-Royce models with clean hero and stat panels.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">4 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #68307880 !important; color: #683078 !important;">BESPOKE MASTERPIECE</span>
+            <span class="status-badge" style="border-color: rgba(104, 48, 120, 0.5) !important; color: #b052ca !important;">SPIRIT OF ECSTASY</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        4 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Rolls Royce models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        4 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
@@ -39,28 +47,28 @@
             <img src="{% static 'app/Image/Rolls_royce_cullinan.jpg' %}" alt="Rolls Royce Cullinan">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹10.50 - ₹12.25 CR</span>
+            <span class="card-price">STARTS Rs. 10.50 - 12.25 Cr</span>
             <h3>Rolls Royce Cullinan</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">563 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">6750 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">6.6 kmpl</span></div>
         </div>
     </a>
 
     <a href="{% url 'Rolls_royce_ghost_full_detail' %}" class="model-card" data-model="rolls royce ghost series ii">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Rolls_royce_ghost.jpg' %}" alt="Rolls Royce Ghost">
+            <img src="{% static 'app/Image/Rolls_royce_ghost.jpg' %}" alt="Rolls Royce Ghost Series II">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹8.95 - ₹10.52 CR</span>
+            <span class="card-price">STARTS Rs. 10.50 - 12.25 Cr</span>
             <h3>Rolls Royce Ghost Series II</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">563 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">6750 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">6.33 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +77,13 @@
             <img src="{% static 'app/Image/Rolls_royce_phantom.jpg' %}" alt="Rolls Royce Phantom">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹8.99 - ₹10.48 CR</span>
+            <span class="card-price">STARTS Rs. 8.99 - 10.48 Cr</span>
             <h3>Rolls Royce Phantom</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">563 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">6749 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">9.8 kmpl</span></div>
         </div>
     </a>
 
@@ -84,15 +92,32 @@
             <img src="{% static 'app/Image/Rolls_royce_spectre.jpg' %}" alt="Rolls Royce Spectre">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹7.50 CR</span>
+            <span class="card-price">STARTS Rs. 7.50 Cr</span>
             <h3>Rolls Royce Spectre</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">576.63 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">--</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='rolls_royce' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

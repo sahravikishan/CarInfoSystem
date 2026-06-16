@@ -1,66 +1,59 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Maserati Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Maserati 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Maserati India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Maserati_logo.jpg' %}" class="hero-visual" alt="Maserati Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Maserati_granturismo.jpg' %}" class="hero-visual" alt="Maserati showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Maserati_logo.jpg' %}" alt="Maserati" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Maserati_hero_logo.png' %}" alt="Maserati">
         </div>
-        <span class="hero-tagline">MASERATI SHOWROOM</span>
+        <span class="hero-tagline">MODENA - THE ITALIAN TRIDENT</span>
         <h1>Maserati 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">6 MODELS LISTED</span>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Performance luxury models from Grecale to GranTurismo in one visual catalog.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">5 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #0a305f80 !important; color: #0a305f !important;">ITALIAN ELEGANCE</span>
+            <span class="status-badge" style="border-color: rgba(62, 94, 134, 0.5) !important; color: #1b9a9e !important;">HOUSE OF TRIDENT</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        6 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Maserati models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        5 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
 <div class="model-grid" id="modelGrid">
-    <a href="{% url 'Maserati_ghibli_full_detail' %}" class="model-card" data-model="maserati ghibli">
-        <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Maserati_Ghibli.jpg' %}" alt="Maserati Ghibli">
-        </div>
-        <div class="card-info">
-            <span class="card-price">STARTS ₹1.15 - ₹1.93 CR</span>
-            <h3>Maserati Ghibli</h3>
-        </div>
-        <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">325.48 - 572.06 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1999 - 3799 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
-        </div>
-    </a>
-
     <a href="{% url 'Maserati_grancabrio_full_detail' %}" class="model-card" data-model="maserati grancabrio">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Maserati_grancabrio.jpg' %}" alt="Maserati GranCabrio">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹2.46 - ₹2.69 CR</span>
+            <span class="card-price">STARTS Rs. 2.46 - 2.69 Cr</span>
             <h3>Maserati GranCabrio</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">460 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">4691 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">10.2 kmpl</span></div>
         </div>
     </a>
 
@@ -69,13 +62,13 @@
             <img src="{% static 'app/Image/Maserati_granturismo.jpg' %}" alt="Maserati GranTurismo">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹2.25 - ₹2.51 CR</span>
+            <span class="card-price">STARTS Rs. 2.25 - 2.51 Cr</span>
             <h3>Maserati GranTurismo</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">460 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">4691 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">10 kmpl</span></div>
         </div>
     </a>
 
@@ -84,13 +77,13 @@
             <img src="{% static 'app/Image/Maserati_grecale.jpg' %}" alt="Maserati Grecale">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.31 - 2.05 CR</span>
+            <span class="card-price">STARTS Rs. 1.31 - 2.05 Cr</span>
             <h3>Maserati Grecale</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">296 - 523 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1995 - 3000 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">523 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">9.2 kmpl</span></div>
         </div>
     </a>
 
@@ -99,13 +92,13 @@
             <img src="{% static 'app/Image/Maserati_levante.jpg' %}" alt="Maserati Levante">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.49 - ₹1.64 CR</span>
+            <span class="card-price">STARTS Rs. 1.49 - 1.64 Cr</span>
             <h3>Maserati Levante</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">275 - 350 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2979 - 2987 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">350 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel/EV</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">12 kmpl</span></div>
         </div>
     </a>
 
@@ -114,15 +107,32 @@
             <img src="{% static 'app/Image/Maserati_quattroporte.jpg' %}" alt="Maserati Quattroporte">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹1.71 - 1.86 CR</span>
+            <span class="card-price">STARTS Rs. 1.71 - 1.86 Cr</span>
             <h3>Maserati Quattroporte</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">275 - 430 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2979 - 2999 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">430 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">11.76 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='maserati' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

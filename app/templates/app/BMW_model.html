@@ -1,39 +1,47 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Bmw Editorial Showroom | Car Info System{% endblock %}
+{% block title %}BMW Editorial Showroom — 2026 Full Collection India | Car Info System{% endblock %}
+{% block description %}Step into the BMW Digital Showroom. Explore the complete 2026 India lineup with interactive stat reveals and cinematic visuals.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.6">
 {% endblock %}
 
 {% block content %}
+<!-- 1. IMMERSIVE SHOWROOM HERO -->
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/BMW_logo.jpg' %}" class="hero-visual" alt="BMW Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/BMW_M4_header.jpg' %}" class="hero-visual" alt="BMW Showroom">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/BMW_logo.jpg' %}" alt="BMW" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/BMW_hero_logo.png' %}" alt="BMW">
         </div>
-        <span class="hero-tagline">BMW SHOWROOM</span>
-        <h1>Bmw 2026</h1>
+        <span class="hero-tagline">MUNICH • SHEER DRIVING PLEASURE</span>
+        <h1>BMW 2026</h1>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
+            Dynamic agility meets progressive design. The ultimate spectrum of German engineering performance in the form of our unparalleled 24-car collection.
         </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">20 MODELS LISTED</span>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">24 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #1a4b8e80 !important; color: #1a4b8e !important;">M PERFORMANCE</span>
+            <span class="status-badge" style="border-color: rgba(26, 75, 142, 0.5) !important; color: #5d8aaa !important;">M PERFORMANCE</span>
         </div>
     </div>
 </section>
 
+<!-- 2. DISCOVERY CONTROLS -->
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        20 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search BMW (e.g. 7 Series, X5, M4)...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        24 Models &nbsp;•&nbsp; Hover to Reveal Stats &nbsp;<i class="fa-solid fa-arrow-down" style="color: #F59E0B;"></i>
     </div>
 </section>
 
+<!-- 3. THE MODEL GALLERY GRID -->
 <div class="model-grid" id="modelGrid">
+
     <a href="{% url 'BMW_2_series_full_detail' %}" class="model-card" data-model="bmw 2 series">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/BMW_2_series.jpg' %}" alt="BMW 2 Series">
@@ -45,7 +53,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">187.08 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -60,7 +68,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">368.78 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -75,7 +83,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">255 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -90,7 +98,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">187.74 - 254.79 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1995 - 1998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -105,7 +113,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">375.48 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -120,7 +128,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">335.25 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -135,7 +143,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">592.73 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -150,7 +158,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">536.4 - 650.39 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -165,7 +173,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">516.29 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -180,7 +188,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">473 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2993 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -195,7 +203,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">503 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2993 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -210,7 +218,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">717 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">4395 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -225,7 +233,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">616.87 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">4395 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -240,7 +248,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">134.01 - 147.51 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1499 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -255,7 +263,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">187.74 - 355.37 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1995 - 2998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -270,7 +278,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">55.37 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2993 - 2998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -285,7 +293,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">281.68 - 375.48 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2993 - 2998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -300,7 +308,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">335.25 - 375.48 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2993 - 2998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -315,7 +323,7 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">643.69 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">4395 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
 
@@ -330,9 +338,15 @@
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">335 bhp</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2998 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Type</span><span class="stat-value">LUXURY</span></div>
         </div>
     </a>
+
 </div>
 
+{% include 'app/components/footer.html' %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'app/js/brand-pages.js' %}?v=1.3"></script>
 {% endblock %}

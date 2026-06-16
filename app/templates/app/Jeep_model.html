@@ -1,98 +1,144 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Jeep Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Jeep 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Jeep India SUV lineup with prices, engine specs, 4x4 highlights and Trail Rated engineering in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+    .card-img-wrap {
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef0f2;
+    }
+    .card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .model-card:hover .card-img-wrap img {
+        transform: scale(1.05);
+    }
+    .jeep-page-width {
+        width: min(100%, 1440px);
+        margin-inline: auto;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Jeep_logo.jpg' %}" class="hero-visual" alt="Jeep Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Jeep_header.jpg' %}" class="hero-visual" alt="Jeep showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Jeep_logo.jpg' %}" alt="Jeep" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Jeep_hero_logo.png' %}" alt="Jeep">
         </div>
-        <span class="hero-tagline">JEEP SHOWROOM</span>
+        <span class="hero-tagline">TOLEDO - TRAIL RATED DNA</span>
         <h1>Jeep 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">An India SUV range built around diesel touring, premium 4x4 comfort and Wrangler-grade off-road heritage.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <span class="status-badge">4 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #4a553180 !important; color: #4a5531 !important;">TRAIL RATED DNA</span>
+            <span class="status-badge" style="border-color: #71834680 !important; color: #a1b670 !important;">TRAIL RATED DNA</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        4 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Jeep models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        4 Models &nbsp;-&nbsp; Official India SUV Lineup &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
-<div class="model-grid" id="modelGrid">
-    <a href="{% url 'Jeep_compass_full_detail' %}" class="model-card" data-model="jeep compass">
+<div class="model-grid jeep-page-width" id="modelGrid">
+    <a href="{% url 'Jeep_compass_full_detail' %}" class="model-card" data-model="jeep compass diesel suv trailhawk">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Jeep_compass.jpg' %}" alt="Jeep Compass">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹18.99 - ₹32.41 Lakh</span>
+            <span class="card-price">STARTS Rs. 17.99 - 30.70 Lakh</span>
             <h3>Jeep Compass</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">168 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1956 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Jeep_grand_cherokee_full_detail' %}" class="model-card" data-model="jeep grand cherokee">
+    <a href="{% url 'Jeep_grand_cherokee_full_detail' %}" class="model-card" data-model="jeep grand cherokee petrol luxury suv">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Jeep_grand_cherokee.jpg' %}" alt="Jeep Grand Cherokee">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹67.50 Lakh</span>
+            <span class="card-price">STARTS Rs. 63 Lakh</span>
             <h3>Jeep Grand Cherokee</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">268.27 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1995 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Jeep_meridian_full_detail' %}" class="model-card" data-model="jeep meridian">
+    <a href="{% url 'Jeep_meridian_full_detail' %}" class="model-card" data-model="jeep meridian seven seater diesel suv 4x4">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Jeep_meridian.jpg' %}" alt="Jeep Meridian">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹24.99 - ₹39.79 Lakh</span>
+            <span class="card-price">STARTS Rs. 23.33 - 37.82 Lakh</span>
             <h3>Jeep Meridian</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">168 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1956 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">172.36 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Diesel</span></div>
+            <div class="reveal-stat"><span class="stat-label">Layout</span><span class="stat-value">5/7 Seats</span></div>
         </div>
     </a>
 
-    <a href="{% url 'Jeep_wrangler_full_detail' %}" class="model-card" data-model="jeep wrangler">
+    <a href="{% url 'Jeep_wrangler_full_detail' %}" class="model-card" data-model="jeep wrangler rubicon unlimited petrol 4x4">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Jeep_wrangler.jpg' %}" alt="Jeep Wrangler">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹67.65 - ₹71.65 Lakh</span>
+            <span class="card-price">STARTS Rs. 64.58 - 70.31 Lakh</span>
             <h3>Jeep Wrangler</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">268.2 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">268.20 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Drivetrain</span><span class="stat-value">4x4</span></div>
             <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1995 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
         </div>
     </a>
 </div>
 
+{% include 'app/components/brand_editorial.html' with editorial_brand='jeep' %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

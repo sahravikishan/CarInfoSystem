@@ -1,34 +1,82 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_protect
 from .forms import UserRegistrationForm, UserLoginForm
 from .models import User
-def Home(request):
-    return render(request,'app/Home.html')
 
+def Home(request):
+    return render(request, 'app/Home.html')
+
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def Login(request):
+    """User registration view with password hashing"""
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "User registered successfully!")
-            return redirect('/Home')
+            try:
+                username = form.cleaned_data['username']
+                email = form.cleaned_data['email']
+                password = form.cleaned_data['password']
+                
+                # Check if user already exists
+                if User.objects.filter(username=username).exists():
+                    messages.error(request, "Username already exists!")
+                    return render(request, 'app/Login.html', {'form': form})
+                
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, "Email already registered!")
+                    return render(request, 'app/Login.html', {'form': form})
+                
+                # Create new user with hashed password
+                user = User(username=username, email=email)
+                user.set_password(password)  # Hash the password
+                user.save()
+                
+                messages.success(request, "User registered successfully! Please login.")
+                return redirect('signin')
+            except Exception as e:
+                messages.error(request, f"Registration error: {str(e)}")
+        else:
+            messages.error(request, "Please check your form for errors.")
     else:
         form = UserRegistrationForm()
+    
     return render(request, 'app/Login.html', {'form': form})
 
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def logintest(request):
+    """Test login view"""
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "User registered successfully!")
-            return redirect('/Home')
+            try:
+                username = form.cleaned_data['username']
+                email = form.cleaned_data['email']
+                password = form.cleaned_data['password']
+                
+                user = User(username=username, email=email)
+                user.set_password(password)
+                user.save()
+                
+                messages.success(request, "Test user created successfully!")
+                return redirect('/Home')
+            except Exception as e:
+                messages.error(request, f"Error: {str(e)}")
+        else:
+            messages.error(request, "Please check your form for errors.")
     else:
         form = UserRegistrationForm()
+    
     return render(request, 'app/logintest.html', {'form': form})
 
-
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def Signin(request):
+    """User login view with secure password verification"""
     if request.method == "POST":
         form = UserLoginForm(request.POST)
         if form.is_valid():
@@ -37,67 +85,88 @@ def Signin(request):
             
             try:
                 user = User.objects.get(username=username)
-                if user.password == password:
-                    messages.success(request, "Login successful!")
+                
+                # Use Django's secure password verification
+                if user.check_password(password):
+                    # Store user session
+                    request.session['user_id'] = user.id
+                    request.session['username'] = user.username
+                    request.session['email'] = user.email
+                    
+                    messages.success(request, f"Welcome {user.username}!")
                     return redirect('/Home')
                 else:
-                    messages.error(request, "Invalid password.")
+                    messages.error(request, "Invalid password. Please try again.")
             except User.DoesNotExist:
-                messages.error(request, "User not found.")
-    
+                messages.error(request, "User not found. Please register first.")
+            except Exception as e:
+                messages.error(request, f"Login error: {str(e)}")
     else:
         form = UserLoginForm()
+    
     return render(request, 'app/Signin.html', {'form': form})
+
+def Logout(request):
+    """Logout user and clear session"""
+    if 'user_id' in request.session:
+        del request.session['user_id']
+    if 'username' in request.session:
+        del request.session['username']
+    if 'email' in request.session:
+        del request.session['email']
+    
+    messages.success(request, "You have been logged out successfully!")
+    return redirect('/Home')
 
 def About(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/About.html')
+    return render(request, 'app/About.html')
 
 def Contact(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/Contact.html')
+    return render(request, 'app/Contact.html')
 
 def Aston_martin_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/Aston_martin_model.html')
+    return render(request, 'app/Aston_martin_model.html')
 
 def Audi_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/Audi_model.html')
+    return render(request, 'app/Audi_model.html')
 
 def Bentley_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/Bentley_model.html')
+    return render(request, 'app/Bentley_model.html')
 
 def BMW_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/BMW_model.html')
+    return render(request, 'app/BMW_model.html')
 
 def BYD_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/BYD_model.html')
+    return render(request, 'app/BYD_model.html')
 
 def Ferrari_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/Ferrari_model.html')
+    return render(request, 'app/Ferrari_model.html')
 
 def Honda_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/Honda_model.html')
+    return render(request, 'app/Honda_model.html')
 
 def Hyundai_model(request):
     if request.method == 'POST':
         pass
-    return render(request,'app/Hyundai_model.html')
+    return render(request, 'app/Hyundai_model.html')
 
 def Jaguar_model(request):
     if request.method == 'POST':

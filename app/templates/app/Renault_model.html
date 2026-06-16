@@ -1,66 +1,89 @@
 {% extends 'app/base_editorial.html' %}
 {% load static %}
 
-{% block title %}Renault Editorial Showroom | Car Info System{% endblock %}
+{% block title %}Renault 2026 India Lineup | Car Info System{% endblock %}
+{% block description %}Explore the Renault India model lineup with prices and key specs in the shared showroom style.{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.7">
+<style>
+    .showroom-hero h1 { color: #ffffff; }
+    .model-card[data-image-kind="logo"] .card-img-wrap { background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .model-card[data-image-kind="logo"] .card-img-wrap img { width: 72%; height: 72%; object-fit: contain; padding: 8%; filter: brightness(1.2); }
+    .card-info h3 { font-size: clamp(1.35rem, 2.4vw, 2.2rem); letter-spacing: 0; }
+</style>
 {% endblock %}
 
 {% block content %}
 <section class="showroom-hero">
-    <img src="{% static 'app/Image/Renault_logo.jpg' %}" class="hero-visual" alt="Renault Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <img src="{% static 'app/Image/Renault_kiger.jpg' %}" class="hero-visual" alt="Renault showroom hero">
     <div class="hero-content">
         <div class="brand-logo-badge">
-            <img src="{% static 'app/Image/Renault_logo.jpg' %}" alt="Renault" onerror="this.style.display='none'">
+            <img src="{% static 'app/Image/Renault_hero_logo.png' %}" alt="Renault">
         </div>
-        <span class="hero-tagline">RENAULT SHOWROOM</span>
+        <span class="hero-tagline">BOULOGNE - PRACTICAL FRENCH SPIRIT</span>
         <h1>Renault 2026</h1>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
-            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <span class="status-badge">3 MODELS LISTED</span>
+        <p style="color: rgba(255, 255, 255, 0.72); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Renault India's compact lineup in the same searchable card experience.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge">4 MODELS LISTED</span>
             <span class="status-badge">2026 INDIA LINEUP</span>
-            <span class="status-badge" style="border-color: #ffcc0080 !important; color: #ffcc00 !important;">PASSION FOR LIFE</span>
+            <span class="status-badge" style="border-color: rgba(41, 190, 178, 0.5) !important; color: #0bd6bbd8 !important;">PASSION FOR LIFE</span>
         </div>
     </div>
 </section>
 
 <section class="showroom-controls">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-        3 Models &nbsp;•&nbsp; Click to View Details
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Renault models...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        4 Models &nbsp;-&nbsp; Alphabetical Order &nbsp;-&nbsp; Hover to Reveal Stats
     </div>
 </section>
 
 <div class="model-grid" id="modelGrid">
+    <a href="{% url 'Renault_duster_full_detail' %}" class="model-card" data-model="renault duster">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Renault_duster.png' %}" alt="Renault Duster">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs. 10.00 Lakh</span>
+            <h3>Renault Duster</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">128 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol/Hybrid</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">19.5 kmpl</span></div>
+        </div>
+    </a>
+
     <a href="{% url 'Renault_kiger_full_detail' %}" class="model-card" data-model="renault kiger">
         <div class="card-img-wrap">
             <img src="{% static 'app/Image/Renault_kiger.jpg' %}" alt="Renault Kiger">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹6 - ₹11.23 Lakh</span>
+            <span class="card-price">STARTS Rs. 6 - 11.23 Lakh</span>
             <h3>Renault Kiger</h3>
         </div>
         <div class="reveal-panel">
-            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">71 - 98.63 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">999 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">98.63 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">18.24 kmpl</span></div>
         </div>
     </a>
 
     <a href="{% url 'Renault_kwid_full_detail' %}" class="model-card" data-model="renault kwid">
         <div class="card-img-wrap">
-            <img src="{% static 'app/Image/Renault_kwid.jpg' %}" alt="Renault KWID">
+            <img src="{% static 'app/Image/Renault_kwid.jpg' %}" alt="Renault Kwid">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹4.70 - ₹6.45 Lakh</span>
-            <h3>Renault KWID</h3>
+            <span class="card-price">STARTS Rs. 4.70 - 6.45 Lakh</span>
+            <h3>Renault Kwid</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">67.06 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">999 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">22.3 kmpl</span></div>
         </div>
     </a>
 
@@ -69,15 +92,32 @@
             <img src="{% static 'app/Image/Renault_triber.jpg' %}" alt="Renault Triber">
         </div>
         <div class="card-info">
-            <span class="card-price">STARTS ₹6 - ₹8.97 Lakh</span>
+            <span class="card-price">STARTS Rs. 6.10 - 8.97 Lakh</span>
             <h3>Renault Triber</h3>
         </div>
         <div class="reveal-panel">
             <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">71.01 bhp</span></div>
-            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">999 cc</span></div>
-            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+            <div class="reveal-stat"><span class="stat-label">Fuel</span><span class="stat-value">Petrol</span></div>
+            <div class="reveal-stat"><span class="stat-label">Key Spec</span><span class="stat-value">18.2 kmpl</span></div>
         </div>
     </a>
 </div>
+{% include 'app/components/brand_editorial.html' with editorial_brand='renault' %}
+{% endblock %}
 
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+    if (!input || cards.length === 0) return;
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
 {% endblock %}

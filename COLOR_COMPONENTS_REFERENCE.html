@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Info System - Color & Components Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F1C2E;
+            color: #1A1A1A;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0F1C2E, #1A2A3D);
+            color: #F5F3F0;
+            padding: 48px 24px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #D4A574;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            margin-bottom: 64px;
+        }
+
+        section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            color: #0F1C2E;
+            margin-bottom: 32px;
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #D4A574;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .color-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 300ms ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(212, 165, 116, 0.15);
+        }
+
+        .color-sample {
+            height: 150px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .color-info {
+            padding: 16px;
+        }
+
+        .color-info h3 {
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 8px;
+            color: #0F1C2E;
+        }
+
+        .color-code {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #4A6B6D;
+            margin-bottom: 8px;
+        }
+
+        .color-usage {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Primary Colors */
+        .navy { background-color: #0F1C2E; }
+        .rose-gold { background-color: #D4A574; }
+        .cream { background: #F5F3F0; color: #1A1A1A; text-shadow: none; }
+
+        /* Secondary Colors */
+        .charcoal { background-color: #1A1A1A; }
+        .soft-gray { background: #E8E6E1; color: #1A1A1A; text-shadow: none; }
+        .teal { background-color: #4A6B6D; }
+        .gold { background-color: #F0C674; color: #0F1C2E; text-shadow: none; }
+
+        /* Functional Colors */
+        .success { background-color: #2C8C6B; }
+        .warning { background-color: #D97A34; }
+        .error { background-color: #C1453A; }
+        .info { background-color: #6B8BA8; }
+
+        /* Components Section */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .component-box {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .component-box h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #0F1C2E;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #D4A574;
+            padding-bottom: 12px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 300ms ease;
+            text-decoration: none;
+            margin-bottom: 12px;
+            margin-right: 12px;
+        }
+
+        .btn-primary {
+            background-color: #D4A574;
+            color: #0F1C2E;
+        }
+
+        .btn-primary:hover {
+            background-color: #C4915C;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #D4A574;
+            border: 2px solid #D4A574;
+        }
+
+        .btn-secondary:hover {
+            background-color: #D4A574;
+            color: #0F1C2E;
+        }
+
+        .btn-danger {
+            background-color: #C1453A;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #A83530;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: #2C8C6B;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #238357;
+            transform: translateY(-2px);
+        }
+
+        /* Cards Example */
+        .card {
+            background: #F5F3F0;
+            border: 1px solid #E8E6E1;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 300ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(212, 165, 116, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #D4A574, #0F1C2E);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            color: #0F1C2E;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-price {
+            color: #D4A574;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-text {
+            color: #4A6B6D;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .card .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #0F1C2E;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #D4D2CE;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: all 300ms ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #D4A574;
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        input::placeholder {
+            color: #999999;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-primary {
+            background-color: #D4A574;
+            color: #0F1C2E;
+        }
+
+        .badge-gold {
+            background-color: #F0C674;
+            color: #0F1C2E;
+        }
+
+        .badge-success {
+            background-color: #2C8C6B;
+            color: white;
+        }
+
+        .badge-error {
+            background-color: #C1453A;
+            color: white;
+        }
+
+        /* Navbar Example */
+        .navbar {
+            background-color: #0F1C2E;
+            padding: 16px 24px;
+            margin-bottom: 32px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .navbar-brand {
+            color: #F5F3F0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .navbar-menu a {
+            color: #F5F3F0;
+            text-decoration: none;
+            transition: color 300ms ease;
+        }
+
+        .navbar-menu a:hover,
+        .navbar-menu a.active {
+            color: #D4A574;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .comparison-table th {
+            background-color: #0F1C2E;
+            color: #F5F3F0;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #E8E6E1;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #F9F8F6;
+        }
+
+        .color-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #0F1C2E;
+        }
+
+        /* Spacing Example */
+        .spacing-demo {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .spacing-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .spacing-box {
+            background: linear-gradient(135deg, #D4A574, #0F1C2E);
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-right: 12px;
+            min-width: 120px;
+        }
+
+        .spacing-box-xs { height: 24px; width: 24px; }
+        .spacing-box-sm { height: 32px; width: 32px; }
+        .spacing-box-md { height: 48px; width: 48px; }
+        .spacing-box-lg { height: 64px; width: 64px; }
+
+        footer {
+            background-color: #0F1C2E;
+            color: #E8E6E1;
+            text-align: center;
+            padding: 32px 24px;
+            margin-top: 64px;
+        }
+
+        .code-block {
+            background-color: #1A1A1A;
+            color: #D4A574;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            section h2 {
+                font-size: 24px;
+            }
+
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-menu {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎨 Car Info System</h1>
+        <p>Premium Midnight Color Scheme & Components Reference</p>
+    </header>
+
+    <div class="container">
+        <!-- Navigation Example -->
+        <section>
+            <h2>Navigation Bar</h2>
+            <div class="navbar">
+                <div class="navbar-brand">🚗 Car Info System</div>
+                <ul class="navbar-menu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Browse Cars</a></li>
+                    <li><a href="#">Brands</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Primary Colors -->
+        <section>
+            <h2>Primary Colors</h2>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-sample navy"></div>
+                    <div class="color-info">
+                        <h3>Deep Navy Blue</h3>
+                        <div class="color-code">#0F1C2E</div>
+                        <div class="color-usage">Main backgrounds, navbars, headers</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample rose-gold"></div>
+                    <div class="color-info">
+                        <h3>Rose Gold</h3>
+                        <div class="color-code">#D4A574</div>
+                        <div class="color-usage">Buttons, hover effects, highlights</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample cream"></div>
+                    <div class="color-info">
+                        <h3>Cream</h3>
+                        <div class="color-code">#F5F3F0</div>
+                        <div class="color-usage">Cards, text backgrounds, content</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secondary Colors -->
+        <section>
+            <h2>Secondary Colors</h2>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-sample charcoal"></div>
+                    <div class="color-info">
+                        <h3>Charcoal</h3>
+                        <div class="color-code">#1A1A1A</div>
+                        <div class="color-usage">Primary text, deep elements</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample soft-gray"></div>
+                    <div class="color-info">
+                        <h3>Soft Gray</h3>
+                        <div class="color-code">#E8E6E1</div>
+                        <div class="color-usage">Borders, dividers, subtle backgrounds</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample teal"></div>
+                    <div class="color-info">
+                        <h3>Muted Teal</h3>
+                        <div class="color-code">#4A6B6D</div>
+                        <div class="color-usage">Secondary text, info elements</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample gold"></div>
+                    <div class="color-info">
+                        <h3>Gold</h3>
+                        <div class="color-code">#F0C674</div>
+                        <div class="color-usage">Premium badges, special items</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Functional Colors -->
+        <section>
+            <h2>Functional Colors</h2>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-sample success"></div>
+                    <div class="color-info">
+                        <h3>Success Green</h3>
+                        <div class="color-code">#2C8C6B</div>
+                        <div class="color-usage">Confirmations, positive actions</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample warning"></div>
+                    <div class="color-info">
+                        <h3>Warning Orange</h3>
+                        <div class="color-code">#D97A34</div>
+                        <div class="color-usage">Alerts, cautions, important info</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample error"></div>
+                    <div class="color-info">
+                        <h3>Error Red</h3>
+                        <div class="color-code">#C1453A</div>
+                        <div class="color-usage">Errors, critical information</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-sample info"></div>
+                    <div class="color-info">
+                        <h3>Info Blue</h3>
+                        <div class="color-code">#6B8BA8</div>
+                        <div class="color-usage">Information, hints, tooltips</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section>
+            <h2>Buttons & Interactive Elements</h2>
+            <div class="component-box">
+                <h3>Button Styles</h3>
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-success">Success Button</button>
+                <button class="btn btn-danger">Danger Button</button>
+                <button class="btn btn-primary" disabled>Disabled Button</button>
+
+                <div class="code-block">
+&lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section>
+            <h2>Car Card Component</h2>
+            <div class="component-grid">
+                <div class="card">
+                    <div class="card-image">Car Image</div>
+                    <div class="card-content">
+                        <div class="badge badge-gold">Premium</div>
+                        <div class="badge badge-primary">New</div>
+                        <h3 class="card-title">Audi A8</h3>
+                        <div class="card-price">$89,999</div>
+                        <p class="card-text">Luxury sedan with premium features and advanced technology.</p>
+                        <button class="btn btn-primary">View Details</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">Car Image</div>
+                    <div class="card-content">
+                        <div class="badge badge-success">In Stock</div>
+                        <h3 class="card-title">BMW M5</h3>
+                        <div class="card-price">$104,999</div>
+                        <p class="card-text">High-performance sedan with dynamic handling and sporty design.</p>
+                        <button class="btn btn-primary">View Details</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">Car Image</div>
+                    <div class="card-content">
+                        <div class="badge badge-error">Limited</div>
+                        <h3 class="card-title">Ferrari F8</h3>
+                        <div class="card-price">$280,000</div>
+                        <p class="card-text">Supercar engineered for extreme performance and luxury.</p>
+                        <button class="btn btn-primary">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forms -->
+        <section>
+            <h2>Form Elements</h2>
+            <div class="component-box">
+                <h3>Contact Form</h3>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" placeholder="Your message here..."></textarea>
+                </div>
+
+                <button class="btn btn-primary">Send Message</button>
+
+                <div class="code-block">
+&lt;input type="text" placeholder="Enter text"&gt;
+&lt;textarea&gt;&lt;/textarea&gt;
+&lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
+                </div>
+            </div>
+        </section>
+
+        <!-- Badges -->
+        <section>
+            <h2>Badges & Tags</h2>
+            <div class="component-box">
+                <h3>Badge Styles</h3>
+                <div>
+                    <span class="badge badge-primary">Premium</span>
+                    <span class="badge badge-gold">Featured</span>
+                    <span class="badge badge-success">In Stock</span>
+                    <span class="badge badge-error">Limited</span>
+                </div>
+
+                <div class="code-block">
+&lt;span class="badge badge-primary"&gt;Premium&lt;/span&gt;
+&lt;span class="badge badge-gold"&gt;Featured&lt;/span&gt;
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Comparison Table -->
+        <section>
+            <h2>Complete Color Reference</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Color Name</th>
+                        <th>Hex Code</th>
+                        <th>RGB Code</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="color-name" style="color: #0F1C2E;">■ Deep Navy</td>
+                        <td>#0F1C2E</td>
+                        <td>rgb(15, 28, 46)</td>
+                        <td>Main backgrounds, headers</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #D4A574;">■ Rose Gold</td>
+                        <td>#D4A574</td>
+                        <td>rgb(212, 165, 116)</td>
+                        <td>Buttons, hover effects</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #F5F3F0;">■ Cream</td>
+                        <td>#F5F3F0</td>
+                        <td>rgb(245, 243, 240)</td>
+                        <td>Cards, light backgrounds</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #1A1A1A;">■ Charcoal</td>
+                        <td>#1A1A1A</td>
+                        <td>rgb(26, 26, 26)</td>
+                        <td>Primary text</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #E8E6E1;">■ Soft Gray</td>
+                        <td>#E8E6E1</td>
+                        <td>rgb(232, 230, 225)</td>
+                        <td>Borders, dividers</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #4A6B6D;">■ Muted Teal</td>
+                        <td>#4A6B6D</td>
+                        <td>rgb(74, 107, 109)</td>
+                        <td>Secondary text</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #F0C674;">■ Gold</td>
+                        <td>#F0C674</td>
+                        <td>rgb(240, 198, 116)</td>
+                        <td>Premium badges</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #2C8C6B;">■ Success</td>
+                        <td>#2C8C6B</td>
+                        <td>rgb(44, 140, 107)</td>
+                        <td>Success messages</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #D97A34;">■ Warning</td>
+                        <td>#D97A34</td>
+                        <td>rgb(217, 122, 52)</td>
+                        <td>Alerts, warnings</td>
+                    </tr>
+                    <tr>
+                        <td class="color-name" style="color: #C1453A;">■ Error</td>
+                        <td>#C1453A</td>
+                        <td>rgb(193, 69, 58)</td>
+                        <td>Error messages</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Implementation Tips -->
+        <section>
+            <h2>Implementation Tips</h2>
+            <div class="component-box">
+                <h3>✅ Do's</h3>
+                <ul style="margin-left: 24px; margin-bottom: 16px;">
+                    <li>Use CSS variables for all colors</li>
+                    <li>Test color contrast (WCAG AA: 4.5:1 minimum)</li>
+                    <li>Apply consistent spacing (8px grid)</li>
+                    <li>Use Poppins for headings, Inter for body</li>
+                    <li>Add smooth transitions (300ms) to interactions</li>
+                </ul>
+
+                <h3>❌ Don'ts</h3>
+                <ul style="margin-left: 24px;">
+                    <li>Don't use old colors (#4e4e4e, #000080, #dcdcdc)</li>
+                    <li>Don't mix serif and sans-serif fonts</li>
+                    <li>Don't add borders without soft gray (#E8E6E1)</li>
+                    <li>Don't remove hover effects</li>
+                    <li>Don't use bright pure colors (#FF0000, #0000FF)</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Car Info System - UI Design Reference</p>
+        <p>For more details, refer to UI_DESIGN_GUIDE.md and COLOR_PALETTE_DETAILED.md</p>
+    </footer>
+</body>
+</html>

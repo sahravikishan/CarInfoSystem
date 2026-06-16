@@ -1,0 +1,167 @@
+{% extends 'app/base_editorial.html' %}
+{% load static %}
+
+{% block title %}Force Motors Editorial Showroom - 2026 Collection India | Car Info System{% endblock %}
+{% block description %}Explore the Force Motors 2026 India lineup: Gurkha, Gurkha 5 Door, and Urbania with current CarDekho prices and specifications.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=2.6">
+<style>
+    .showroom-hero h1 {
+        color: #ffffff;
+    }
+
+    .card-img-wrap {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef0f2;
+    }
+
+    .card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 58%;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .model-card:hover .card-img-wrap img {
+        transform: scale(1.02);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 1. IMMERSIVE SHOWROOM HERO -->
+<section class="showroom-hero">
+    <img src="{% static 'app/Image/Force_header.jpg' %}"
+         class="hero-visual"
+         alt="Force Gurkha desert profile">
+    <div class="hero-content">
+        <div class="brand-logo-badge">
+            <img src="{% static 'app/Image/Force_hero_logo.png' %}" alt="Force Motors">
+        </div>
+        <span class="hero-tagline">PUNE - BUILT FOR INDIA</span>
+        <h1>Force Motors 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+            Purpose-built diesel workhorses and off-road machines. The current Force Motors India lineup spans the Gurkha 3-door, Gurkha 5 Door, and the Urbania passenger van.
+        </p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <span class="status-badge" style="background: rgba(245,158,11,0.1); border-color: #F59E0B; color: #F59E0B;">3 MODELS LISTED</span>
+            <span class="status-badge" style="background: rgba(245,158,11,0.1); border-color: #F59E0B; color: #F59E0B;">DIESEL LINEUP</span>
+            <span class="status-badge" style="background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.4); color: #F59E0B;">SUV + MINIVAN</span>
+        </div>
+    </div>
+</section>
+
+<!-- 2. DISCOVERY CONTROLS -->
+<section class="showroom-controls">
+    <div class="search-wrap">
+        <input type="text" id="modelSearch" class="showroom-search" placeholder="Search Force (e.g. Gurkha, Urbania)...">
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--edit-text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        3 Models &nbsp;-&nbsp; Current CarDekho Data &nbsp;-&nbsp; Hover to Reveal Stats &nbsp;<i class="fa-solid fa-arrow-down" style="color: #F59E0B;"></i>
+    </div>
+</section>
+
+<!-- 3. THE MODEL GALLERY GRID -->
+<div class="model-grid" id="modelGrid">
+
+    <!-- 1. FORCE GURKHA -->
+    <a href="https://www.cardekho.com/carmodels/Force/Force_Gurkha" target="_blank" rel="noopener noreferrer" class="model-card" data-model="gurkha 3 door 4wd suv off road">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Force_gurkha.jpg' %}" alt="Force Gurkha">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs.15.95 LAKH*</span>
+            <h3>Gurkha</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">138 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Torque</span><span class="stat-value">320 NM</span></div>
+            <div class="reveal-stat"><span class="stat-label">Drive</span><span class="stat-value">4WD</span></div>
+        </div>
+    </a>
+
+    <!-- 2. FORCE GURKHA 5 DOOR -->
+    <a href="https://www.cardekho.com/force/gurkha-5-door" target="_blank" rel="noopener noreferrer" class="model-card" data-model="gurkha 5 door 7 seater 4wd suv off road">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Force_gurkha_5_door.jpg' %}" alt="Force Gurkha 5 Door">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS Rs.17.27 LAKH*</span>
+            <h3>Gurkha 5 Door</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Seats</span><span class="stat-value">7</span></div>
+            <div class="reveal-stat"><span class="stat-label">Clearance</span><span class="stat-value">233 MM</span></div>
+            <div class="reveal-stat"><span class="stat-label">Drive</span><span class="stat-value">4WD</span></div>
+        </div>
+    </a>
+
+    <!-- 3. FORCE URBANIA -->
+    <a href="https://www.cardekho.com/force/urbania" target="_blank" rel="noopener noreferrer" class="model-card" data-model="urbania minivan passenger van 10 11 13 14 17 seater">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Force_urbania_2026_card.jpg' %}" alt="Force Urbania">
+        </div>
+        <div class="card-info">
+            <span class="card-price">Rs.26.34 - 31.83 LAKH*</span>
+            <h3>Urbania</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">114 BHP</span></div>
+            <div class="reveal-stat"><span class="stat-label">Torque</span><span class="stat-value">350 NM</span></div>
+            <div class="reveal-stat"><span class="stat-label">Seats</span><span class="stat-value">10-17</span></div>
+        </div>
+    </a>
+
+</div>
+
+<!-- FORCE ENGINEERING EDITORIAL STRIP -->
+<section style="padding: 80px 4vw; background: var(--edit-bg); border-top: 1px solid var(--edit-border);">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <div class="status-badge" style="display: inline-block; margin-bottom: 20px;">FORCE ENGINEERING</div>
+        <h2 style="font-family: var(--font-serif); font-size: 2.8rem; color: var(--edit-text);">Utility First. Adventure Ready.</h2>
+        <p style="color: var(--edit-text-muted); max-width: 650px; margin: 15px auto 0;">Three traits define the current Force Motors passenger lineup in India.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; border: 1px solid var(--edit-border);">
+        <div style="padding: 50px 40px; background: var(--edit-card-bg); border-right: 1px solid var(--edit-border);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #F59E0B; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">01 - 2.6L DIESEL CORE</div>
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--edit-text); margin-bottom: 15px;">Torque.<br>Not Drama.</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.95rem; line-height: 1.7;">All listed Force models use a 2596 cc diesel engine paired with a manual gearbox, tuned for utility, load carrying, and tough terrain rather than headline acceleration figures.</p>
+        </div>
+        <div style="padding: 50px 40px; background: var(--edit-card-bg); border-right: 1px solid var(--edit-border);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #F59E0B; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">02 - GURKHA 4WD DNA</div>
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--edit-text); margin-bottom: 15px;">Trail Built.<br>Factory Ready.</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.95rem; line-height: 1.7;">The Gurkha models bring 4WD, high ground clearance, and a factory snorkel-focused off-road character to the lineup, with 3-door and 5-door body styles.</p>
+        </div>
+        <div style="padding: 50px 40px; background: var(--edit-card-bg);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #F59E0B; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">03 - URBANIA SPACE</div>
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--edit-text); margin-bottom: 15px;">Big Cabin.<br>Real Seats.</div>
+            <p style="color: var(--edit-text-muted); font-size: 0.95rem; line-height: 1.7;">Urbania expands the range into minivan territory with multiple seating layouts, a 70-litre tank, rear-wheel drive, and a tall cabin designed for passenger movement.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('modelSearch');
+    const cards = Array.from(document.querySelectorAll('#modelGrid .model-card'));
+
+    if (!input || cards.length === 0) return;
+
+    input.addEventListener('input', function () {
+        const query = input.value.trim().toLowerCase();
+        cards.forEach((card) => {
+            const name = card.dataset.model || '';
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
+    });
+});
+</script>
+{% endblock %}
