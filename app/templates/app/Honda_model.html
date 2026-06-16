@@ -1,212 +1,98 @@
-<!DOCTYPE html>
+{% extends 'app/base_editorial.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Models</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #4e4e4e;
-            margin: 0;
-            padding-top: 70px; 
-        }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+{% block title %}Honda Editorial Showroom | Car Info System{% endblock %}
 
-        .card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #dcdcdc; 
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+{% endblock %}
 
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .car-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #212529;
-            margin-bottom: 10px;
-        }
-
-        .car-price {
-            font-size: 20px;
-            color: #000080;
-            margin-bottom: 10px;
-        }
-
-        .car-details {
-            font-size: 16px;
-            color: #708090;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .action-button {
-            display: inline-block;
-            background-color: #000080;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .action-button:hover {
-            background-color: #0000cd;
-            transform: translateY(-3px);
-        }
-
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%; 
-            margin-right: 8px;
-        }
-
-        .navbar-brand span {
-            font-weight: bold;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="{% static 'app/Image/car_icon.jpg' %}" alt="Car Icon">
-                <span>CarInfoSystem</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Login">Register / Login</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="typeDropdown" role="button" data-bs-toggle="dropdown">
-                                Sort by Type
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
-                                <li><a class="dropdown-item" href="#">Sedan</a></li>
-                                <li><a class="dropdown-item" href="#">SUV</a></li>
-                                <li><a class="dropdown-item" href="#">Hatchback</a></li>
-                                <li><a class="dropdown-item" href="#">Coupe</a></li>
-                                <li><a class="dropdown-item" href="#">Luxury</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/About">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Contact">Contact Us</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3">
-                        <input class="form-control me-2" type="search" placeholder="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
+{% block content %}
+<section class="showroom-hero">
+    <img src="{% static 'app/Image/Honda_logo.jpg' %}" class="hero-visual" alt="Honda Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <div class="hero-content">
+        <div class="brand-logo-badge">
+            <img src="{% static 'app/Image/Honda_logo.jpg' %}" alt="Honda" onerror="this.style.display='none'">
         </div>
-    </nav>
-
-    <!-- Card Section -->
-    <div class="container">
-        <!-- Model 1 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Honda_amaze.jpg' %}" alt="Honda Amaze">
-            <div class="card-content">
-                <div class="car-title">Honda Amaze</div>
-                <div class="car-price">₹8 - ₹10.90 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 18.65 - 19.46 kmpl • Manual / Automatic<br>
-                    1199 cc • 89 bhp • 5 Seats
-                </div>
-                <a href="/Honda_amaze_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 2 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Honda_city.jpg' %}" alt="Honda City">
-            <div class="card-content">
-                <div class="car-title">Honda City</div>
-                <div class="car-price">₹11.82 - ₹16.55 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 17.8 - 18.4 kmpl • Manual / Automatic<br>
-                    1498 cc • 119.35 bhp • 5 Seats
-                </div>
-                <a href="/Honda_city_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 3 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Honda_city_hybrid.jpg' %}" alt="Honda City Hybrid">
-            <div class="card-content">
-                <div class="car-title">Honda City Hybrid</div>
-                <div class="car-price">₹19 - ₹20.75 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 27.13 kmpl • Automatic<br>
-                    1498 cc • 96.55 bhp • 5 Seats
-                </div>
-                <a href="/Honda_city_hybrid_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 4 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Honda_elevate.jpg' %}" alt="Honda Elevate">
-            <div class="card-content">
-                <div class="car-title">Honda Elevate</div>
-                <div class="car-price">₹11.69 - ₹16.73 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 15.31 - 16.92 kmpl • Manual / Automatic<br>
-                    1498 cc • 119 bhp • 5 Seats
-                </div>
-                <a href="/Honda_elevate_full_detail" class="action-button">View Full Details</a>
-            </div>
+        <span class="hero-tagline">HONDA SHOWROOM</span>
+        <h1>Honda 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
+        </p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <span class="status-badge">4 MODELS LISTED</span>
+            <span class="status-badge">2026 INDIA LINEUP</span>
+            <span class="status-badge" style="border-color: #e3183780 !important; color: #e31837 !important;">VTEC PERFORMANCE</span>
         </div>
     </div>
-</body>
-</html>
+</section>
 
+<section class="showroom-controls">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
+        4 Models &nbsp;•&nbsp; Click to View Details
+    </div>
+</section>
+
+<div class="model-grid" id="modelGrid">
+    <a href="{% url 'Honda_amaze_full_detail' %}" class="model-card" data-model="honda amaze">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Honda_amaze.jpg' %}" alt="Honda Amaze">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹8 - ₹10.90 Lakh</span>
+            <h3>Honda Amaze</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">89 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1199 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Honda_city_full_detail' %}" class="model-card" data-model="honda city">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Honda_city.jpg' %}" alt="Honda City">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹11.82 - ₹16.55 Lakh</span>
+            <h3>Honda City</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">119.35 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1498 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Honda_city_hybrid_full_detail' %}" class="model-card" data-model="honda city hybrid">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Honda_city_hybrid.jpg' %}" alt="Honda City Hybrid">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹19 - ₹20.75 Lakh</span>
+            <h3>Honda City Hybrid</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">96.55 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1498 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Honda_elevate_full_detail' %}" class="model-card" data-model="honda elevate">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Honda_elevate.jpg' %}" alt="Honda Elevate">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹11.69 - ₹16.73 Lakh</span>
+            <h3>Honda Elevate</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">119 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1498 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+</div>
+
+{% endblock %}

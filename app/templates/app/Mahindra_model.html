@@ -1,324 +1,218 @@
-<!DOCTYPE html>
+{% extends 'app/base_editorial.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Models</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #4e4e4e;
-            margin: 0;
-            padding-top: 70px; 
-        }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+{% block title %}Mahindra Editorial Showroom | Car Info System{% endblock %}
 
-        .card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #dcdcdc; 
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+{% endblock %}
 
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .car-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #212529;
-            margin-bottom: 10px;
-        }
-
-        .car-price {
-            font-size: 20px;
-            color: #000080;
-            margin-bottom: 10px;
-        }
-
-        .car-details {
-            font-size: 16px;
-            color: #708090;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .action-button {
-            display: inline-block;
-            background-color: #000080;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .action-button:hover {
-            background-color: #0000cd;
-            transform: translateY(-3px);
-        }
-
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%; 
-            margin-right: 8px;
-        }
-
-        .navbar-brand span {
-            font-weight: bold;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="{% static 'app/Image/car_icon.jpg' %}" alt="Car Icon">
-                <span>CarInfoSystem</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Login">Register / Login</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="typeDropdown" role="button" data-bs-toggle="dropdown">
-                                Sort by Type
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
-                                <li><a class="dropdown-item" href="#">Sedan</a></li>
-                                <li><a class="dropdown-item" href="#">SUV</a></li>
-                                <li><a class="dropdown-item" href="#">Hatchback</a></li>
-                                <li><a class="dropdown-item" href="#">Coupe</a></li>
-                                <li><a class="dropdown-item" href="#">Luxury</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/About">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Contact">Contact Us</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3">
-                        <input class="form-control me-2" type="search" placeholder="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
+{% block content %}
+<section class="showroom-hero">
+    <img src="{% static 'app/Image/Mahindra_logo.jpg' %}" class="hero-visual" alt="Mahindra Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <div class="hero-content">
+        <div class="brand-logo-badge">
+            <img src="{% static 'app/Image/Mahindra_logo.jpg' %}" alt="Mahindra" onerror="this.style.display='none'">
         </div>
-    </nav>
-
-    <!-- Card Section -->
-    <div class="container">
-        <!-- Model 1 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_be6.jpg' %}" alt="Mahindra BE 6">
-            <div class="card-content">
-                <div class="car-title">Mahindra BE 6</div>
-                <div class="car-price">₹18.90 - ₹26.90 Lakh*</div>
-                <div class="car-details">
-                    Electric • 535 - 682 km • Automatic<br>
-                    59 - 79 kWh • 228 - 282 bhp • 5 Seats
-                </div>
-                <a href="/Mahindra_be6_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 2 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_bolero.jpg' %}" alt="Mahindra Bolero">
-            <div class="card-content">
-                <div class="car-title">Mahindra Bolero</div>
-                <div class="car-price">₹9.79 - ₹10.91 Lakh*</div>
-                <div class="car-details">
-                    Diesel • 16 kmpl • Manual<br>
-                    1493 cc • 74.96 bhp • 7 Seats
-                </div>
-                <a href="/Mahindra_bolero_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 3 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_bolero_camper.jpg' %}" alt="Mahindra Bolero Camper">
-            <div class="card-content">
-                <div class="car-title">Mahindra Bolero Camper</div>
-                <div class="car-price">₹10.28- ₹10.63 Lakh*</div>
-                <div class="car-details">
-                    Diesel • 16 kmpl • Manual<br>
-                    2523 cc • 75.09 bhp • 5 Seats
-                </div>
-                <a href="/Mahindra_bolero_camper_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 4 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_bolero_neo.jpg' %}" alt="Mahindra Bolero Neo">
-            <div class="card-content">
-                <div class="car-title">Mahindra Bolero Neo</div>
-                <div class="car-price">₹9.95 - 12.15 Lakh*</div>
-                <div class="car-details">
-                    Diesel • 17.29 kmpl • Manual<br>
-                    1493 cc • 98.56 bhp • 7 Seats
-                </div>
-                <a href="/Mahindra_bolero_neo_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 5 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_scorpio.jpg' %}" alt="Mahindra Scorpio">
-            <div class="card-content">
-                <div class="car-title">Mahindra Scorpio</div>
-                <div class="car-price">₹13.62 - ₹17.50 Lakh*</div>
-                <div class="car-details">
-                    Diesel • 14.44 kmpl • Manual<br>
-                    2184 cc • 130 bhp • 7 Seats
-                </div>
-                <a href="/Mahindra_scorpio_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 6 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_scorpio_n.jpg' %}" alt="Mahindra Scorpio N">
-            <div class="card-content">
-                <div class="car-title">Mahindra Scorpio N</div>
-                <div class="car-price">₹13.99 - ₹24.69 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 12.12 - 15.94 kmpl • Manual / Automatic<br>
-                    1997 - 2198 cc • 130 - 200 bhp • 6 / 7 Seats
-                </div>
-                <a href="/Mahindra_scorpio_n_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 7 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_thar.jpg' %}" alt="Mahindra Thar">
-            <div class="card-content">
-                <div class="car-title">Mahindra Thar</div>
-                <div class="car-price">₹11.50 -₹17.60 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 8 kmpl • Manual / Automatic<br>
-                    1497 - 2184 cc • 116.93 - 150.19 bhp • 4 Seats
-                </div>
-                <a href="/Mahindra_thar_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 8 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_thar_roxx.jpg' %}" alt="Mahindra Thar Roxx">
-            <div class="card-content">
-                <div class="car-title">Mahindra Thar Roxx</div>
-                <div class="car-price">₹12.99 - ₹23.09 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 12 - 15.2 kmpl • Manual / Automatic<br>
-                    1997 - 2184 cc • 150 - 174 bhp • 5 Seats
-                </div>
-                <a href="/Mahindra_thar_roxx_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-        
-        <!-- Model 9 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_xev_9e.jpg' %}" alt="Mahindra XEV 9e">
-            <div class="card-content">
-                <div class="car-title">Mahindra XEV 9e</div>
-                <div class="car-price">₹21.90 - ₹30.50 Lakh*</div>
-                <div class="car-details">
-                    Electric • 542 - 656 km • Automatic<br>
-                    59 - 79 kWh • 228 - 282 bhp • 5 Seats
-                </div>
-                <a href="Mahindra_xev_9e_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        
-        <!-- Model 10 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_xuv_3xo.jpg' %}" alt="Mahindra XUV 3XO">
-            <div class="card-content">
-                <div class="car-title">Mahindra XUV 3XO</div>
-                <div class="car-price">₹7.99 - ₹15.56 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 20.6 kmpl • Manual / Automatic<br>
-                    1197 - 1498 cc • 109.96 - 128.73 bhp • 5 Seats
-                </div>
-                <a href="Mahindra_xuv_3xo_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 11 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_xuv400_ev.jpg' %}" alt="Mahindra XUV400 EV">
-            <div class="card-content">
-                <div class="car-title">Mahindra XUV400 EV</div>
-                <div class="car-price">₹16.74 - ₹17.69 Lakh*</div>
-                <div class="car-details">
-                    Electric • 375 - 546 km • Automatic<br>
-                    34.5 - 39.4 kWh • 147.51 - 149.55 bhp • 5 Seats
-                </div>
-                <a href="Mahindra_xuv400_ev_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 12 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Mahindra_xuv700.jpg' %}" alt="Mahindra XUV700">
-            <div class="card-content">
-                <div class="car-title">Mahindra XUV700</div>
-                <div class="car-price">₹13.99 - ₹25.74 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 17 kmpl • Manual / Automatic<br>
-                    1999 - 2198 cc • 152 - 197 bhp • 7 Seats
-                </div>
-                <a href="Mahindra_xuv700_full_detail" class="action-button">View Full Details</a>
-            </div>
+        <span class="hero-tagline">MAHINDRA SHOWROOM</span>
+        <h1>Mahindra 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
+        </p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <span class="status-badge">12 MODELS LISTED</span>
+            <span class="status-badge">2026 INDIA LINEUP</span>
+            <span class="status-badge" style="border-color: #dd191d80 !important; color: #dd191d !important;">RISE ABOVE</span>
         </div>
     </div>
-</body>
-</html>
+</section>
+
+<section class="showroom-controls">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
+        12 Models &nbsp;•&nbsp; Click to View Details
+    </div>
+</section>
+
+<div class="model-grid" id="modelGrid">
+    <a href="{% url 'Mahindra_be6_full_detail' %}" class="model-card" data-model="mahindra be 6">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_be6.jpg' %}" alt="Mahindra BE 6">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹18.90 - ₹26.90 Lakh</span>
+            <h3>Mahindra BE 6</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">228 - 282 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_bolero_full_detail' %}" class="model-card" data-model="mahindra bolero">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_bolero.jpg' %}" alt="Mahindra Bolero">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹9.79 - ₹10.91 Lakh</span>
+            <h3>Mahindra Bolero</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">74.96 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1493 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_bolero_camper_full_detail' %}" class="model-card" data-model="mahindra bolero camper">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_bolero_camper.jpg' %}" alt="Mahindra Bolero Camper">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹10.28- ₹10.63 Lakh</span>
+            <h3>Mahindra Bolero Camper</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">75.09 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2523 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_bolero_neo_full_detail' %}" class="model-card" data-model="mahindra bolero neo">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_bolero_neo.jpg' %}" alt="Mahindra Bolero Neo">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹9.95 - 12.15 Lakh</span>
+            <h3>Mahindra Bolero Neo</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">98.56 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1493 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_scorpio_full_detail' %}" class="model-card" data-model="mahindra scorpio">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_scorpio.jpg' %}" alt="Mahindra Scorpio">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹13.62 - ₹17.50 Lakh</span>
+            <h3>Mahindra Scorpio</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">130 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2184 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_scorpio_n_full_detail' %}" class="model-card" data-model="mahindra scorpio n">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_scorpio_n.jpg' %}" alt="Mahindra Scorpio N">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹13.99 - ₹24.69 Lakh</span>
+            <h3>Mahindra Scorpio N</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">130 - 200 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1997 - 2198 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_thar_full_detail' %}" class="model-card" data-model="mahindra thar">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_thar.jpg' %}" alt="Mahindra Thar">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹11.50 -₹17.60 Lakh</span>
+            <h3>Mahindra Thar</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">116.93 - 150.19 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1497 - 2184 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_thar_roxx_full_detail' %}" class="model-card" data-model="mahindra thar roxx">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_thar_roxx.jpg' %}" alt="Mahindra Thar Roxx">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹12.99 - ₹23.09 Lakh</span>
+            <h3>Mahindra Thar Roxx</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">150 - 174 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1997 - 2184 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_xev_9e_full_detail' %}" class="model-card" data-model="mahindra xev 9e">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_xev_9e.jpg' %}" alt="Mahindra XEV 9e">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹21.90 - ₹30.50 Lakh</span>
+            <h3>Mahindra XEV 9e</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">228 - 282 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_xuv_3xo_full_detail' %}" class="model-card" data-model="mahindra xuv 3xo">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_xuv_3xo.jpg' %}" alt="Mahindra XUV 3XO">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹7.99 - ₹15.56 Lakh</span>
+            <h3>Mahindra XUV 3XO</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">109.96 - 128.73 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1197 - 1498 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_xuv400_ev_full_detail' %}" class="model-card" data-model="mahindra xuv400 ev">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_xuv400_ev.jpg' %}" alt="Mahindra XUV400 EV">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹16.74 - ₹17.69 Lakh</span>
+            <h3>Mahindra XUV400 EV</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">147.51 - 149.55 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Mahindra_xuv700_full_detail' %}" class="model-card" data-model="mahindra xuv700">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Mahindra_xuv700.jpg' %}" alt="Mahindra XUV700">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹13.99 - ₹25.74 Lakh</span>
+            <h3>Mahindra XUV700</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">152 - 197 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1999 - 2198 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+</div>
+
+{% endblock %}

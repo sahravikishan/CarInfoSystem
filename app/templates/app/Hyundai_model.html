@@ -1,310 +1,203 @@
-<!DOCTYPE html>
+{% extends 'app/base_editorial.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Models</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #4e4e4e;
-            margin: 0;
-            padding-top: 70px; 
-        }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+{% block title %}Hyundai Editorial Showroom | Car Info System{% endblock %}
 
-        .card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #dcdcdc; 
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+{% endblock %}
 
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .car-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #212529;
-            margin-bottom: 10px;
-        }
-
-        .car-price {
-            font-size: 20px;
-            color: #000080;
-            margin-bottom: 10px;
-        }
-
-        .car-details {
-            font-size: 16px;
-            color: #708090;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .action-button {
-            display: inline-block;
-            background-color: #000080;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .action-button:hover {
-            background-color: #0000cd;
-            transform: translateY(-3px);
-        }
-
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%; 
-            margin-right: 8px;
-        }
-
-        .navbar-brand span {
-            font-weight: bold;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="{% static 'app/Image/car_icon.jpg' %}" alt="Car Icon">
-                <span>CarInfoSystem</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Login">Register / Login</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="typeDropdown" role="button" data-bs-toggle="dropdown">
-                                Sort by Type
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
-                                <li><a class="dropdown-item" href="#">Sedan</a></li>
-                                <li><a class="dropdown-item" href="#">SUV</a></li>
-                                <li><a class="dropdown-item" href="#">Hatchback</a></li>
-                                <li><a class="dropdown-item" href="#">Coupe</a></li>
-                                <li><a class="dropdown-item" href="#">Luxury</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/About">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Contact">Contact Us</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3">
-                        <input class="form-control me-2" type="search" placeholder="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
+{% block content %}
+<section class="showroom-hero">
+    <img src="{% static 'app/Image/Hyundai_logo.jpg' %}" class="hero-visual" alt="Hyundai Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <div class="hero-content">
+        <div class="brand-logo-badge">
+            <img src="{% static 'app/Image/Hyundai_logo.jpg' %}" alt="Hyundai" onerror="this.style.display='none'">
         </div>
-    </nav>
-
-    <!-- Card Section -->
-    <div class="container">
-        <!-- Model 1 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_alcazar.jpg' %}" alt="Hyundai Alcazar">
-            <div class="card-content">
-                <div class="car-title">Hyundai Alcazar</div>
-                <div class="car-price">₹14.99 - ₹21.55 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 17.5 - 20.4 kmpl • Manual / Automatic<br>
-                    1482 - 1493 cc • 114 - 158 bhp • 7 Seats
-                </div>
-                <a href="/Hyundai_alcazar_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 2 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_aura.jpg' %}" alt="Hyundai Aura">
-            <div class="card-content">
-                <div class="car-title">Hyundai Aura</div>
-                <div class="car-price">₹6.49 - ₹9.05 Lakh*</div>
-                <div class="car-details">
-                    Petrol / CNG • 17 kmpl • Manual / Automatic<br>
-                    1197 cc • 68 - 82 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_aura_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 3 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_creta.jpg' %}" alt="Hyundai Creta">
-            <div class="card-content">
-                <div class="car-title">Hyundai Creta</div>
-                <div class="car-price">₹11.11- ₹20.42 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 17.4 - 21.8 kmpl • Manual / Automatic<br>
-                    1482 - 1497 cc • 113.18 - 157.57 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_creta_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 4 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_creta_ev.jpg' %}" alt="Hyundai Creta Electric">
-            <div class="card-content">
-                <div class="car-title">Hyundai Creta Electric</div>
-                <div class="car-price">₹17.99 - ₹24.38 Lakh*</div>
-                <div class="car-details">
-                    Electric • 390 - 473 km • Automatic<br>
-                    42 - 51.4 kWh • 133 - 169 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_creta_ev_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 5 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_exter.jpg' %}" alt="Hyundai Exter">
-            <div class="card-content">
-                <div class="car-title">Hyundai Exter</div>
-                <div class="car-price">₹6 - ₹10.50 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 19.2 - 19.4 kmpl • Manual / Automatic<br>
-                    1197 cc • 67.72 - 81.8 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_exter_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 6 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_grand _i10_nios.jpg' %}" alt="Hyundai Grand i10 Nios">
-            <div class="card-content">
-                <div class="car-title">Hyundai Grand i10 Nios</div>
-                <div class="car-price">₹5.92 - ₹8.56 Lakh*</div>
-                <div class="car-details">
-                    Petrol / CNG • 16 - 18 kmpl • Manual / Automatic<br>
-                    1197 cc • 68 - 82 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_grand_i10_nios_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 7 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_i20.jpg' %}" alt="Hyundai i20">
-            <div class="card-content">
-                <div class="car-title">Hyundai i20</div>
-                <div class="car-price">₹7.04 - ₹11.25 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 16 - 20 kmpl • Manual / Automatic<br>
-                    1197 cc • 82 - 87 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_i20_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 8 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_ioniq_5.jpg' %}" alt="Hyundai IONIQ 5">
-            <div class="card-content">
-                <div class="car-title">HYundai IONIQ 5</div>
-                <div class="car-price">₹46.05 Lakh*</div>
-                <div class="car-details">
-                    Electric • 631 km • Automatic<br>
-                    72.6 kWh • 214.56 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_ioniq_5_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 9 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_tucson.jpg' %}" alt="Hyundai Tucson">
-            <div class="card-content">
-                <div class="car-title">Hyundai Tucson</div>
-                <div class="car-price">₹29.27 - ₹36.04 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 18 kmpl • Automatic<br>
-                    1999 cc • 153.81 - 183.72 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_tucson_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-        
-        <!-- Model 10 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_verna.jpg' %}" alt="Hyundai Verna">
-            <div class="card-content">
-                <div class="car-title">Hyundai Verna</div>
-                <div class="car-price">₹11.07 - ₹17.55 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 18.6 - 20.6 kmpl • Manual / Automatic<br>
-                    1482 cc • 113.18 - 157.57 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_verna_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        
-          <!-- Model 11 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Hyundai_venue.jpg' %}" alt="Hyundai Venue">
-            <div class="card-content">
-                <div class="car-title">Hyundai Venue</div>
-                <div class="car-price">₹7.94 - ₹13.62 Lakh*</div>
-                <div class="car-details">
-                    Diesel / Petrol • 24.2 kmpl • Manual / Automatic<br>
-                    998 cc • 82 - 118 bhp • 5 Seats
-                </div>
-                <a href="/Hyundai_venue_full_detail" class="action-button">View Full Details</a>
-            </div>
+        <span class="hero-tagline">HYUNDAI SHOWROOM</span>
+        <h1>Hyundai 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
+        </p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <span class="status-badge">11 MODELS LISTED</span>
+            <span class="status-badge">2026 INDIA LINEUP</span>
+            <span class="status-badge" style="border-color: #002c5f80 !important; color: #002c5f !important;">SENSUOUS SPORTINESS</span>
         </div>
     </div>
-</body>
-</html>
+</section>
+
+<section class="showroom-controls">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
+        11 Models &nbsp;•&nbsp; Click to View Details
+    </div>
+</section>
+
+<div class="model-grid" id="modelGrid">
+    <a href="{% url 'Hyundai_alcazar_full_detail' %}" class="model-card" data-model="hyundai alcazar">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_alcazar.jpg' %}" alt="Hyundai Alcazar">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹14.99 - ₹21.55 Lakh</span>
+            <h3>Hyundai Alcazar</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">114 - 158 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1482 - 1493 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_aura_full_detail' %}" class="model-card" data-model="hyundai aura">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_aura.jpg' %}" alt="Hyundai Aura">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹6.49 - ₹9.05 Lakh</span>
+            <h3>Hyundai Aura</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">68 - 82 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1197 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_creta_full_detail' %}" class="model-card" data-model="hyundai creta">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_creta.jpg' %}" alt="Hyundai Creta">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹11.11- ₹20.42 Lakh</span>
+            <h3>Hyundai Creta</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">113.18 - 157.57 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1482 - 1497 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_creta_ev_full_detail' %}" class="model-card" data-model="hyundai creta electric">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_creta_ev.jpg' %}" alt="Hyundai Creta Electric">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹17.99 - ₹24.38 Lakh</span>
+            <h3>Hyundai Creta Electric</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">133 - 169 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_exter_full_detail' %}" class="model-card" data-model="hyundai exter">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_exter.jpg' %}" alt="Hyundai Exter">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹6 - ₹10.50 Lakh</span>
+            <h3>Hyundai Exter</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">67.72 - 81.8 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1197 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_grand_i10_nios_full_detail' %}" class="model-card" data-model="hyundai grand i10 nios">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_grand _i10_nios.jpg' %}" alt="Hyundai Grand i10 Nios">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹5.92 - ₹8.56 Lakh</span>
+            <h3>Hyundai Grand i10 Nios</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">68 - 82 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1197 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_i20_full_detail' %}" class="model-card" data-model="hyundai i20">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_i20.jpg' %}" alt="Hyundai i20">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹7.04 - ₹11.25 Lakh</span>
+            <h3>Hyundai i20</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">82 - 87 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1197 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_ioniq_5_full_detail' %}" class="model-card" data-model="hyundai ioniq 5">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_ioniq_5.jpg' %}" alt="Hyundai IONIQ 5">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹46.05 Lakh</span>
+            <h3>HYundai IONIQ 5</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">214.56 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_tucson_full_detail' %}" class="model-card" data-model="hyundai tucson">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_tucson.jpg' %}" alt="Hyundai Tucson">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹29.27 - ₹36.04 Lakh</span>
+            <h3>Hyundai Tucson</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">153.81 - 183.72 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1999 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_verna_full_detail' %}" class="model-card" data-model="hyundai verna">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_verna.jpg' %}" alt="Hyundai Verna">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹11.07 - ₹17.55 Lakh</span>
+            <h3>Hyundai Verna</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">113.18 - 157.57 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1482 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Hyundai_venue_full_detail' %}" class="model-card" data-model="hyundai venue">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Hyundai_venue.jpg' %}" alt="Hyundai Venue">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹7.94 - ₹13.62 Lakh</span>
+            <h3>Hyundai Venue</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">82 - 118 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">998 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+</div>
+
+{% endblock %}

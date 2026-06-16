@@ -1,324 +1,218 @@
-<!DOCTYPE html>
+{% extends 'app/base_editorial.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Models</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #4e4e4e;
-            margin: 0;
-            padding-top: 70px; /* Prevent navbar overlap */
-        }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+{% block title %}Audi Editorial Showroom | Car Info System{% endblock %}
 
-        .card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #dcdcdc; 
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app/css/brand-pages.css' %}?v=3.0">
+{% endblock %}
 
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .car-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #212529;
-            margin-bottom: 10px;
-        }
-
-        .car-price {
-            font-size: 20px;
-            color: #000080;
-            margin-bottom: 10px;
-        }
-
-        .car-details {
-            font-size: 16px;
-            color: #708090;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .action-button {
-            display: inline-block;
-            background-color: #000080;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .action-button:hover {
-            background-color: #0000cd;
-            transform: translateY(-3px);
-        }
-
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%; 
-            margin-right: 8px;
-        }
-
-        .navbar-brand span {
-            font-weight: bold;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="{% static 'app/Image/car_icon.jpg' %}" alt="Car Icon">
-                <span>CarInfoSystem</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Login">Register / Login</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="typeDropdown" role="button" data-bs-toggle="dropdown">
-                                Sort by Type
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="typeDropdown">
-                                <li><a class="dropdown-item" href="#">Sedan</a></li>
-                                <li><a class="dropdown-item" href="#">SUV</a></li>
-                                <li><a class="dropdown-item" href="#">Hatchback</a></li>
-                                <li><a class="dropdown-item" href="#">Coupe</a></li>
-                                <li><a class="dropdown-item" href="#">Luxury</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/About">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Contact">Contact Us</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3">
-                        <input class="form-control me-2" type="search" placeholder="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
+{% block content %}
+<section class="showroom-hero">
+    <img src="{% static 'app/Image/Audi_logo.jpg' %}" class="hero-visual" alt="Audi Showroom" onerror="this.src='{% static 'app/Image/car_image_for_form.jpg' %}'">
+    <div class="hero-content">
+        <div class="brand-logo-badge">
+            <img src="{% static 'app/Image/Audi_logo.jpg' %}" alt="Audi" onerror="this.style.display='none'">
         </div>
-    </nav>
-
-    <!-- Card Section -->
-    <div class="container">
-        <!-- Model 1 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_A4.jpg' %}" alt="Audi A4">
-            <div class="card-content">
-                <div class="car-title">Audi A4</div>
-                <div class="car-price">₹46.99 - ₹55.84 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 14.1 kmpl • Automatic<br>
-                    1984 cc • 207 bhp • 5 Seats
-                </div>
-                <a href="/Audi_A4_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 2 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_A6.jpg' %}" alt="Audi A6">
-            <div class="card-content">
-                <div class="car-title">Audi A6</div>
-                <div class="car-price">₹65.72 - ₹72.06 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 14.11 kmpl • Automatic<br>
-                    1984 cc • 241.3 bhp • 5 Seats
-                </div>
-                <a href="/Audi_A6_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 3 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_A8L.jpg' %}" alt="Audi A8 L">
-            <div class="card-content">
-                <div class="car-title">Audi A8 L</div>
-                <div class="car-price">₹1.34 - 1.63 CR*</div>
-                <div class="car-details">
-                    Petrol • 7 kmpl • Automatic<br>
-                    2995 cc • 335.25 bhp • 4 Seats
-                </div>
-                <a href="/Audi_A8L_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 4 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_Q3.jpg' %}" alt="Audi Q3">
-            <div class="card-content">
-                <div class="car-title">Audi Q3</div>
-                <div class="car-price">₹44.25 - ₹55.64 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 10.14 kmpl • Automatic<br>
-                    1984 cc • 187.74 bhp • 5 Seats
-                </div>
-                <a href="/Audi_Q3_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-        
-        <!-- Model 5 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_Q3_sportback.jpg' %}" alt="Audi Q3 Sportback">
-            <div class="card-content">
-                <div class="car-title">Audi Q3 Sportback</div>
-                <div class="car-price">₹55.99 - ₹56.64 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 10.14 kmpl • Automatic<br>
-                    1984 cc • 187.74 bhp • 5 Seats
-                </div>
-                <a href="/Audi_Q3_sportback_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-        
-
-        <!-- Model 6 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_Q5.jpg' %}" alt="Audi Q5">
-            <div class="card-content">
-                <div class="car-title">Audi Q5</div>
-                <div class="car-price">₹66.99 - ₹72.29 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 13.47 kmpl • Automatic<br>
-                    1984 cc • 245.59 bhp • 5 Seats
-                </div>
-                <a href="/Audi_Q5_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 7 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_Q7.jpg' %}" alt="Audi Q7">
-            <div class="card-content">
-                <div class="car-title">Audi Q7</div>
-                <div class="car-price">₹88.70 - ₹97.85 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 11 kmpl • Automatic<br>
-                    2995 cc • 335 bhp • 7 Seats
-                </div>
-                <a href="/Audi_Q7_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 8 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_Q8.jpg' %}" alt="Audi Q8">
-            <div class="card-content">
-                <div class="car-title">Audi Q8</div>
-                <div class="car-price">₹1.17 CR*</div>
-                <div class="car-details">
-                    Petrol • 10 kmpl • Automatic<br>
-                    2995 cc • 355 bhp • 5 Seats
-                </div>
-                <a href="/Audi_Q8_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 9 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_Q8_etron.jpg' %}" alt="Audi Q5 e-tron">
-            <div class="card-content">
-                <div class="car-title">Audi Q8 e-tron</div>
-                <div class="car-price">₹1.15 - ₹1.27 CR*</div>
-                <div class="car-details">
-                    Electric • 491 - 582 km • Automatic<br>
-                    95 - 106 kWh • 402.3 bhp • 5 Seats
-                </div>
-                <a href="/Audi_Q8_etron_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 10 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_etron_GT.jpg' %}" alt="Audi e-tron GT">
-            <div class="card-content">
-                <div class="car-title">Audi e-tron GT</div>
-                <div class="car-price">₹1.72 CR*</div>
-                <div class="car-details">
-                    Electric • 500 km • Automatic<br>
-                    93 kWh • 522.99 bhp • 5 Seats
-                </div>
-                <a href="/Audi_etron_GT_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 11 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_RS5.jpg' %}" alt="Audi RS5">
-            <div class="card-content">
-                <div class="car-title">Audi RS5 </div>
-                <div class="car-price">₹1.13 CR*</div>
-                <div class="car-details">
-                    Petrol • 8.8 kmpl • Automatic<br>
-                    2894 cc • 443.87 bhp • 5 Seats
-                </div>
-                <a href="/Audi_RS5_full_detail" class="action-button">View Full Details</a>
-            </div>
-        </div>
-
-        <!-- Model 12 -->
-        <div class="card">
-            <img src="{% static 'app/Image/Audi_S5_sportback.jpg' %}" alt="Audi S5 Sportback">
-            <div class="card-content">
-                <div class="car-title">Audi S5 Sportback</div>
-                <div class="car-price">₹77.32 - ₹85.10 Lakh*</div>
-                <div class="car-details">
-                    Petrol • 10.6 kmpl • Automatic<br>
-                    2994 cc • 348.66 bhp • 5 Seats
-                </div>
-                <a href="/Audi_S5_sportback_full_detail" class="action-button">View Full Details</a>
-            </div>
+        <span class="hero-tagline">AUDI SHOWROOM</span>
+        <h1>Audi 2026</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+            Explore the complete 2026 India lineup. Click on any model to reveal full technical specifications and pricing details.
+        </p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <span class="status-badge">12 MODELS LISTED</span>
+            <span class="status-badge">2026 INDIA LINEUP</span>
+            <span class="status-badge" style="border-color: #f30a3080 !important; color: #f30a30 !important;">QUATTRO LEGEND</span>
         </div>
     </div>
-</body>
-</html>
+</section>
+
+<section class="showroom-controls">
+    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
+        12 Models &nbsp;•&nbsp; Click to View Details
+    </div>
+</section>
+
+<div class="model-grid" id="modelGrid">
+    <a href="{% url 'Audi_A4_full_detail' %}" class="model-card" data-model="audi a4">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_A4.jpg' %}" alt="Audi A4">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹46.99 - ₹55.84 Lakh</span>
+            <h3>Audi A4</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">207 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1984 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_A6_full_detail' %}" class="model-card" data-model="audi a6">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_A6.jpg' %}" alt="Audi A6">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹65.72 - ₹72.06 Lakh</span>
+            <h3>Audi A6</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">241.3 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1984 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_A8L_full_detail' %}" class="model-card" data-model="audi a8 l">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_A8L.jpg' %}" alt="Audi A8 L">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹1.34 - 1.63 CR</span>
+            <h3>Audi A8 L</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">335.25 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2995 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_Q3_full_detail' %}" class="model-card" data-model="audi q3">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_Q3.jpg' %}" alt="Audi Q3">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹44.25 - ₹55.64 Lakh</span>
+            <h3>Audi Q3</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">187.74 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1984 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_Q3_sportback_full_detail' %}" class="model-card" data-model="audi q3 sportback">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_Q3_sportback.jpg' %}" alt="Audi Q3 Sportback">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹55.99 - ₹56.64 Lakh</span>
+            <h3>Audi Q3 Sportback</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">187.74 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1984 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_Q5_full_detail' %}" class="model-card" data-model="audi q5">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_Q5.jpg' %}" alt="Audi Q5">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹66.99 - ₹72.29 Lakh</span>
+            <h3>Audi Q5</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">245.59 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">1984 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_Q7_full_detail' %}" class="model-card" data-model="audi q7">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_Q7.jpg' %}" alt="Audi Q7">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹88.70 - ₹97.85 Lakh</span>
+            <h3>Audi Q7</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">335 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2995 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_Q8_full_detail' %}" class="model-card" data-model="audi q8">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_Q8.jpg' %}" alt="Audi Q8">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹1.17 CR</span>
+            <h3>Audi Q8</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">355 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2995 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_Q8_etron_full_detail' %}" class="model-card" data-model="audi q8 e-tron">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_Q8_etron.jpg' %}" alt="Audi Q5 e-tron">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹1.15 - ₹1.27 CR</span>
+            <h3>Audi Q8 e-tron</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">402.3 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_etron_GT_full_detail' %}" class="model-card" data-model="audi e-tron gt">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_etron_GT.jpg' %}" alt="Audi e-tron GT">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹1.72 CR</span>
+            <h3>Audi e-tron GT</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">522.99 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">N/A</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_RS5_full_detail' %}" class="model-card" data-model="audi rs5">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_RS5.jpg' %}" alt="Audi RS5">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹1.13 CR</span>
+            <h3>Audi RS5</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">443.87 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2894 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+
+    <a href="{% url 'Audi_S5_sportback_full_detail' %}" class="model-card" data-model="audi s5 sportback">
+        <div class="card-img-wrap">
+            <img src="{% static 'app/Image/Audi_S5_sportback.jpg' %}" alt="Audi S5 Sportback">
+        </div>
+        <div class="card-info">
+            <span class="card-price">STARTS ₹77.32 - ₹85.10 Lakh</span>
+            <h3>Audi S5 Sportback</h3>
+        </div>
+        <div class="reveal-panel">
+            <div class="reveal-stat"><span class="stat-label">Power</span><span class="stat-value">348.66 bhp</span></div>
+            <div class="reveal-stat"><span class="stat-label">Engine</span><span class="stat-value">2994 cc</span></div>
+            <div class="reveal-stat"><span class="stat-label">View</span><span class="stat-value">DETAILS</span></div>
+        </div>
+    </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+:root {
+    --bg-dark: #000000;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --showroom-accent: #ffffff;
+}
+body { background-color: var(--bg-dark); font-family: var(--font-sans); }
+.showroom-hero { position: relative; height: 80vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.showroom-hero .hero-visual { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0.5; }
+.showroom-hero .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 20px; background: rgba(0,0,0,0.5); border-radius: 12px; }
+.brand-logo-badge img { height: 60px; margin-bottom: 15px; }
+.hero-tagline { font-family: var(--font-mono); color: var(--showroom-accent); letter-spacing: 5px; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px; display: block; }
+.showroom-hero h1 { font-size: 4rem; font-weight: 900; margin: 10px 0 20px; }
+.status-badge { background: rgba(0, 0, 0, 0.4) !important; border: 1px solid rgba(255, 255, 255, 0.5); padding: 8px 13px; color: var(--showroom-accent); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 900 !important; letter-spacing: 2px; text-transform: uppercase; border-radius: 6px; }
+.showroom-controls { padding: 20px; text-align: center; background: #0a0a0a; border-bottom: 1px solid #222; }
+.showroom-search { padding: 10px; width: 300px; border-radius: 6px; border: 1px solid #333; background: #000; color: #fff; margin-bottom: 10px; }
+.model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 40px; background: #000; }
+.model-card { background: #111; border-radius: 12px; overflow: hidden; text-decoration: none; color: #fff; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; border: 1px solid #222; }
+.model-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: #444; }
+.card-img-wrap img { width: 100%; height: 200px; object-fit: cover; }
+.card-info { padding: 20px; flex-grow: 1; }
+.card-price { font-family: var(--font-mono); font-size: 0.8rem; color: #aaa; }
+.card-info h3 { margin: 10px 0 0; font-size: 1.5rem; font-weight: 800; color: #fff;}
+.reveal-panel { padding: 15px 20px; background: #1a1a1a; display: flex; justify-content: space-between; border-top: 1px solid #333; }
+.reveal-stat { display: flex; flex-direction: column; }
+.stat-label { font-size: 0.7rem; color: #888; text-transform: uppercase; font-family: var(--font-mono); }
+.stat-value { font-weight: 800; font-size: 0.9rem; color: #ddd; }
